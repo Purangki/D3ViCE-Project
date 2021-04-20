@@ -1,0 +1,307 @@
+{% load static %}
+
+  {% block headerinclude %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>
+      {% block title %}
+      {{ page_title|default:"View History" }}
+      {% endblock %}
+    </title> 
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <!-- DataTable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <!-- Custom -->
+    <link href="{% static 'css/conferenceCRUD.css' %}" rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/dashboard/style.css' %}" rel="stylesheet">
+  {% endblock headerinclude %}
+
+  {% block footerinclude %}
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!-- Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <!-- ClipboardJS -->
+    <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+    <!-- Custom -->
+    <script src="{% static 'js/conferenceCRUD.js' %}"></script>
+  {% endblock footerinclude %} 
+
+  {% block content %}
+    <!-- START OF NAVBAR -->
+    <nav class ="navbar-nav navbar-style navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header ">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a id="tempLogo" class="navbar-logo" href="#">D3ViCE</a>
+        </div>
+          
+        <div class="collapse navbar-collapse" id="menuIcon">	
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../D3ViCE_Conference/dashboard">Dashboard</a></li>
+						<li><a href="../D3ViCE_Conference/manage">Conference</a></li>
+						<li><a href="#">History</a></li>
+						<li><a href="../D3ViCE_User/profile">Profile</a></li>
+						<li><a href="../D3ViCE_Account/logout">Logout</a></li>
+          </ul>					
+        </div>
+      </div>
+    </nav>
+    <!-- END OF NAVBAR -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2"><i class="fas fa-plus-circle"></i> Created</h1>
+          </div>
+
+          <table class="table table-striped table-bordered text-center" id="createdDataTable">
+            <thead>
+              <tr>
+                <th width="60%">Conference Title</th>
+                <th>Date</th>
+                <th width="27%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for conference_created in conferences_created %} 
+              <tr>
+                <td class="align-middle">{{conference_created.title}}</td>
+                <td class="align-middle">{{conference_created.date}}</td>
+                <td>
+                  <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#viewCreatedConferenceModal-{{conference_created.id}}">
+                      <i class="fas fa-eye"></i>
+                      View Details
+                    </button>
+                    <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteCreatedConferenceModal-{{conference_created.id}}">
+                      <i class="fas fa-trash-alt"></i>
+                      Delete
+                    </button>
+                </td>
+              </tr>
+
+              <div class="modal fade" id="viewCreatedConferenceModal-{{conference_created.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog conf-modal" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"><i class="fas fa-eye"></i>  View Details</h5>
+                      <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="conf-modal-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img src="{% static 'img/createConferenceImg.png' %}" class="img-fluid">
+                        </div>
+                        <div class="col-md-6 bg-light">
+                          <div class="input-group">
+                            <div class="input-group-prepend mt-5 mb-3">
+                              <span class="input-group-text conf-prepend">Conference Code</span>
+                            </div>
+                            <input type="text" name="conference_id_num" value={{conference_created.id}} hidden>
+                            <input type="text" id="code_edit-{{conference_created.id}}" name="code_edit" class="conf-input form-control mt-5 mb-3" value={{conference_created.code}} readonly>
+                            <div class="input-group-append mt-5 mb-3">
+                              <button type="button" id="btn_copy-{{conference_created.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference_created.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')"><i class="fas fa-copy"></i></button>
+                            </div>
+                          </div>
+                          <div class="input-group">
+                            <div class="input-group-prepend mb-3">
+                              <span class="input-group-text conf-prepend">Conference Title</span>
+                            </div>
+                            <input type="text" id="title_edit-{{conference_created.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference_created.title}}" required maxlength="150" disabled>
+                          </div>
+                          <div class="input-group">
+                            <div class="input-group-prepend mb-3">
+                              <span class="input-group-text conf-prepend">Date</span>
+                            </div>
+                            <input type="date" id="date_edit-{{conference_created.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference_created.date|date:"Y-m-d"}} required disabled>
+                            <script type="text/javascript">
+                              disableBeforeToday('date_edit-{{conference_created.id}}');
+                            </script>
+                          </div>
+                          <div class="input-group">
+                            <div class="input-group-prepend mb-3">
+                              <span class="input-group-text conf-prepend">Time</span>
+                            </div>
+                            <input type="time" id="time_edit-{{conference_created.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference_created.time|time:"H:i:s"}} required disabled>
+                          </div>
+                          <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" disabled>{{conference_created.description}}</textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="deleteCreatedConferenceModal-{{conference_created.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
+                      <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST">
+                      {% csrf_token %}
+                      <div class="modal-body">
+                        Are you sure you want to delete {{conference_created.title}}?
+                      </div>
+                      <div class="modal-footer">
+                        <input type="text" name="conference_id_num" value={{conference_created.id}} hidden>
+                        <button type="submit" id="btn_delete_conference" name="btn_delete_conference" class="btn btn-danger">Yes</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>  
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 mt-5 border-bottom">
+            <h1 class="h2"><i class="fas fa-sign-in-alt"></i> Joined</h1>
+          </div>
+
+          <table class="table table-striped table-bordered text-center" id="joinedDataTable">
+            <thead>
+              <tr>
+                <th width="60%">Conference Title</th>
+                <th>Date</th>
+                <th width="26%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for conference_joined in conferences_joined %} 
+              <tr>
+                <td class="align-middle">{{conference_joined.title}}</td>
+                <td class="align-middle">{{conference_joined.date}}</td>
+                <td>
+                  <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#viewJoinedConferenceModal-{{conference_joined.id}}">
+                      <i class="fas fa-eye"></i>
+                      View Details
+                    </button>
+                    <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteJoinedConferenceModal-{{conference_joined.id}}">
+                      <i class="fas fa-trash-alt"></i>
+                      Delete
+                    </button>
+                </td>
+              </tr>
+
+              <div class="modal fade" id="viewJoinedConferenceModal-{{conference_joined.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog conf-modal" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"><i class="fas fa-eye"></i>  View Details</h5>
+                      <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="conf-modal-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <img src="{% static 'img/createConferenceImg.png' %}" class="img-fluid">
+                        </div>
+                        <div class="col-md-6 bg-light">
+                          <div class="input-group">
+                            <div class="input-group-prepend mt-5 mb-3">
+                              <span class="input-group-text conf-prepend">Conference Code</span>
+                            </div>
+                            <input type="text" name="conference_id_num" value={{conference_joined.id}} hidden>
+                            <input type="text" id="code_edit-{{conference_joined.id}}" name="code_edit" class="conf-input form-control mt-5 mb-3" value={{conference_joined.code}} readonly>
+                            <div class="input-group-append mt-5 mb-3">
+                              <button type="button" id="btn_copy-{{conference_joined.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference_joined.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference_joined.id}}','btn_copy-{{conference_joined.id}}')"><i class="fas fa-copy"></i></button>
+                            </div>
+                          </div>
+                          <div class="input-group">
+                            <div class="input-group-prepend mb-3">
+                              <span class="input-group-text conf-prepend">Conference Title</span>
+                            </div>
+                            <input type="text" id="title_edit-{{conference_joined.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference_joined.title}}" required maxlength="150" disabled>
+                          </div>
+                          <div class="input-group">
+                            <div class="input-group-prepend mb-3">
+                              <span class="input-group-text conf-prepend">Date</span>
+                            </div>
+                            <input type="date" id="date_edit-{{conference_joined.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference_joined.date|date:"Y-m-d"}} required disabled>
+                            <script type="text/javascript">
+                              disableBeforeToday('date_edit-{{conference_joined.id}}');
+                            </script>
+                          </div>
+                          <div class="input-group">
+                            <div class="input-group-prepend mb-3">
+                              <span class="input-group-text conf-prepend">Time</span>
+                            </div>
+                            <input type="time" id="time_edit-{{conference_joined.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference_joined.time|time:"H:i:s"}} required disabled>
+                          </div>
+                          <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" disabled>{{conference_joined.description}}</textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="deleteJoinedConferenceModal-{{conference_joined.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
+                      <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST">
+                      {% csrf_token %}
+                      <div class="modal-body">
+                        Are you sure you want to delete {{conference_joined.title}}?
+                      </div>
+                      <div class="modal-footer">
+                        <input type="text" name="conference_id_num" value={{conference_joined.id}} hidden>
+                        <button type="submit" id="btn_delete_conference" name="btn_delete_conference" class="btn btn-danger">Yes</button>
+                        <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>  
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Menu Toggle Script -->
+    <script>
+      $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
+    </script>
+    <script>
+      $(document).ready(function() {
+        new ClipboardJS('.copy-to-clipboard');
+      } );
+    </script>
+  {% endblock content %}

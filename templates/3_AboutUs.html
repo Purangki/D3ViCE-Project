@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block headerinclude %}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		
+		
+		<title>
+			D3ViCE - About Us
+		</title>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/aboutUs/style.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/aboutUs/style.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/scrollreveal"></script>
+		{% endblock headerinclude %}
+	</head>
+	
+	<body>
+		{% block content %}
+		<nav class ="navbar navbar-style navbar-fixed-top">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-logo" href="../D3ViCE_Home/home">D3ViCE</a>
+					</div>
+					<div class="collapse navbar-collapse" id="menuIcon">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="../D3ViCE_Home/home">Home</a></li>
+						<li><a href="../D3ViCE_Home/feature">Features</a></li>
+						<li><a href="#aboutUs">About Us</a></li>
+						<li><a href="/D3ViCE_Account/login">Sign in</a></li>
+					</ul>
+					</div>
+				</div>
+		</nav>
+
+		<section id="home">
+			<div class = "container">
+				<div class="row">
+					<!--START FOR THE LEFT GRID-->
+					<div class="col-md-6 col-sm-6 ">
+						<div class="home-left">
+							<img src="{% static 'img/hierarchy-structure.png' %}" alt="One">
+						</div>
+					</div>
+
+					<!--START FOR THE RIGHT GRID-->
+					<div class="col-md-6 col-sm-6 ">
+						<div class="home-right">
+							<h1>Vision</h1>
+							<p>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Video conferencing as a means for people to share and communicate with others on ideas and help them accomplish more even in the confines of their own homes.
+							</p>
+
+							<h1>Mission</h1>
+							<p>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To make video conferencing immersive, safe and seamless as possible. Save resources such as time, money and effort both on the sponsor’s side and the participant’s side.
+							</p>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<section id="faq">
+			<div class="container">
+				<div class="row">
+					<div class="cold-md-6 col-sm-6">
+						<div class="faq-left">
+							<h1>FREQUENTLY ASKED QUESTIONS</h1>
+							<p>
+								<b>What is D3Vice?</b>
+								<br><br>
+								D3ViCE stands for 3D Virtual Conference Environment developed by the FLAME Developers. It caters to businesses, schools and other organizations in need of our services.
+								<br><br>
+								<b>What services does D3Vice offer?</b>
+								<br><br>
+								We offer a wide-range of services regarding video conferencing. You can check out the list of our features	<b> <a href="../D3ViCE_Home/feature">here</a></b>.
+							</p>
+						</div>
+					</div>
+					<div class="cold-md-6 col-sm-6">
+						<div class="faq-right">
+							<img src="{% static 'img/question.png' %}" alt="One">
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		{% block footerinclude %}
+		<script src="http://code.jquery.com/jquery-3.5.1.js"
+  				integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  				crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script>
+	        window.sr = ScrollReveal();
+	        sr.reveal('.menuIcon', {
+	          duration: 2000,
+	          origin:'bottom'
+	        });
+	        sr.reveal('.home-left', {
+	          duration: 2000,
+	          origin:'left',
+	          distance:'300px'
+	        });
+	        sr.reveal('.home-right', {
+	          duration: 2000,
+	          origin:'right',
+	          distance:'300px'
+	        });
+			sr.reveal('.faq-left', {
+	          duration: 2000,
+	          origin:'left',
+	          distance:'300px',
+	          viewFactor: 0.2
+	        });
+	        sr.reveal('.faq-right', {
+	          duration: 2000,
+	          origin:'right',
+	          distance:'300px',
+	          viewFactor: 0.2
+	        });
+    	</script>
+
+    	 <script>
+		    $(function() {
+		      // Smooth Scrolling
+		      $('a[href*="#"]:not([href="#"])').click(function() {
+		        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		          var target = $(this.hash);
+		          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+		          if (target.length) {
+		            $('html, body').animate({
+		              scrollTop: target.offset().top
+		            }, 1000);
+		            return false;
+		          }
+		        }
+		      });
+		    });
+		</script>
+		{% endblock footerinclude %}
+		{% endblock content %}
+	</body>
+
+</html>

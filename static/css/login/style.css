@@ -1,0 +1,139 @@
+body{
+	margin-top: 120px;
+    font-size:16px;
+    font-family:Poppins;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family:Poppins;
+}
+
+.navbar-style{
+	background: #179681;
+/*	background-image: linear-gradient(#179681, #2CABE3);*/
+  	border:0;
+  	font-family:Poppins;
+  	box-shadow: 0px 15px 4px rgba(246, 247, 247, 0.5);
+}
+
+a{
+	position: absolute;
+	width: 150px;
+	height: 65px;
+	margin-top: 0px;
+
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 60px;
+
+	color: #FFFFFF;
+}
+
+img{
+    width: 150px;
+    height 90px;
+    margin-top: -50px;
+}
+
+.icon-bar{
+	background: #2CABE3;
+}
+
+.navbar-logo{
+	position: absolute;
+	width: 515px;
+	height: 99px;
+	margin-bottom: 20px;
+
+	font-family: Poppins;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 40px;
+	line-height: 60px;
+
+	color: #FFFFFF;
+}
+
+
+
+#home form{
+    width: 700px;
+    height: 500px;
+    margin-left:240px;
+    margin-top:75px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+}
+
+form h3{
+    font-size: 30px;
+    margin-top: 70px;
+    text-align: center;
+
+   font-style: normal;
+   font-weight: bold;
+   color: #179681;
+}
+form #username{
+    margin-top: 130px;
+}
+
+form #password{
+    margin-top: 50px;
+}
+
+form label{
+    margin-left:120px;
+}
+
+form input{
+    width: 300px;
+    margin-left:70px;
+    border-radius: 10px;
+    border-color: #179681 ;
+}
+
+form a{
+    margin-top: 40px;
+    margin-left: 300px;
+}
+
+.checkbox{
+    margin-top: 30px;
+    margin-left:300px;
+}
+.btn-login{
+    width: 150px;
+    height: 30px;
+    background: #56C69E;
+    border-radius: 20px;
+}
+
+#home img{
+	/*position: absolute;*/
+	width: 500px;
+	height: 424px;
+
+	display: block;
+	margin-top: 80px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: 90%;
+	
+/*	filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));*/
+	border-radius: 62px;
+}
+
+#home p{
+	color: #000000;
+}
+
+.login{
+	margin-left: 425px;
+}
+
+

@@ -1,0 +1,11 @@
+from django.contrib import admin
+# from user.models import User
+from D3ViCE_Conference.models import Conference
+from D3ViCE_User.models import *
+from D3ViCE_Account.models import *
+from django.contrib.auth.models import User
+# from account.models import CustomUser
+
+# admin.site.register(User)
+admin.site.register(Conference)
+# admin.site.register(CustomUser)

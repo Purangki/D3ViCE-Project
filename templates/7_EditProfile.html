@@ -1,0 +1,307 @@
+{% load static %}
+     {% block headerinclude %}
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <title>
+          {% block title %}
+          {{ page_title|default:"D3ViCE | User" }}
+          {% endblock %}
+     </title> 
+     <!-- Bootstrap -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+     <!-- DataTable -->
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+     <!-- Custom -->
+     <link href="{% static 'User/userCRUD.css' %}" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+     <!-- <link href="{% static 'css/dashboard/style.css' %}" rel="stylesheet"> -->
+     {% endblock headerinclude %}
+
+{% block content %}
+
+	<!-- START OF NAVBAR -->
+     <nav class ="navbar-nav navbar-style navbar-fixed-top">
+          <div class="container">
+               <div class="navbar-header ">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                    </button>
+                    <a id="tempLogo" class="navbar-logo" href="#">D3ViCE</a>
+               </div>
+                    
+               <div class="collapse navbar-collapse" id="menuIcon">	
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="../D3ViCE_Conference/dashboard">Dashboard</a></li>
+                         <li><a href="../D3ViCE_Conference/manage">Conference</a></li>
+                         <li><a href="../D3ViCE_Conference/history">History</a></li>
+                         <li><a href="../D3ViCE_User/profile">Profile</a></li>
+                         <li><a href="../D3ViCE_Account/logout">Logout</a></li>
+                    </ul>					
+               </div>
+          </div>
+     </nav>
+     <!-- END OF NAVBAR -->
+
+<div class="container-fluid">
+     <div class="row">
+          <div class="col-lg-12 px-md-4">
+               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2"><i class="far fa-user-circle"></i> Profile</h1>
+                    <div>
+                         <button type="button" class="btn btn-sm btn-conference">
+                              <i class="fas fa-sign-in-alt"></i>
+                              Join Conference
+                         </button>
+                         <button type="button" class="btn btn-sm btn-conference" data-toggle="modal" data-target="#createConferenceModal">
+                              <i class="fas fa-plus-circle"></i>
+                              Create Conference
+                         </button>
+                    </div>
+               </div>
+               <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4">
+                                   <div class="form-group">
+                                        <label>First Name:</label>
+                                   </div>
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                        <input name ="user-fname" id="user-fname" type="text"  class="form-control" max="100" value="{{request.user.first_name}}" readonly>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4">
+                                   <div class="form-group">
+                                        <label>Last Name:</label>
+                                   </div>
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                        <input name ="user-lname" id="user-lname" type="text" class="form-control" max="100" value="{{request.user.last_name}}" readonly>
+                                   </div>
+                           </div>
+                      </div>
+                      <div class="row">
+                           <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                     <label>Email:</label>
+                                </div>
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <input name ="user-fname" id="user-fname" type="text" class="form-control" max="100" value="{{request.user.email}}" readonly>
+                                </div>
+                           </div>
+                      </div>
+                      <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#editConferenceModal-{{request.user.id}}">
+                   <i class="fas fa-edit"></i>
+                   Edit Details
+                 </button>
+                 <a href="{% url 'D3ViCE_User:password-change-view'%}"><button type="submit" class="btn btn-edit" id="btn_change_password" name="btn_change_password"><i class="fa fa-key"></i> Change Password</button></a>
+                 <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteConferenceModal-{{request.user.id}}">
+                   <i class="fas fa-trash-alt"></i>
+                   Delete Account
+                 </button>
+            </form>
+         <div class="modal fade" id="editConferenceModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+           <div class="modal-dialog modal-dialog-centered" role="document">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title"><i class="fas fa-edit"></i>  Edit Details</h5>
+                 <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+               <div class="conf-modal-body">
+                 
+                   <div class="col-md-12 bg-light">
+                     <form method="POST">
+                       {% csrf_token %}
+                       <br>
+                       <input type="text" name="user_id_num" value={{request.user.id}} hidden>
+                       <div class="row">
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <label>First Name:</label>
+                                </div>
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <input name ="user-fname" id="user-fname" type="text"  class="form-control" max="100" value="{{request.user.first_name}}" required>
+                                </div>
+                           </div>
+                      </div>
+                      <div class="row">
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <label>Last Name:</label>
+                                </div>
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <input name ="user-lname" id="user-lname" type="text" class="form-control" max="100" value="{{request.user.last_name}}" required>
+                                </div>
+                           </div>
+                      </div>
+                      <div class="row">
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <label>Email:</label>
+                                </div>
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <input name ="user-email" id="user-email" type="text" class="form-control" max="100" value="{{request.user.email}}" required>
+                                </div>
+                           </div>
+                      </div>
+                       <div class="d-flex justify-content-center mt-2">
+                         <button type="submit" id="btn_edit_user" name="btn_edit_user" class="btn btn-conference-submit">Save Changes</button>
+                       </div>
+                       <br>
+                     </form>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+
+         <div class="modal fade" id="deleteConferenceModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+           <div class="modal-dialog modal-dialog-centered" role="document">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
+                 <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+               <form method="POST">
+                 {% csrf_token %}
+                 <div class="modal-body">
+                   Are you sure you want to delete your account?
+                 </div>
+                 <div class="modal-footer">
+                   <input type="text" name="user_id_num" value={{request.user.id}} hidden>
+                   <button type="submit" id="btn_delete_user" name="btn_delete_user" class="btn btn-danger">Yes</button>
+                   <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
+                 </div>
+               </form>
+             </div>
+           </div>
+         </div> 
+
+         <div class="modal fade" id="changePassModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+           <div class="modal-dialog modal-dialog-centered" role="document">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h5 class="modal-title"><i class="fas fa-edit"></i>  Edit Details</h5>
+                 <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+               <div class="conf-modal-body">
+                 
+                   <div class="col-md-12 bg-light">
+                     <form method="POST">
+                       {% csrf_token %}
+                       <br>
+                       <input type="text" name="user_id_num" value={{request.user.id}} hidden>
+                       <div class="row">
+                           <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                     <label>Current Password:</label>
+                                </div>
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <input type="password" name="current_password" id="current_password" class="form-control input-sm" placeholder="Password" max="100">
+                                </div>
+                           </div>
+                      </div>
+                      <div class="row">
+                           <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                     <label>New Password:</label>
+                                </div>
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <input type="password" name="new_password" id="new_password" class="form-control input-sm" placeholder="Password" max="100">
+                                </div>
+                           </div>
+                      </div>
+                      <div class="row">
+                           <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                     <label>Repeat New Password:</label>
+                                </div>
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                     <input type="password" name="renew_password" id="renew_password" class="form-control input-sm" placeholder="Password" max="100">
+                                </div>
+                           </div>
+                      </div>
+                       <div class="d-flex justify-content-center mt-2">
+                         <button type="submit" id="btn_change_password" name="btn_change_password" class="btn btn-conference-submit">Save Changes</button></a>
+                       </div>
+                       <br>
+                     </form>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+     </div>
+   </div>
+ </div>
+
+ {% block footerinclude %}
+ <!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<!-- Popper -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+<!-- Datatables -->
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<!-- ClipboardJS -->
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<!-- Custom -->
+<!-- <script src="{% static 'js/conferenceCRUD.js' %}"></script> -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+<script>
+  $(document).ready(function() {
+    new ClipboardJS('.copy-to-clipboard');
+  } );
+</script>
+  {% endblock footerinclude %}
+{% endblock content %}
+
+
+
+
+
+

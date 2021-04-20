@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block headerinclude %}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>
+			D3ViCE - Feature
+		</title>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/feature/style.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/feature/style.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/scrollreveal"></script>
+		{% endblock headerinclude %}
+	</head>
+	
+	<body>
+		{% block content %}
+		<nav class ="navbar navbar-style navbar-fixed-top">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-logo" href="../D3ViCE_Home/home">D3ViCE</a>
+					</div>
+					<div class="collapse navbar-collapse" id="menuIcon">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="../D3ViCE_Home/home">Home</a></li>
+							<li><a href="#feature">Features</a></li>
+							<li><a href="../D3ViCE_Home/aboutUs">About Us</a></li>
+						<li><a href="/D3ViCE_Account/login">Sign in</a></li>
+					</ul>
+					</div>
+				</div>
+			</nav>
+
+		<section id="connect">
+			<div class = "container">
+				<div class="row">
+					<!--START FOR THE LEFT GRID-->
+					<div class="col-md-6 col-sm-6 ">
+						<div class="connect-left">
+							<img src="{% static 'img/connect.png' %}" alt="Connected People">
+						</div>
+					</div>
+
+					<!--START FOR THE RIGHT GRID-->
+					<div class="col-md-6 col-sm-6 ">
+						<div class="connect-right">
+							<h1>Connect</h1>
+							<p>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Keeping all people connected around the the world. Using conferencing as a means to accomplish more tasks and more! Build friendship, expand your circle and become a part of a community!
+							</p>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<section id="immerse">
+			<div class = "container">
+				<div class="row">
+					<!--START FOR THE LEFT GRID-->
+					<div class="col-md-6 col-sm-6 ">
+						<div class="immerse-left">
+							<h1>Interactive</h1>
+							<p>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our system is built with the goal to make conferencing as immersive and interactive as possible. With its gamelike interface, it becomes so dynamic that it encourages users to be a part of the conference. Boring no more!
+							</p>
+						</div>
+					</div>
+
+					<!--START FOR THE RIGHT GRID-->
+					<div class="col-md-6 col-sm-6 ">
+						<div class="immerse-right">
+                            <img src="{% static 'img/chat.png' %}" alt="Immersive">
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+        </section>
+        
+        <section id="envi">
+			<div class = "container">
+				<div class="row">
+					<!--START FOR THE LEFT GRID-->
+					<div class="col-md-6 col-sm-6 ">
+						<div class="envi-left">
+							<img src="{% static 'img/3d-printer.png' %}" alt="3d Conference">
+						</div>
+					</div>
+
+					<!--START FOR THE RIGHT GRID-->
+					<div class="col-md-6 col-sm-6 ">
+						<div class="envi-right">
+							<h1>Three-Dimensional</h1>
+							<p>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do we need to say more? It's 3D!! You've read that right, it is three-dimensional with avatars and virtual environment created by our talented team of designers! Crafted deftly to serve our users the highest level of experience in 3d conference they can get!
+							</p>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		
+		{% block footerinclude %}
+		<script src="http://code.jquery.com/jquery-3.5.1.js"
+  				integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  				crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script>
+	        window.sr = ScrollReveal();
+	        sr.reveal('.menuIcon', {
+	          duration: 2000,
+	          origin:'bottom'
+	        });
+	        sr.reveal('.connect-left', {
+	          duration: 2000,
+	          origin:'left',
+	          distance:'300px'
+	        });
+	        sr.reveal('.connect-right', {
+	          duration: 2000,
+	          origin:'right',
+	          distance:'300px'
+	        });
+            sr.reveal('.immerse-right', {
+	          duration: 2000,
+	          origin:'right',
+	          distance:'300px',
+	          viewFactor: 0.2
+	        });
+	        sr.reveal('.immerse-left', {
+	          duration: 2000,
+	          origin:'left',
+	          distance:'300px',
+	          viewFactor: 0.2
+	        });
+            sr.reveal('.envi-left', {
+	          duration: 2000,
+	          origin:'left',
+	          distance:'300px',
+	          viewFactor: 0.2
+	        });
+	        sr.reveal('.envi-right', {
+	          duration: 2000,
+	          origin:'right',
+	          distance:'300px',
+	          viewFactor: 0.2
+	        });
+    	</script>
+
+    	 <script>
+		    $(function() {
+		      // Smooth Scrolling
+		      $('a[href*="#"]:not([href="#"])').click(function() {
+		        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		          var target = $(this.hash);
+		          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+		          if (target.length) {
+		            $('html, body').animate({
+		              scrollTop: target.offset().top
+		            }, 1000);
+		            return false;
+		          }
+		        }
+		      });
+		    });
+		</script>
+		{% endblock footerinclude %}
+		{% endblock content %}
+	</body>
+
+</html>
