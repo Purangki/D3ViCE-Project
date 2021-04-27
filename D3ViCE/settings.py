@@ -39,10 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'D3ViCE_Account',
-    'D3ViCE_Conference',
-    'D3ViCE_Home',
-    'D3ViCE_User',
+    'D3ViCE_Account', #app for Account (login and logout)
+    'D3ViCE_Conference', #app for Conference (manage conf, user dashbaord and view history)
+    'D3ViCE_Home', #app for Home(home, about us, feature, sign up)
+    'D3ViCE_User', #app for Users(editprofile)
 ]
 
 MIDDLEWARE = [
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'D3ViCE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DB_D3ViCE',
+        'NAME': 'DB_D3ViCE', #database name                           
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
@@ -139,12 +139,4 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 
-AUTH_USER_MODEL = 'D3ViCE_User.Profile'
-
-#for email
-# EMAIL_HOST
-# EMAIL_HOST_USER
-# EMAIL_USE_TLS
-# DEFAULT_FROM_EMAIL
-# EMAIL_PORT
-# EMAIL_HOST_PASSWORD
+AUTH_USER_MODEL = 'D3ViCE_User.Profile' #Custom User model
