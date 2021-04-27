@@ -7,11 +7,11 @@ from .models import *
 from .models import Conference
 from datetime import datetime
 from django.contrib.auth.models import auth, User
-import uuid
+import uuid		#for the conference code
 
 # Create your views here.
-class ConferenceManageView(View):
-	def get(self, request):
+class ConferenceManageView(View):	#conference manage view of conference
+	def get(self, request):			#get method for the conference, displays conference details in the template
 		qs_conferences = Conference.objects.filter(is_deleted = False, is_created = True, date__gte=datetime.now()).order_by('-date')
 		context = {
 			'D3ViCE_Conference' : qs_conferences
@@ -38,10 +38,7 @@ class ConferenceManageView(View):
 				date = request.POST.get("date_edit")
 				time = request.POST.get("time_edit")
 				description = request.POST.get("desc_edit")
-				edit_conference = Conference.objects.filter(id = id_num).update(title = title,
-																			date = date,
-																			time = time,
-																			description = description)
+				edit_conference = Conference.objects.filter(id = id_num).update(title = title, date = date, time = time, description = description)
 			elif 'btn_delete_conference' in request.POST:
 				id_num = request.POST.get("conference_id_num")	
 				delete_conference = Conference.objects.filter(id = id_num).update(is_deleted = True)
