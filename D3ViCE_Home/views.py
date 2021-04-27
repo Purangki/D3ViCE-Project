@@ -8,15 +8,15 @@ from .models import *
 # Create your views here.
 class HomeView(View):
 	def get(self, request):
-		return render(request, '1_Home.html')
+		return render(request, '1_Home.html')	#homepage
 
 class FeatureView(View):
 	def get(self, request):
-		return render(request, '2_Feature.html')
+		return render(request, '2_Feature.html')	#feature page
 		
 class AboutUsView(View):
 	def get(self, request):
-		return render(request, '3_AboutUs.html')
+		return render(request, '3_AboutUs.html')	#about us page
 
 
 
