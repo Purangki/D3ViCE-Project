@@ -10,21 +10,21 @@ from D3ViCE_User.models import *
 from .models import Profile
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage #supposed to be for the email authentication, however was put on hold since it is optional
 
 class MyPasswordChangeView(PasswordChangeView):
-	template_name = '8_ChangePassword.html'
-	success_url = reverse_lazy('D3ViCE_User:password-change-done-view')
+	template_name = '8_ChangePassword.html'	#changing password template
+	success_url = reverse_lazy('D3ViCE_User:password-change-done-view')	#password successful
 
 class MyPasswordResetDoneView(PasswordResetDoneView):
-	template_name = '9_SuccessfulChangePass.html'
+	template_name = '9_SuccessfulChangePass.html'	#password successful template
 
 class UserSignUpView(View):
 	def get(self, request):
-		return render(request, '4_SignUp.html')
+		return render(request, '4_SignUp.html')	#user registration
 
-	def post(self, request):
-		if request.method == 'POST':
+	def post(self, request):	#post method for registraion
+		if request.method == 'POST':	
 			if 'signUp' in request.POST:
 				fname = request.POST.get("fname")
 				lname = request.POST.get("lname")
@@ -38,14 +38,6 @@ class UserSignUpView(View):
 					if not Profile.objects.filter(username=username).exists():
 						if not Profile.objects.filter(email=email).exists():
 							user = Profile.objects.create_user(first_name=fname,last_name=lname,username=username,email=email,password=password, is_deleted = False, avatar_index = 0)
-							# email_subject = 'Activate your account'
-							# email_body = ''
-							# email = EmailMessage(
-							# 	email_subject,
-							# 	email_body,
-							# 	'noreply@semycolon.com',
-							# 	[email],
-							# )
 							return redirect('D3ViCE_Conference:dashboard_view')
 						else:
 							return HttpResponse('email exists')
@@ -56,9 +48,9 @@ class UserSignUpView(View):
 
 class UserView(View):
 	def get(self, request):
-		return render(request, '7_EditProfile.html')
+		return render(request, '7_EditProfile.html')	#edit profile view (user can see his current details)
 
-class UserProfileView(View):
+class UserProfileView(View):	
 	def get(self, request):
 		if request.user.is_authenticated:
 			qs_user = Profile.objects.filter(is_active=False)
@@ -87,7 +79,7 @@ class UserProfileView(View):
 				delete_user = Profile.objects.filter(id = id_num).update(is_active = False)
 				return redirect('D3ViCE_Account:login')
 
-class AdminView(View):
+class AdminView(View):	#admin dashboard
 	def get(self, request):
 		return render(request, '0_AdminDashboard.html')
 
