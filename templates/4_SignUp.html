@@ -22,6 +22,7 @@
   
   <body>
     {% block content %}
+    <!-- START OF NAVBAR -->
     <nav class ="navbar navbar-style navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
@@ -30,8 +31,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-                <!--    <a class="navbar-logo" href="#"><img src="../images/finalLogo.png"></a>-->
-                    <a class="navbar-logo" href="../home/home">D3ViCE</a>
+            <a class="navbar-logo" href="../D3ViCE_Home/homee">D3ViCE</a>
           </div>
           <div class="collapse navbar-collapse" id="menuIcon">
           <ul class="nav navbar-nav navbar-right">
@@ -43,89 +43,92 @@
           </div>
         </div>
     </nav>
+    <!-- END OF NAVBAR -->
 
     <section id="home">
       <div class = "container">
         <div class="row">
-
-                    <div class="col-md-12 col-sm-12">
-                        <form action="" method="POST" id="form-login" class="login" enctype="multipart/form-data">
-              {% csrf_token %}
-                        <!--<h3>Sign In</h3>-->
-                            <!--First Name-->
-                            <div style="height: 100px;">
-                              <br>
-                              <div class="col-md-1 col-sm-1">  
-                              </div>
-                              <div class="col-md-4 col-sm-4">  
-                              <h2>Sign Up</h2>
-                              </div>
-                              
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6">
-                                    <label for="fname">First Name</label>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <input type="text" class="form-username" name="fname" id="fname" placeholder="First Name" max="20" required>
-                                </div>
-                                
-                            </div>
-                            <br>
-                            <!--Last Name-->
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6">
-                                    <label for="lname">Last Name</label>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <input type="username" class="form-username" name="lname" id="lname"placeholder="Last Name" max="20" required>
-                                </div>
-                            </div>
-                            <br>
-                            <!--Email-->
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6">
-                                    <label for="email">Email</label>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <input type="username" class="form-username" name="email" id="email" pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"placeholder="Email Address" required >
-                                </div>
-                            </div>
-                            <br>
-                            
-
-                            <!--Password-->
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6">
-                                    <label for="pass">Password</label>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <input type="password" class="form-password" id="passwordd" name="pass" placeholder="password"max="30" required>
-                                </div>
-                            </div>
-                            <br>
-                            <!--Confirm-->
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6">
-                                    <label for="confirm_pass">Confirm Password</label>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <input type="password" class="form-username" name="confirm_pass" id="confirm_pass" placeholder="Confirm Password" max="30" required>
-                                </div>
-                            </div>
-                            <br>
-                            <!--Remember Me-->
-                            
-              <!-- Submit -->
-              <div class="row">
-                                <div class="col-md-12 col-sm-12"> 
-                  <div class="login">
-                  <button class="btn btn-login" type="submit"name="signUp" value="Sign Up"><b>Sign Up</b></button>
+          <div class="col-md-12 col-sm-12">
+              <form action="" method="POST" id="form-login" class="login" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="height: 100px;">
+                  <br>
+                  <div class="col-md-1 col-sm-1">  
                   </div>
-                                </div>
-                            </div>
-                        </form>
+                  <div class="col-md-4 col-sm-4">  
+                    <h2>Sign Up</h2>
+                  </div>    
+                </div>
+
+                  <div class="row">
+                      <div class="col-md-4 col-sm-6">
+                          <label for="fname">First Name</label>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                          <input type="text" class="form-username" name="fname" id="fname" placeholder="First Name" max="20" required>
+                      </div>    
+                  </div>
+
+                  <br>
+
+                  <!--Last Name-->
+                  <div class="row">
+                      <div class="col-md-4 col-sm-6">
+                          <label for="lname">Last Name</label>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                          <input type="username" class="form-username" name="lname" id="lname"placeholder="Last Name" max="20" required>
+                      </div>
+                  </div>
+
+                  <br>
+
+                  <!--Email-->
+                  <div class="row">
+                      <div class="col-md-4 col-sm-6">
+                          <label for="email">Email</label>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                          <input type="username" class="form-username" name="email" id="email" pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"placeholder="Email Address" required >
+                      </div>
+                  </div>
+                  <br>
+                  
+
+                  <!--Password-->
+                  <div class="row">
+                      <div class="col-md-4 col-sm-6">
+                          <label for="pass">Password</label>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                          <input type="password" class="form-password" id="passwordd" name="pass" placeholder="password"max="30" required>
+                      </div>
+                  </div>
+
+                  <br>
+
+                  <!--Confirm-->
+                  <div class="row">
+                      <div class="col-md-4 col-sm-6">
+                          <label for="confirm_pass">Confirm Password</label>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                          <input type="password" class="form-username" name="confirm_pass" id="confirm_pass" placeholder="Confirm Password" max="30" required>
+                      </div>
+                  </div>
+
+                  <br>
+
+                <!-- Submit -->
+                <div class="row">
+                  <div class="col-md-12 col-sm-12"> 
+                    <div class="login">
+                      <button class="btn btn-login" type="submit"name="signUp" value="Sign Up"><b>Sign Up</b></button>
                     </div>
+                  </div>
+                </div>
+              </form>
+          </div>
         </div>
       </div>
     </section>
