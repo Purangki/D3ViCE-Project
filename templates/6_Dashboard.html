@@ -15,7 +15,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://unpkg.com/scrollreveal"></script>
     {% endblock headerinclude %}
-    
+  </head>  
+
     {% block footerinclude %}
   	<!-- jQuery CDN - Slim version (=without AJAX) -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -24,11 +25,12 @@
 		<!-- Bootstrap JS -->
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 		{% endblock footerinclude %}
-	</head>
+
 	
 	<body>
 		{% block content %}
 		<!-- START OF NAVBAR -->
+
 		<nav class ="navbar navbar-style navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -52,36 +54,39 @@
 			</div>
 		</nav>
 		<!-- END OF NAVBAR -->
+
 		<div class="container-fluid">
         <h1 class="mt-4"><b>Dashboard</b></h1>
         <div class="row col-12">
           <div class="col-md-4 col-sm-4">
             {% for conference in completed %}
+            
             <div class="col-md-12 col-sm-12">
                 <div id="blk1" class="block1">
-                        <h3>Completed</h3>
-                        <!-- <h1>Get to know D3ViCe</h1> -->
-                      <h1>
-                        <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
-                      </h1>
-                    <p>
-                      <textarea id="txt_completed" name="txt_completed" readonly>
-                          {{ conference.description }}
-                      </textarea>
-                    </p>
-                    <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}"><div class="showMore">Show More</div></button>
+                  <h3>Completed</h3>
+                  <h1>
+                    <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
+                  </h1>
+                  <p>
+                    <textarea id="txt_completed" name="txt_completed" readonly>
+                        {{ conference.description }}
+                    </textarea>
+                  </p>
+                  <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}"><div class="showMore">Show More</div></button>
                 </div>
             </div>
 
             <div class="modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog conf-modal" role="document">
                 <div class="modal-content">
+                  
                   <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-edit"></i>  Conference Details</h5>
+                    <h5 class="modal-title"><i class="fas fa-edit"></i>Conference Details</h5>
                     <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
+
                   <div class="conf-modal-body">
                     <div class="row">
                       <div class="col-md-6">
