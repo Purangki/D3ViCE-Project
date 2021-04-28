@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'D3ViCE_Conference', #app for Conference (manage conf, user dashbaord and view history)
     'D3ViCE_Home', #app for Home(home, about us, feature, sign up)
     'D3ViCE_User', #app for Users(editprofile)
+    'D3ViCE_Unity', #app for all Unity Functions
 ]
 
 MIDDLEWARE = [

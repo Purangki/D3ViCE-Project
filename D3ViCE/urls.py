@@ -25,4 +25,5 @@ urlpatterns = [
     path('D3ViCE_Conference/', include('D3ViCE_Conference.urls', namespace='conference')), #this is a path for the conference urls
     path('D3ViCE_Home/', include('D3ViCE_Home.urls', namespace='home')), #this is a path for the home urls
     path('D3ViCE_User/', include('D3ViCE_User.urls', namespace='user')), #this is a path for the user urls
+    path('D3ViCE_Unity/', include('D3ViCE_Unity.urls', namespace='unity')), #this is a path for the unity urls
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #this is for the media files
