@@ -6,7 +6,7 @@ from D3ViCE_User.models import Profile,Participant
 class UserLogin(forms.ModelForm):
     
     class Meta:
-        model = AbstractUser
+        model = Profile
         fields = ('username','password')
 
 class UserUpdateAvatar(forms.ModelForm):

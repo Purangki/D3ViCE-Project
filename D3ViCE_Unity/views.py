@@ -19,14 +19,14 @@ def login_user(request, username=None):
         if form.is_valid():
             user_name =  form.cleaned_data["username"]
             user_password = form.cleaned_data["password"]
-            user = auth.authenticate(username = user_name, password = user_password);
+            user = auth.authenticate(username = user_name, password = user_password)
             if user is not None:
                 user_username = user_data.username
-                user_password = user_data.password
                 user_firstname = user_data.firstName
                 user_lastname = user_data.lastName
+                user_email = user_data.email
                 user_avatarindex = user_data.avatar_index
-                return JsonResponse({'success': True, 'user': user_username, 'password': user_password,'firstname': user_firstname,'lastname': user_lastname,'avatar_index': user_avatarindex})
+                return JsonResponse({'success': True, 'user': user_username,'firstname': user_firstname,'lastname': user_lastname,'email': user_email,'avatar_index': user_avatarindex})
             else:
                 return JsonResponse({'success': False, 'errors': 'Invalid Password'})
         else:
