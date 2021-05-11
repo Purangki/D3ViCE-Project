@@ -11,7 +11,6 @@ class Conference(models.Model):
 	date = models.DateField()	#conference date
 	time = models.TimeField()	#conference time
 	description = models.CharField(max_length = 255)	#conference description 
-	# is_created = models.BooleanField(default = False) 	#True - user is host of (or created the) conference, False - user is just a participant
 	is_deleted = models.BooleanField(default = False)	#archives the conference, deleted in the page but not in the db
 	status = models.CharField(max_length = 50, default = "Not Started")	#added by Abby for the main dashboard
 	participant = models.ManyToManyField(Participant)
