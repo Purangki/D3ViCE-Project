@@ -113,6 +113,7 @@ form h2{
     font-size: 30px;
     margin-top: 70px;
     text-align: center;
+    letter-spacing: 0.1ch;
 
    font-style: normal;
    font-weight: bold;
@@ -123,10 +124,12 @@ form #username{
 
 }
 
+
 form #password{
     margin-top: 50px;
-
+    margin-right: -5px;
 }
+
 
 form label{
     margin-left: 40px;
@@ -191,6 +194,7 @@ form a{
     /* font-style: italic; */
     text-indent: 10px;
     opacity: 50%;
+    letter-spacing: 0.3ch;
     /* font-family: 'Roboto'; */
     font-size: 12.5px;
  }
