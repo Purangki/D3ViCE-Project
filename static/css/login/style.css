@@ -152,9 +152,11 @@ form a{
     margin-top: 10px;
     margin-left: 19px;
     background: #56C69E;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
-
+.sign-in{
+    color: white;;
+}
 #home img{
 	/*position: absolute;*/
 	width: 500px;
