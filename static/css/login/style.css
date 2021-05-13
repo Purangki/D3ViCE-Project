@@ -147,15 +147,22 @@ form a{
 
 .checkbox{
     margin-top: 30px;
-    margin-left:300px;
+    margin-left: 280px;
+    font-size: 14px;
 }
 .btn-login{
     width: 140px;
     height: 30px;
     margin-top: 10px;
-    margin-left: 19px;
+    /* margin-left: 50px; */
     background: #56C69E;
+    /* margin-left: 400px; */
+    margin-right: 100px;
     /* border-radius: 10px; */
+}
+
+.login{
+     margin-left: 440px;
 }
 .sign-in{
     color: white;;
@@ -179,13 +186,9 @@ form a{
 	color: #000000;
 }
 
-.login{
-	margin-left: 425px;
-}
-
 /* placeholder */
 ::-webkit-input-placeholder {
-    font-style: italic;
+    /* font-style: italic; */
     text-indent: 10px;
     opacity: 50%;
     /* font-family: 'Roboto'; */
