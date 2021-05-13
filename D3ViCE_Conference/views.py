@@ -12,7 +12,7 @@ import uuid		#for the conference code
 # Create your views here.
 class ConferenceManageView(View):	#conference manage view of conference
 	def get(self, request):			#get method for the conference, displays conference details in the template
-		qs_conferences = Conference.objects.filter(is_deleted = False, is_created = True, date__gte=datetime.now()).order_by('-date')
+		qs_conferences = Conference.objects.filter(is_deleted = False, date__gte=datetime.now()).order_by('-date')
 		context = {
 			'D3ViCE_Conference' : qs_conferences
 		}
@@ -29,8 +29,7 @@ class ConferenceManageView(View):	#conference manage view of conference
 									date = date,
 									time = time,
 									description = description,
-									code = uuid.uuid1(),
-									is_created = True)
+									code = uuid.uuid1())
 				form.save()
 			elif 'btn_edit_conference' in request.POST:
 				id_num = request.POST.get("conference_id_num")
@@ -46,8 +45,8 @@ class ConferenceManageView(View):	#conference manage view of conference
 
 class ConferenceHistoryView(View):
 	def get(self, request):
-		qs_conferences_created = Conference.objects.filter(is_deleted = False, is_created = True, date__lte=datetime.now()).order_by('-date')
-		qs_conferences_joined = Conference.objects.filter(is_deleted = False, is_created = False, date__lte=datetime.now()).order_by('-date')
+		qs_conferences_created = Conference.objects.filter(is_deleted = False,date__lte=datetime.now()).order_by('-date')
+		qs_conferences_joined = Conference.objects.filter(is_deleted = False,date__lte=datetime.now()).order_by('-date')
 		context = {
 			'conferences_created' : qs_conferences_created,
 			'conferences_joined' : qs_conferences_joined  
