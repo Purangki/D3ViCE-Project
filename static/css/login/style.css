@@ -120,14 +120,16 @@ form h2{
 }
 form #username{
     margin-top: 50px;
+
 }
 
 form #password{
     margin-top: 50px;
+
 }
 
 form label{
-    margin-left:120px;
+    margin-left: 40px;
 }
 
 form input{
