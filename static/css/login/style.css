@@ -9,8 +9,9 @@ body{
     margin-top: 0;
     padding: 0;
 
-    background-color: #56C69E;
-    min-height: 20vh;
+    /* background-color: #56C69E; */
+    min-height: 25vh;
+    background-image: linear-gradient(#179681, #56C69E);
 }
 
 .space{
@@ -23,11 +24,13 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .navbar-style{
+    position: absolute ;
 	background: #179681;
 /*	background-image: linear-gradient(#179681, #2CABE3);*/
   	border:0;
   	font-family:Poppins;
   	/* box-shadow: 0px 15px 4px rgba(246, 247, 247, 0.5); */
+      z-index: 0;
 }
 
 .custom-shape-divider-bottom-1620910854 {
@@ -49,7 +52,6 @@ h1,h2,h3,h4,h5,h6{
 .custom-shape-divider-bottom-1620910854 .shape-fill {
     fill: #FFFFFF;
 }
-
 a{
 	position: absolute;
 	width: 150px;
@@ -93,18 +95,20 @@ img{
 
 
 #home form{
-    width: 700px;
-    height: 500px;
-    margin-left:240px;
-    margin-top:75px;
+    width: 650px;
+    height: 450px;
+    margin-left: 240px;
+    margin-top: 75px;
 
     background: #FFFFFF;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
-    opacity: 80%;
+    border-radius: 10px;
+
+    position: relative;
+    z-index: 100;
 }
 
-form h3{
+form h2{
     font-size: 30px;
     margin-top: 70px;
     text-align: center;
@@ -114,7 +118,7 @@ form h3{
    color: #179681;
 }
 form #username{
-    margin-top: 130px;
+    margin-top: 50px;
 }
 
 form #password{
@@ -127,10 +131,11 @@ form label{
 
 form input{
     width: 300px;
-    margin-left:70px;
-    border-radius: 10px;
-    border-color: #179681 ;
+    margin-left: 70px;
+    border-radius: 5px;
+    /* border-color: #179681 ; */
 }
+
 
 form a{
     margin-top: 40px;
@@ -142,10 +147,12 @@ form a{
     margin-left:300px;
 }
 .btn-login{
-    width: 150px;
+    width: 140px;
     height: 30px;
+    margin-top: 10px;
+    margin-left: 19px;
     background: #56C69E;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 #home img{
