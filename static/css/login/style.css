@@ -4,14 +4,15 @@ body{
     font-family:Poppins;
 }
 
-.custom-shape-divider-bottom-1620909072 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
+.bg-design{
+    position: relative;
+    margin-top: 0;
+    padding: 0;
+
+    background-color: #179681;
+    min-height: 50vh;
 }
+
 
 h1,h2,h3,h4,h5,h6{
   font-family:Poppins;
@@ -23,6 +24,26 @@ h1,h2,h3,h4,h5,h6{
   	border:0;
   	font-family:Poppins;
   	box-shadow: 0px 15px 4px rgba(246, 247, 247, 0.5);
+}
+
+.custom-shape-divider-bottom-1620910854 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1620910854 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 161px;
+}
+
+.custom-shape-divider-bottom-1620910854 .shape-fill {
+    fill: #FFFFFF;
 }
 
 a{

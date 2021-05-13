@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'D3ViCE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DB_D3ViCE', #database name                           
+        'NAME': 'FLAME_DB', #database name       DB_D3ViCE                    
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
