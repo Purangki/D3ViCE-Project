@@ -19,6 +19,13 @@
 	
 	<body>
 		{% block content %}
+		<!-- <div class="bg-design">
+			<div class="custom-shape-divider-bottom-1620910854">
+				<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+					<path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+				</svg>
+			</div>
+		</div> -->
 		<!-- START OF NAVBAR -->
 		<nav class ="navbar navbar-style navbar-fixed-top">
 			<div class="container">
@@ -40,67 +47,75 @@
 					</ul>
 				</div>
 			</div>
+			<div class="bg-design">
+				<div class="custom-shape-divider-bottom-1620910854">
+					<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+						<path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+					</svg>
+				</div>
+			</div>
 		</nav>
 		<!-- END OF NAVBAR -->
-		<div class = "bg-design">
 			
 		<section id="home">
 			<div class = "container">
 				<div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <form action="" method="POST" id="form-login" class="login">
-							{% csrf_token %}
-                            <div style="height: 100px;">
-                              <br>
-                              <div class="col-md-1 col-sm-1">  
-                              </div>
-                              <div class="col-md-4 col-sm-4">  
-                              <h2>Sign In</h2>
-                              </div>
-                            </div>
+						<!-- <div class="bg-design space">
+							<div class="custom-shape-divider-bottom-1620910854">
+								<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+									<path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+								</svg>
+							</div> -->
+						
+							<form action="" method="POST" id="form-login" class="login">
+								{% csrf_token %}
+								<div style="height: 100px;">
+								<br>
+								<div class="col-md-1 col-sm-1">  
+								</div>
+								<div class="col-md-4 col-sm-4">  
+								<h2>Sign In</h2>
+								</div>
+								</div>
 
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <label for="username">Username</label>
-                                    <input type="username" class="form-username" id="username" name="username" placeholder="username">
-                                </div>
-                            </div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12">
+										<label for="username">Username</label>
+										<input type="username" class="form-username" id="username" name="username" placeholder="username">
+									</div>
+								</div>
 
-                            <!--Password-->
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-password" id="password" name="password" placeholder="password">
-                                </div>
-                            </div>
+								<!--Password-->
+								<div class="row">
+									<div class="col-md-12 col-sm-12">
+										<label for="password">Password</label>
+										<input type="password" class="form-password" id="password" name="password" placeholder="password">
+									</div>
+								</div>
 
-                            <!--Remember Me-->
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">	
-                                    <div class="checkbox">
-                                        <label><input type="checkbox"> Remember me</label>
-                                    </div>
-                                </div>
-							</div>
+								<!--Remember Me-->
+								<div class="row">
+									<div class="col-md-12 col-sm-12">	
+										<div class="checkbox">
+											<label><input type="checkbox"> Remember me</label>
+										</div>
+									</div>
+								</div>
 
-							<!-- Submit -->
-							<div class="row">
-                                <div class="col-md-12 col-sm-12">	
-								  <div class="login">
-									<button class="btn btn-login" type="submit"><b>Sign In</b></button>
-								  </div>
-                                </div>
-                            </div>
+								<!-- Submit -->
+								<div class="row">
+									<div class="col-md-12 col-sm-12">	
+									<div class="login">
+										<button class="btn btn-login" type="submit"><b>Sign In</b></button>
+									</div>
+									</div>
+								</div>
 
-                        </form>
-
-						<div class="custom-shape-divider-bottom-1620910854">
-							<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-								<path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
-							</svg>
+							</form>
+						<!-- </div> -->
 						</div>
-					</div>
-                    </div>
+                	</div>
 				</div>
 			</div>
 		</section>
