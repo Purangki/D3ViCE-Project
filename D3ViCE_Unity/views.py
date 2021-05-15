@@ -12,6 +12,7 @@ from .forms import *
 from D3ViCE_User.models import Profile
 # Create your views here.
 
+
 @csrf_exempt
 def login_user(request, username=None):
     user_data = get_object_or_404(auth, username=username)
