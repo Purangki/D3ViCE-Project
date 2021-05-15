@@ -5,11 +5,13 @@
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import auth, AbstractUser
-
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import auth, User #builtin django user
+from django.contrib.auth import login, logout
 from .forms import *
 from D3ViCE_User.models import Profile
 # Create your views here.
+
 
 @csrf_exempt
 def login_user(request, username=None):

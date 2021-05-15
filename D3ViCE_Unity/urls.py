@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from . import views
 
 #path arranged alphabetically by name
 app_name = 'D3ViCE_Unity'
