@@ -103,6 +103,10 @@ DATABASES = {
         'PASSWORD': 'FLAME_@dM1n',
         'HOST': 'd3vice-db.mysql.database.azure.com',
         'PORT': '3306',
+        'OPTIONS': {
+        # 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        'ssl': True
+        },
     },
 }
 
