@@ -5,7 +5,7 @@
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import auth, AbstractUser
 
 from .forms import *
 from D3ViCE_User.models import Profile
