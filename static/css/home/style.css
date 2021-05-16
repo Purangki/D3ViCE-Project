@@ -90,19 +90,20 @@ a{
 .home-btn{
 	position: absolute;
 	width: 140px;
-	height: 50px;
+	height: 45px;
 	margin-left: 40px;
 
 	background: #FFFFFF;
 	mix-blend-mode: normal;
 	border: 1px solid #56C69E;
 	box-sizing: border-box;
-	border-radius: 50px;
+	border-radius: 10px;
 }
 
 .home-right{
 	margin-left: 40px;
 	line-height: 25px;
+	margin-top: 70px;
 }
 
 .sign-up{
@@ -110,6 +111,7 @@ a{
 	width: 100px;
 	height: 44px;
 	margin-left: 2px;
+	margin-bottom: 2px;
 
 	font-family: Poppins;
 	font-style: normal;
