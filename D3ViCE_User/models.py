@@ -6,9 +6,6 @@ class Profile(AbstractUser):
 	is_deleted = models.BooleanField(default = False)
 	avatar_index = models.IntegerField()
 
-	class Meta(AbstractUser.Meta):
-		pass
-
 class Host(Profile):
 	# user = models.OneToOneField(User, on_delete = models.CASCADE)
 

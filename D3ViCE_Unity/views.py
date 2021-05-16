@@ -16,12 +16,16 @@ from D3ViCE_Conference.models import Conference
 
 @csrf_exempt
 def login_user(request, username=None):
+    print("here")
     if request.method == "POST":
+        print("post")
         user_data = get_object_or_404(Profile, id = 0)
         form = UserLogin(request.POST or None)
         if form.is_valid():
             user_name =  request.POST.get("username")
             user_password =  request.POST.get("password")
+            print("user_name")
+            print("user_password")
             user = auth.authenticate(request, username = user_name, password = user_password)
             
             if user is not None:
