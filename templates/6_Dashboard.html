@@ -214,8 +214,8 @@
                     <input type="text" id="nextUp" name="nextUp" value="{{ conference.title }}" readonly>
                   </h1>
                   <p>
-                    <textarea id="txt_nextUp" name="txt_nextUp" readonly>
-                      {{ conference.description }}
+                    <textarea id="txt_nextUp" name="txt_nextUp" class="blk3Desc" readonly>
+                      {{ conference.description }}  
                     </textarea>
                   </p>
                   <button id="btn_remindMe" class="btn btn-default blk3-btn" data-toggle="modal" data-target="#showMoreModal-{{ conference.id }}"><div class="reminder">Remind Me</div></a>
