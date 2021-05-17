@@ -73,6 +73,10 @@ a{
 	color: #FFFFFF;
 }
 
+a:hover{
+  color: #56c69e;
+  text-decoration: rgba(0, 0, 0, 0.25);
+}
 /* #tempLogo{
     margin-left: 100px;
 } */
@@ -96,8 +100,12 @@ a{
 	font-weight: bold;
 	font-size: 40px;
 	line-height: 60px;
-
+  
 	color: #FFFFFF;
+}
+
+.navbar-logo a:hover{
+  color: #000000;
 }
 
 .form-control-dark {
@@ -487,12 +495,21 @@ a{
   letter-spacing: .2px;
 }
 
-img{
+.speedometer{
   width: 50px;
   height: 50px;
   /* align-content: inherit; */
   margin-right: 15px;
 }
+
+.logo{
+  width: 300px;
+  height: 100px;
+  z-index: 20;
+  padding: 0px;
+}
+
+
 
 
 
