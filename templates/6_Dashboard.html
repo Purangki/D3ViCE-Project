@@ -45,6 +45,7 @@
 				<div class="collapse navbar-collapse" id="menuIcon">	
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">Dashboard</a></li>
+            <!-- <li><a href="#">Dashboard</a></li> -->
 						<li><a href="../D3ViCE_Conference/manage">Conference</a></li>
 						<li><a href="../D3ViCE_Conference/history">History</a></li>
 						<li><a href="../D3ViCE_User/profile">Profile</a></li>
@@ -63,7 +64,11 @@
 		<!-- END OF NAVBAR -->
 
 		<div class="container-fluid">
-        <h1 class="mt-4"><b>Dashboard</b></h1>
+      <!-- <div class="speedometer">
+        <img src="{% static 'img/speedometer.png' %}" class="img-fluid">
+      </div> -->
+        <h1 class="mt-4"><img src="{% static 'img/speedometer.png' %}" class="img-fluid"><b class = "title_dashboard"> User Dashboard</b></h1>
+        
         <div class="row col-12">
           <div class="col-md-4 col-sm-4">
             {% for conference in completed %}

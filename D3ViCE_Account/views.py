@@ -16,15 +16,15 @@ class UserLoginView(View):  #view of user when he logs in to the system
     def get(self, request): #get method for the template
         return render(request, '5_Login.html')  #render() returns a loaded template
 
-    def post(self, request):    #post method   
+    def post(self, request):                    #post method   
         username = request.POST.get("username") #username 
         password = request.POST.get("password") #user password
         user = auth.authenticate(username = username, password = password)  #using django's builtin authentication system, username & password is checked
-        if user is not None:    #if user is not None then
+        if user is not None:            #if user is not None then
             auth.login(request, user)   #user is logged in on the system
-            currentUser = user  #currentUser means that whoever is logged is in that system is the user at present, if this is not set then it is an anonymous user 
+            currentUser = user          #currentUser means that whoever is logged is in that system is the user at present, if this is not set then it is an anonymous user 
             print(str(currentUser.id) + " is logged in")    #prints the current user logged in in the terminal
-            context = { #context will be used for queries
+            context = {                 #context will be used for queries
             'current_user' : currentUser
             }
             return redirect("D3ViCE_Conference:dashboard_view") #redirects the user to the User dashboard

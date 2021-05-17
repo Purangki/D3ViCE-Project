@@ -55,7 +55,7 @@ h1,h2,h3,h4,h5,h6{
   	border: 0px;
   	font-family:Poppins;
   	/* box-shadow: 0px 15px 4px rgba(246, 247, 247, 0.5); */
-    z-index: 0;
+    z-index: -4;
 }
 
 a{
@@ -473,15 +473,26 @@ a{
 
 .mt-4{
   margin-left: 175px;
-  margin-top: 50px;
+  margin-top: 60px;
+
   font-weight: bold;
 
   font-family: 'Poppins';
-  z-index: 100;
 }
 
+.title_dashboard{
+  z-index: 100;
+  /* margin-top: 500px; */
+  color: #00444f;
+  letter-spacing: .2px;
+}
 
-
+img{
+  width: 50px;
+  height: 50px;
+  /* align-content: inherit; */
+  margin-right: 15px;
+}
 
 
 
