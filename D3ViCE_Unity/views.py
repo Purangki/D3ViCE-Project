@@ -30,8 +30,8 @@ def login_user(request, username=None):
             
             if user is not None:
                 user_username = user_data.username
-                user_firstname = user_data.firstName
-                user_lastname = user_data.lastName
+                user_firstname = user_data.first_name
+                user_lastname = user_data.last_name
                 user_email = user_data.email
                 user_avatarindex = user_data.avatar_index
                 
