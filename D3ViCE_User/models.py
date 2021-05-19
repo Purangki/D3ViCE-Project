@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class Profile(AbstractUser):
 	is_deleted = models.BooleanField(default = False)
-	avatar_index = models.IntegerField()
+	avatar_index = models.IntegerField(null = True, blank = True)
 
 class Host(Profile):
 	# user = models.OneToOneField(User, on_delete = models.CASCADE)
