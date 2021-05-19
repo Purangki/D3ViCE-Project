@@ -102,7 +102,15 @@ a{
 
 	color: #ffffff;
 }
+a:hover{
+  color: #ffffff;
+  text-decoration: rgba(0, 0, 0, 0.25);
+}
 
+.a_:hover{
+  color: #137666;
+  text-decoration: rgba(0, 0, 0, 0.25);
+}
 .conference{
 	margin-top: 100px;
 }
