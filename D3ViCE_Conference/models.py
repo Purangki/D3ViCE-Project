@@ -13,7 +13,7 @@ class Conference(models.Model):
 	description = models.CharField(max_length = 255)	#conference description 
 	is_deleted = models.BooleanField(default = False)	#archives the conference, deleted in the page but not in the db
 	status = models.CharField(max_length = 50, default = "Not Started")	#added by Abby for the main dashboard
-	participant = models.ManyToManyField(Participant)
+	participant = models.ManyToManyField(Participant, null = True, blank = True)
 	sponsor = models.ForeignKey(Sponsor, on_delete=models.CASCADE, related_name = 'sponsor', null = True, blank = True)
 	# host = models.ForeignKey(Host, on_delete = models.SET_NULL, null = True, related_name = "all_conferences") #added by Abby 
 	# speaker = models.ManyToManyField(Speaker) #added by Abby
