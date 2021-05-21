@@ -551,8 +551,9 @@ font-size: 14px;
 .title_dashboard{
   z-index: 100;
   /* margin-top: 500px; */
-  color: #00444f;
+  /* color: #00444f; */
   letter-spacing: .2px;
+  font-size: 22px;
 }
 
 .speedometer{
