@@ -198,17 +198,17 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
 }
 
 .btn-conference {
-  background-color: #56c69e;
+  /* background-color: #56c69e; */
+  background-color: #299f8b;
   /* color: #00444f; */
   color: white;
   margin-top: 75px;
   /* border-color:#179681; */
   /* background-color: white; */
+  font-size: 12px;
 }
 
-/* .conf-join{
-  font-size: 14px;
-} */
+
 .btn-conference:hover {
   background-color: #068979;
   color: #d8e1e0;
