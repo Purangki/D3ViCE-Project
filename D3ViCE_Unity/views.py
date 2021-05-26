@@ -12,6 +12,9 @@ from django.contrib.auth import login, logout
 from .forms import *
 from D3ViCE_User.models import Profile, Participant
 from D3ViCE_Conference.models import Conference
+
+from django.shortcuts import render, redirect
+from django.views.generic import View
 # Create your views here.
 
 @csrf_exempt
@@ -107,3 +110,6 @@ def register_participant(request):
             form.error.as_json()
             return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
+class WebglView(View):
+	def get(self, request):
+		return render(request, '12_Webgl.html')	#Webgl

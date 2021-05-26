@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block headerinclude %}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			D3ViCE - Homepage
+		</title>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/webgl/style.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/webgl/style.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/scrollreveal"></script>
+		{% endblock headerinclude %}
+	</head>
+	
+	<body>
+		{% block content %}
+		<!-- START OF NAVBAR -->
+		<nav class ="navbar navbar-style navbar-fixed-top">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a id="tempLogo" class="navbar-logo" href="#home">D3ViCE</a>
+					</div>
+						
+					<div class="collapse navbar-collapse" id="menuIcon">	
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#home" class="a_">Home</a></li>
+							<li><a href="../D3ViCE_Home/feature" class="a_">Features</a></li>
+							<li><a href="../D3ViCE_Home/aboutUs" class="a_">About Us</a></li>
+							<li><a href="/D3ViCE_Account/login" class="a_">Sign in</a></li>
+						</ul>					
+					</div>
+				</div>
+
+				<div class="bg-design">
+					<div class="custom-shape-divider-bottom-1620910854">
+						<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+							<path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+						</svg>
+					</div>
+				</div>
+			</nav>
+		<!-- END OF NAVBAR -->
+	{% endblock content %}
+	</body>
+
+</html>
