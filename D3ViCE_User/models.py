@@ -5,12 +5,13 @@ from django.contrib.auth.models import AbstractUser
 class Profile(AbstractUser):
 	is_deleted = models.BooleanField(default = False)
 	avatar_index = models.IntegerField(null = True, blank = True)
+	type_of_plan = models.CharField(max_length = 255, null = True, blank = True) #which plan each user is availing
 
-class Host(Profile):
+class Organizer(Profile):
 	# user = models.OneToOneField(User, on_delete = models.CASCADE)
 
 	class Meta:
-		db_table = "Host"
+		db_table = "Organizer"
 
 class Speaker(Profile):
 	# user = models.OneToOneField(User, on_delete = models.CASCADE)
@@ -38,4 +39,11 @@ class Sponsor(Profile):
 	sponsor_name = models.CharField(max_length = 255, null = True, blank = True)
 	class Meta:
 		db_table = "Sponsor"
+
+# additional model
+
+
+
+
+
 	
