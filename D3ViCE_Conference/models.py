@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import auth, User
 from D3ViCE_User.models import Participant
 from D3ViCE_User.models import Sponsor
+from D3ViCE_User.models import Organizer
 # # Create your models here.
 
 class Conference(models.Model):
@@ -13,11 +14,10 @@ class Conference(models.Model):
 	description = models.CharField(max_length = 255)	#conference description 
 	is_deleted = models.BooleanField(default = False)	#archives the conference, deleted in the page but not in the db
 	status = models.CharField(max_length = 50, default = "Not Started")	#added by Abby for the main dashboard
-	participant = models.ManyToManyField(Participant, null = True, blank = True)
+
 	sponsor = models.ForeignKey(Sponsor, on_delete=models.CASCADE, related_name = 'sponsor', null = True, blank = True)
-	# host = models.ForeignKey(Host, on_delete = models.SET_NULL, null = True, related_name = "all_conferences") #added by Abby 
-	# speaker = models.ManyToManyField(Speaker) #added by Abby
-	# secretary = models.ForeignKey(Secretary, on_delete = models.SET_NULL, null = True, related_name = "all_conferences") #added by Abby
+	organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE, related_name="created_confrence")
+	participant = models.ManyToManyField(Participant, on_delete = models.CASCADE, related_name = "joined_conferences")
 
 	class Meta:
 		db_table = "Conference"

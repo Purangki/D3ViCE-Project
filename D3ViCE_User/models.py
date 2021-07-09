@@ -1,3 +1,4 @@
+from D3ViCE_Conference.models import Conference
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -8,26 +9,22 @@ class Profile(AbstractUser):
 	type_of_plan = models.CharField(max_length = 255, null = True, blank = True) #which plan each user is availing
 
 class Organizer(Profile):
-	# user = models.OneToOneField(User, on_delete = models.CASCADE)
 
 	class Meta:
 		db_table = "Organizer"
 
 class Speaker(Profile):
-	# user = models.OneToOneField(User, on_delete = models.CASCADE)
 	topic = models.CharField(max_length = 150)
 
 	class Meta:
 		db_table = "Speaker"
 
 class Secretary(Profile):
-	# user = models.OneToOneField(User, on_delete = models.CASCADE)
 
 	class Meta:
 		db_table = "Secretary"
 
 class Participant(Profile):
-	# user = models.OneToOneField(User, on_delete = models.CASCADE)
 	affiliation = models.CharField(max_length = 255, null = True, blank = True)
 	display_name = models.CharField(max_length = 255, null = True, blank = True)
 
@@ -35,7 +32,6 @@ class Participant(Profile):
 		db_table = "Participant"
 
 class Sponsor(Profile):
-	# user = models.OneToOneField(User, on_delete = models.CASCADE)
 	sponsor_name = models.CharField(max_length = 255, null = True, blank = True)
 	class Meta:
 		db_table = "Sponsor"
