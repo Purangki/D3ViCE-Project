@@ -1,5 +1,5 @@
 from django.db.models.fields import DateField, DateTimeField, FloatField
-from D3ViCE_Conference.models import Conference
+# from D3ViCE_Conference.models import Conference
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
