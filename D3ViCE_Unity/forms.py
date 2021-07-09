@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import AbstractUser
 from D3ViCE_Conference.models import Conference
-from D3ViCE_User.models import Profile,Participant
+from D3ViCE_User.models import Profile #,Participant
 # from .models import *
 # from django.contrib.auth import login, logout
 # from django.contrib.auth.models import auth, User
@@ -27,5 +27,5 @@ class UserJoinConference(forms.ModelForm):
 class RegisterParticipant(forms.ModelForm):
 
     class Meta:
-        model = Participant
+        # model = Participant
         fields = ('username',)

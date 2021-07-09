@@ -4,7 +4,7 @@ from django.contrib.auth.models import auth, User
 from django.db.models.deletion import SET_NULL
 from D3ViCE_User.models import Participant
 from D3ViCE_User.models import Sponsor
-from D3ViCE_User.models import Organizer
+from D3ViCE_User.models import Host
 from D3ViCE_User.models import Speaker
 # # Create your models here.
 
@@ -20,7 +20,7 @@ class Conference(models.Model):
 	status = models.CharField(max_length = 50, default = "Not Started")	#added by Abby for the main dashboard
 
 	sponsor = models.ManyToManyField(Sponsor, related_name = 'sponsored_conferences', null = True, blank = True)
-	organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE, related_name="created_conferences", null = True, blank = True)
+	host = models.ForeignKey(Host, on_delete=models.CASCADE, related_name="created_conferences", null = True, blank = True)
 	participant = models.ManyToManyField(Participant, related_name = "joined_conferences", null = True, blank = True)
 	speaker = models.ManyToManyField(Speaker, related_name = "joined_conferences", null = True, blank = True)
 

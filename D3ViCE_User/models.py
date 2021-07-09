@@ -10,14 +10,11 @@ class Profile(AbstractUser):
 	class Meta:
 		db_table = "Profile"
 
-class Organizer(Profile):
-
+class Host(Profile): 
 	class Meta:
-		db_table = "Organizer"
+		db_table = "Host"
 
 class Speaker(Profile):
-	topic = models.CharField(max_length = 150)
-
 	class Meta:
 		db_table = "Speaker"
 

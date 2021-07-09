@@ -10,7 +10,7 @@ from django.contrib.auth.models import auth, User #builtin django user
 from django.contrib.auth import login, logout
 
 from .forms import *
-from D3ViCE_User.models import Profile, Participant
+from D3ViCE_User.models import Profile #,Participant
 from D3ViCE_Conference.models import Conference
 
 from django.shortcuts import render, redirect
