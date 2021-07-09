@@ -1,3 +1,4 @@
+from django.db.models.fields import DateTimeField, FloatField
 from D3ViCE_Conference.models import Conference
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -37,6 +38,18 @@ class Sponsor(Profile):
 		db_table = "Sponsor"
 
 # additional model
+
+class Plan(models.Model):
+	is_paid = models.BooleanField(default = False)
+	is_expired = models.BooleanField(default =  False)
+	start_of_subscription = DateTimeField()
+	end_of_subscription = DateTimeField()
+	type_of_subscription = models.CharField(max_length = 150, null = True, blank = True ) #free, basic, premium
+	cost_per_month = models.FloatField()
+
+	class Meta:
+		db_table = "Plan"
+
 
 
 
