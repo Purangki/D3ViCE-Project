@@ -7,8 +7,8 @@ class Profile(AbstractUser):
 	is_deleted = models.BooleanField(default = False)
 	avatar_index = models.IntegerField(null = True, blank = True)
 
-	# class Meta:
-	# 	db_table = "Profile"
+	class Meta:
+		db_table = "Profile"
 
 class Organizer(Profile):
 
