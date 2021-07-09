@@ -10,8 +10,10 @@ from D3ViCE_User.models import Speaker
 class Conference(models.Model):
 	code = models.CharField(max_length = 50)	#conference code
 	title = models.CharField(max_length = 150)	#conference title
-	date = models.DateField()	#conference date
-	time = models.TimeField()	#conference time
+	date = models.DateField()	#conference start date
+	time = models.TimeField()	#conference start time
+	end_date = models.DateField()	#conference end date
+	end_time = models.TimeField() 	#conference end time
 	description = models.CharField(max_length = 255)	#conference description 
 	is_deleted = models.BooleanField(default = False)	#archives the conference, deleted in the page but not in the db
 	status = models.CharField(max_length = 50, default = "Not Started")	#added by Abby for the main dashboard
