@@ -1,5 +1,4 @@
 from django.db.models.fields import DateField, DateTimeField, FloatField
-# from D3ViCE_Conference.models import Conference
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -7,6 +6,9 @@ from django.contrib.auth.models import AbstractUser
 class Profile(AbstractUser):
 	is_deleted = models.BooleanField(default = False)
 	avatar_index = models.IntegerField(null = True, blank = True)
+
+	# class Meta:
+	# 	db_table = "Profile"
 
 class Organizer(Profile):
 

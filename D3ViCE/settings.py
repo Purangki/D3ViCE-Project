@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'D3ViCE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_ptf', #database name                  
+        'NAME': 'PROJECT_DB', #database name                  
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
