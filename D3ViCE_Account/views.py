@@ -29,7 +29,7 @@ class UserLoginView(View):  #view of user when he logs in to the system
             }
             return redirect("D3ViCE_Conference:dashboard_view") #redirects the user to the User dashboard
         else:
-            return HttpResponse("wrong credentials")    #otherwise if user does not exist and have the wrong credentals then it displays this error
+            return HttpResponse("Wrong Credentials")    #otherwise if user does not exist and have the wrong credentals then it displays this error
 
 class LogoutView(View):
     def get(self,request):
