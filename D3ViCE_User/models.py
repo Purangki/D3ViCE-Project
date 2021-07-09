@@ -70,8 +70,8 @@ class Request(models.Model):
 		db_table = "Request"
 
 class Review(models.Model):
-	
+	rating = models.IntegerField()
+	feedback = models.CharField(max_length = 300)
 
-
-
-	
+	class Meta:
+		db_table = "Review"
