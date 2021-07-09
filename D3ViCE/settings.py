@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'D3ViCE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'FLAME_DB', #database name       DB_D3ViCE                    
+        'NAME': 'D3ViCE', #database name                  
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
@@ -94,6 +94,20 @@ DATABASES = {
         }
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'flame_ptf_db', #database name                  
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
 
 # DATABASES = {
 #     'default': {

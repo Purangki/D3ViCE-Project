@@ -19,11 +19,6 @@ class Speaker(Profile):
 	class Meta:
 		db_table = "Speaker"
 
-class Secretary(Profile):
-
-	class Meta:
-		db_table = "Secretary"
-
 class Participant(Profile):
 	affiliation = models.CharField(max_length = 255, null = True, blank = True)
 	display_name = models.CharField(max_length = 255, null = True, blank = True)
