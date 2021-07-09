@@ -1,4 +1,4 @@
-from django.db.models.fields import DateTimeField, FloatField
+from django.db.models.fields import DateField, DateTimeField, FloatField
 from D3ViCE_Conference.models import Conference
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -42,8 +42,8 @@ class Sponsor(Profile):
 class Plan(models.Model):
 	is_paid = models.BooleanField(default = False)
 	is_expired = models.BooleanField(default =  False)
-	start_of_subscription = DateTimeField()
-	end_of_subscription = DateTimeField()
+	start = DateTimeField()
+	end = DateTimeField()
 	type_of_subscription = models.CharField(max_length = 150, null = True, blank = True ) #free, basic, premium
 	cost_per_month = models.FloatField()
 
@@ -51,7 +51,26 @@ class Plan(models.Model):
 		db_table = "Plan"
 
 
+class Notification(models.Model):
+	type = models.CharField(max_length = 255)
+	description = models.CharField(max_length = 300)
+	date = models.DateField()
+	status = models.BooleanField(default = False) #Read and Unread
 
+	class Meta:
+		db_table = "Notification"
+
+class Request(models.Model):
+	type = models.CharField(max_length = 255)
+	description = models.CharField(max_length = 300)
+	date = models.DateField()
+	status = models.BooleanField(default = False) #Accepted or Declined
+
+	class Meta:
+		db_table = "Request"
+
+class Review(models.Model):
+	
 
 
 

@@ -18,7 +18,7 @@ class Conference(models.Model):
 	is_deleted = models.BooleanField(default = False)	#archives the conference, deleted in the page but not in the db
 	status = models.CharField(max_length = 50, default = "Not Started")	#added by Abby for the main dashboard
 
-	sponsor = models.ForeignKey(Sponsor, on_delete=models.CASCADE, related_name = 'sponsor', null = True, blank = True)
+	sponsor = models.ManyToManyField(Sponsor, on_delete=models.CASCADE, related_name = 'sponsored_conferences', null = True, blank = True)
 	organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE, related_name="created_conferences")
 	participant = models.ManyToManyField(Participant, on_delete = models.CASCADE, related_name = "joined_conferences")
 	speaker = models.ManyToManyField(Speaker, on_delete = models.CASCADE, related_name = "joined_conferences")
