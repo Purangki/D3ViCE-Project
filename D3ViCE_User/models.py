@@ -43,7 +43,7 @@ class Plan(models.Model):
 	is_expired = models.BooleanField(default =  False)
 	start = models.DateTimeField()
 	end = models.DateTimeField()
-	type_of_subscription = models.CharField(max_length = 150, null = True, blank = True ) #free, basic, premium
+	type = models.CharField(max_length = 150, null = True, blank = True ) #free, basic, premium
 	cost_per_month = models.FloatField()
 
 	class Meta:
