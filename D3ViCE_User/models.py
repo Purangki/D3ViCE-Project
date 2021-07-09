@@ -36,7 +36,7 @@ class Sponsor(Profile):
 	class Meta:
 		db_table = "Sponsor"
 
-# additional model
+# additional models
 
 class Plan(models.Model):
 	is_paid = models.BooleanField(default = False)
