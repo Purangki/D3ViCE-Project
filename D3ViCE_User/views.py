@@ -83,4 +83,8 @@ class AdminView(View):	#admin dashboard
 	def get(self, request):
 		return render(request, '0_AdminDashboard.html')
 
+class ChoosePlanView(View):
+	def get(self, request):
+		return render(request, '13_Plan.html')	#choose plan
+
 	
