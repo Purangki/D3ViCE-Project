@@ -44,7 +44,7 @@ h1,h2,h3,h4,h5,h6{
 	background: #179681;
 /*	background-image: linear-gradient(#179681, #2CABE3);*/
   	border:0;
-  	font-family:Poppins;
+  	font-family: 'Poppins';
   	/* box-shadow: 0px 15px 4px rgba(246, 247, 247, 0.5); */
 	  z-index: 0;
 }
@@ -58,7 +58,8 @@ a{
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
+	/* font-size: 15px; */
+	font-size: 12px;
 	line-height: 60px;
 
 	color: #FFFFFF;
@@ -167,9 +168,9 @@ a{
 	height: 200px;
 	margin-top: 150px;
 
-	background: #FFFFFF;
+	background: #ffffff;
 	box-shadow: 10px 10px 4px #F6F7F7;
-	border-radius: 59px;
+	border-radius: 15px;
 }
 
 #secondView img{
@@ -186,7 +187,7 @@ a{
 	height: 252px;
 	margin-top: 45px;
 
-	font-family: Roboto;
+	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: normal;
 	font-size: 18px;
@@ -197,11 +198,11 @@ a{
 
 .readMore1{
 
-	font-family: Roboto;
+	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: bold;
-
 	color: #FFFFFF;
+	
 }
 
 .blk1-btn{
