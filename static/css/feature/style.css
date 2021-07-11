@@ -51,19 +51,28 @@ h1,h2,h3,h4,h5,h6{
 
 a{
 	position: absolute;
-	width: 150px;
+	width: 120px;
 	height: 65px;
 	margin-top: 0px;
 
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
+	font-size: 14px;
 	line-height: 60px;
 
 	color: #FFFFFF;
 }
 
+a:hover{
+  color: #ffffff;
+  text-decoration: rgba(0, 0, 0, 0.25);
+}
+
+.a_:hover{
+	color: #137666;
+	text-decoration: rgba(0, 0, 0, 0.25);
+  }
 .connect{
 	margin-top: 30px;
 }

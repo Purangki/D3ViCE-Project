@@ -18,18 +18,28 @@ background: #179681;
 
 a{
 	position: absolute;
-	width: 150px;
+	width: 120px;
 	height: 65px;
 	margin-top: 0px;
 
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
+	font-size: 14px;
 	line-height: 60px;
 
-	color: #ffffff;
+	color: #FFFFFF;
 }
+
+a:hover{
+  color: #ffffff;
+  text-decoration: rgba(0, 0, 0, 0.25);
+}
+
+.a_:hover{
+	color: #137666;
+	text-decoration: rgba(0, 0, 0, 0.25);
+  }
 
 .home{
 	margin-top: 30px;

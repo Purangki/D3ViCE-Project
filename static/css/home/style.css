@@ -4,7 +4,7 @@ body{
 }
 
 h1,h2,h3,h4,h5,h6{
-  font-family:Poppins;
+  font-family: 'Poppins';
 }
 .bg-design{
     position: relative;
@@ -49,7 +49,7 @@ h1,h2,h3,h4,h5,h6{
 	  z-index: 0;
 }
 
-a{
+/* a{
 	position: absolute;
 	width: 150px;
 	height: 65px;
@@ -58,13 +58,38 @@ a{
 	font-family: Poppins;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 15px;
+	font-size: 15px; */
 	/* font-size: 12px; */
+	/* line-height: 60px;
+
+	color: #FFFFFF;
+} */
+
+a{
+	position: absolute;
+	width: 120px;
+	height: 65px;
+	margin-top: 0px;
+
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
 	line-height: 60px;
 
 	color: #FFFFFF;
 }
 
+a:hover{
+  color: #ffffff;
+  text-decoration: rgba(0, 0, 0, 0.25);
+}
+
+.a_:hover{
+	color: #137666;
+	text-decoration: rgba(0, 0, 0, 0.25);
+  }
+  
 .home{
 	margin-top: 30px;
 }
@@ -79,7 +104,7 @@ a{
 	height: 99px;
 	margin-bottom: 20px;
 
-	font-family: Poppins;
+	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: bold;
 	font-size: 40px;
@@ -140,8 +165,10 @@ a{
 
 #home p{
 	color: #000000;
+	font-family: 'Poppins';
 }
 #home h1{
+	font-family: 'Poppins';
 	 font-size:50px;
 	 margin-bottom:30px;
 
@@ -169,8 +196,9 @@ a{
 	margin-top: 150px;
 
 	background: #ffffff;
-	box-shadow: 10px 10px 4px #F6F7F7;
-	border-radius: 15px;
+	box-shadow: 0px 4px 10px rgb(0 0 0 / 5%);
+
+	border-radius: 10px;
 }
 
 #secondView img{
@@ -190,7 +218,7 @@ a{
 	font-family: 'Poppins';
 	font-style: normal;
 	font-weight: normal;
-	font-size: 18px;
+	font-size: 15px;
 	line-height: 30px;
 
 	color: #2CABE3;
@@ -200,8 +228,8 @@ a{
 
 	font-family: 'Poppins';
 	font-style: normal;
-	font-weight: bold;
-	color: #FFFFFF;
+	/* font-weight: bold; */
+	color: #179681;
 	
 }
 
@@ -211,9 +239,15 @@ a{
 	height: 30px;
 	margin-top: 150px;
 
-	background: #56C69E;
+	/* background: #56C69E;
 	mix-blend-mode: normal;
-	border-radius: 50px;
+	border-radius: 50px; */
+
+	background: #FFFFFF;
+	mix-blend-mode: normal;
+	border: 1px solid #56C69E;
+	box-sizing: border-box;
+	border-radius: 10px;
 }
 
 .block2{
@@ -223,7 +257,66 @@ a{
 	margin-top: 400px;
 
 	background: #FFFFFF;
-	box-shadow: 10px 10px 4px #F6F7F7;
-	border-radius: 59px;
+	box-shadow: 0px 4px 10px rgb(0 0 0 / 5%);
+
+	border-radius: 10px;
 }
 
+/* end of secondView */
+
+#thirdView{
+	margin-top: 750px;
+	margin-bottom: 500px;
+}
+
+#thirdView h1{
+	text-align: center;
+	margin-left: 300px;
+	margin-right: 300px;
+	color: #179681;
+}
+
+#thirdView h3{
+	color: #137666;
+	font-weight: bold;
+	text-align: center;
+}
+
+.free_plan{
+	position: absolute;
+	width: 350px;
+	height: 325px;
+	margin-top: 50px;
+
+	background: #ffffff;
+	box-shadow: 0px 4px 20px rgb(0 0 0 / 10%);
+
+	border-radius: 10px;
+}
+
+.basic_plan{
+	position: absolute;
+	width: 350px;
+	height: 325px;
+	margin-top: 50px;
+	margin-left: 400px;
+
+	background: #ffffff;
+	box-shadow: 0px 4px 20px rgb(0 0 0 / 10%);
+
+	border-radius: 10px;
+}
+
+.premium_plan{
+	position: absolute;
+	width: 350px;
+	height: 325px;
+	margin-top: 50px;
+	margin-left: 50px;
+	margin-left: 800px;
+
+	background: #ffffff;
+	box-shadow: 0px 4px 20px rgb(0 0 0 / 8%);
+
+	border-radius: 10px;
+}
