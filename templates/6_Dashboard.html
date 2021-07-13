@@ -108,7 +108,7 @@
                 </div>
 
                 <div class = "col-md-2 col-sm-2">
-                  <a class="btn btn-default create-conf-btn" href="#"><div class="search_btn"><span class="glyphicon glyphicon-plus"></span> Create Conference</div></a>
+                  <a class="btn btn-default create-conf-btn" id = "create_conf" data-toggle = "modal" href="#" data-target="#createConferenceModal"><div class="search_btn" ><span class="glyphicon glyphicon-plus"></span> Create Conference</div></a>
                 </div>
               </div>
             </div>     
@@ -119,9 +119,9 @@
         <div class="row">
           <div class="col-md-4 col-sm-4">
             {% for conference in completed %} <!--to change  -->
-            <!-- <div class="col-md-12 col-sm-12"> -->
+            <div class="col-md-12 col-sm-12">
               <div id="blk1" class="block1">
-                <!-- <h3>Completed</h3> -->
+                <h3>Completed</h3>
                 <h1>
                   <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
                 </h1>
@@ -135,27 +135,81 @@
             </div>
   <!-- end of card -->
   
-<!-- START OF MODALS -->
-            <div class="modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- START OF CREATE CONFERENCE MODAL -->
+<div class="modal fade" id="createConferenceModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog conf-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h5 class="modal-title">Create Conference</h5>
+      </div>
+      <div class="modal-body conf-modal-body">
+        <div class="row">
+
+          <div class="col-md-6 col-sm-6 thumbnail">
+            <label class="form-label conf-label" for="customFile">Upload conference thumbnail</label>
+            <input type="file" class="form-control conf-add-img" id="customFile" />  
+            <!-- <img src="{% static 'img/createConferenceImg.png' %}" class="img-fluid"> -->
+          </div>
+
+          <div class="col-md-6 bg-light">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="input-group">
+                <div class="input-group-prepend mt-5 mb-3">
+                  <span class="input-group-text conf-prepend">Conference Title</span>
+                </div>
+                <input type="text" id="title_create"name="title_create" class="conf-input form-control mt-5 mb-3" maxlength="150" required>
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">Date</span>
+                </div>
+                <input type="date" id="date_create" name="date_create" class="conf-input form-control mb-3 input-date-conference" required>
+                <script type="text/javascript">
+                  disableBeforeToday('date_create');
+                </script>
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">Time</span>
+                </div>
+                <input type="time" id="time_create" name="time_create" class="conf-input form-control mb-3" required>
+              </div>
+              <textarea class="conf-input mb-3 form-control" id="desc_create" name="desc_create" rows="3" placeholder="Short Description" maxlength="255"></textarea>
+              <div class="d-flex justify-content-center mt-5">
+                <button type="submit"  id="btn_create_conference" name="btn_create_conference" class="btn btn-conference-submit">Create Conference</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END OF CREATE MODAL -->
+
+
+            <!-- <div class="modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog conf-modal" role="document">
 
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h5 class="modal-title"><i class="fas fa-edit"></i>Conference Details</h5>
-                    <!-- <button type="button" class="btn close" data-dismiss="modal" aria-label="Close"> -->
-                      <!-- <span aria-hidden="true">&times;</span> -->
-                    <!-- </button> -->
+                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
 
-                  <div class="modal-body conf-modal-body">
+                  <div class="conf-modal-body">
                     <div class="row">
 
                       <div class="col-md-6">
                         <img src="{% static 'img/createConferenceImg.png' %}" class="img-fluid">
                       </div>
 
-                      <div class="col-md-6 bg-light">
+                      <div class="col-md-6">
                         <form method="POST">
                           {% csrf_token %}
                           <div class="input-group">
@@ -188,7 +242,7 @@
               </div>
             </div>
           </div>
-          {% endfor %}
+          {% endfor %} -->
 
           <!-- <div class="col-md-4 col-sm-4">
             {% for conference in ongoing %}
