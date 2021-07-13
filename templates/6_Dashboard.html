@@ -106,9 +106,13 @@
                 <div class = "col-md-4 col-sm-4">
                   <!-- this is a blank column -->
                 </div>
-
                 <div class = "col-md-2 col-sm-2">
-                  <a class="btn btn-default create-conf-btn" id = "create_conf" data-toggle = "modal" href="#" data-target="#createConferenceModal"><div class="search_btn" ><span class="glyphicon glyphicon-plus"></span> Create Conference</div></a>
+                  <a class="btn btn-default create-conf-btn" id = "create_conf" data-toggle = "modal" href="#" data-target="#createConferenceModal">
+                    <div class="search_btn" >
+                      <span class="glyphicon glyphicon-plus"></span> 
+                      Create Conference
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>     
@@ -148,8 +152,7 @@
 
           <div class="col-md-6 col-sm-6 thumbnail">
             <label class="form-label conf-label" for="customFile">Upload conference thumbnail</label>
-            <input type="file" class="form-control conf-add-img" id="customFile" />  
-            <!-- <img src="{% static 'img/createConferenceImg.png' %}" class="img-fluid"> -->
+            <input type="file" class="form-control conf-add-img" id="customFile"/>  
           </div>
 
           <div class="col-md-6 col-sm-6 bg-light">
@@ -159,26 +162,51 @@
                 <div class="input-group-prepend mt-5 mb-3">
                   <span class="input-group-text conf-prepend">Conference Title</span>
                 </div>
-                <input type="text" id="title_create"name="title_create" class="conf-input form-control mt-5 mb-3" maxlength="150" required>
+                <input type="text" id="title_create"name="title_create" class="conf-input form-control mt-5 mb-3" maxlength="150" required>               
               </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Type</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" required>
+                  <option selected>Choose...</option>
+                  <option value="1">Private</option>
+                  <option value="2">Public</option>
+                </select>
+              </div>
+
               <div class="input-group">
                 <div class="input-group-prepend mb-3">
-                  <span class="input-group-text conf-prepend">Date</span>
+                  <span class="input-group-text conf-prepend">Start Date</span>
                 </div>
                 <input type="date" id="date_create" name="date_create" class="conf-input form-control mb-3 input-date-conference" required>
                 <script type="text/javascript">
                   disableBeforeToday('date_create');
                 </script>
               </div>
+
               <div class="input-group">
                 <div class="input-group-prepend mb-3">
-                  <span class="input-group-text conf-prepend">Time</span>
+                  <span class="input-group-text conf-prepend">Start Time</span>
                 </div>
                 <input type="time" id="time_create" name="time_create" class="conf-input form-control mb-3" required>
               </div>
-              <textarea class="conf-input mb-3 form-control" id="desc_create" name="desc_create" rows="3" placeholder="Short Description" maxlength="255"></textarea>
+
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">Available Seats</span>
+                </div>
+                <input type="number" id="num_seats" name="num_seats" class="conf-input form-control mb-3" min = "5" max="100"required>               
+              </div>
+
+              <textarea class="conf-input mb-3 form-control" id="desc_create" name="desc_create" rows="3" placeholder="Description" maxlength="1000"></textarea>
+
               <div class="d-flex justify-content-center mt-5">
-                <button type="submit"  id="btn_create_conference" name="btn_create_conference" class="btn btn-conference-submit">Create Conference</button>
+                <button type="submit"  
+                id="btn_create_conference" 
+                name="btn_create_conference" 
+                class="btn btn-conference-submit">Create Conference</button>
               </div>
             </form>
           </div>
@@ -189,6 +217,100 @@
 </div>
 
 <!-- END OF CREATE MODAL -->
+
+         <!-- START MODAL FOR EDIT AND DELETE -->
+         <div class= "modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog conf-modal" role="document">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="fas fa-edit"></i> Conference Details</h4>
+              </div>
+
+              <div class="modal-body conf-modal-body">
+                <div class ="row">
+
+                  <div class="col-md-6">
+                    <img src="{% static 'img/createConferenceImg.png' %}" class = "img-fluid">
+                  </div>
+
+                  <div class="col-md-6 bg-light">
+                    <form method="POST">
+                      {% csrf_token %}
+                      <div class="input-group">
+                        <div class="input-group-prepend mt-5 mb-3">
+                          <span class="input-group-text conf-prepend">Conference Code</span>
+                        </div>
+                        <input type="hidden" name="conference_id_num" value={{conference.id}}>
+                        <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mt-5 mb-3" value={{conference.code}} readonly>
+                        <div class="input-group-append mt-5 mb-3">
+                          <button type="button" id="btn_copy-{{conference.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference.id}}','btn_copy-{{conference.id}}')"><i class="fas fa-copy"></i></button>
+                        </div>
+                      </div>
+
+                      <div class="input-group">
+                        <div class="input-group-prepend mb-3">
+                          <span class="input-group-text conf-prepend">Conference Title</span>
+                        </div>
+                        <input type="text" id="title_edit-{{conference.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150">
+                      </div>
+                      
+                      <div class="input-group">
+                        <div class="input-group-prepend mb-3">
+                          <span class="input-group-text conf-prepend">Date</span>
+                        </div>
+                        <input type="date" id="date_edit-{{conference.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference.date|date:"Y-m-d"}} required>
+                        <script type="text/javascript">
+                          disableBeforeToday('date_edit-{{conference.id}}');
+                        </script>
+                      </div>
+
+                      <div class="input-group">
+                        <div class="input-group-prepend mb-3">
+                          <span class="input-group-text conf-prepend">Time</span>
+                        </div>
+                        <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.time|time:"H:i:s"}} required>
+                      </div>
+                      <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255">{{conference.description}}</textarea>
+                      <div class="d-flex justify-content-center mt-2">
+                        <button type="submit" id="btn_edit_conference" name="btn_edit_conference" class="btn btn-conference-submit">Save Changes</button>
+                      </div>
+                    </form>
+                 </div>  
+                </div>
+              </div><!-- modal body -->
+            </div> <!-- modal content -->
+          </div> <!-- modal dialog-->
+        </div> <!-- end modal -->
+
+        <div class="modal fade" id="deleteConferenceModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
+                <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form method="POST">
+                {% csrf_token %}
+                <div class="modal-body" style="font-size: 16px;">
+                  Are you sure you want to delete {{conference.title}}?
+                </div>
+                <div class="modal-footer">
+                  <input type="hidden" name="conference_id_num" value={{conference.id}}>
+                  <button type="submit" id="btn_delete_conference" name="btn_delete_conference" class="btn btn-danger">Yes</button>
+                  <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>  
+
+
+        <!-- END MODAL FOR EDIT AND DELETE -->
 
 
             <!-- <div class="modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
