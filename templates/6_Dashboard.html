@@ -10,6 +10,7 @@
 		</title>
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/conferenceCRUD.css' %}"> -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
@@ -65,17 +66,12 @@
 		<!-- END OF NAVBAR -->
 
 		<div class="container-fluid">
-      <!-- <div class="speedometer">
-        <img src="{% static 'img/speedometer.png' %}" class="img-fluid">
-      </div> -->
-        <!-- <h1 class="mt-4"><img src="{% static 'img/speedometer.png' %}" class="speedometer"><b class = "title_dashboard"> User Dashboard</b></h1> -->
         <div class = "row">
           <div class = "col-md-12 col-sm-12">
             <div class = "search_bar"> 
               <input class = "search_bar_input" id = "search_bar_input" type="text" placeholder="Search conference">
-              <!-- <span class="glyphicon glyphicon-search"></span> -->
               <a class="btn btn-default search-btn" href="#"><div class="search_btn">Search</div></a>
-              
+
               <div class ="row filter_and_sort">
                 <div class = "col-md-2 col-sm-2">
                     <h5>Filter by: </h5>
@@ -114,9 +110,7 @@
                 <div class = "col-md-2 col-sm-2">
                   <a class="btn btn-default create-conf-btn" href="#"><div class="search_btn"><span class="glyphicon glyphicon-plus"></span> Create Conference</div></a>
                 </div>
-
               </div>
-
             </div>     
           </div>
         </div>
@@ -125,18 +119,18 @@
           <div class="col-md-4 col-sm-4">
             {% for conference in completed %}  
             <div class="col-md-12 col-sm-12">
-                <div id="blk1" class="block1">
-                  <h3>Completed</h3>
-                  <h1>
-                    <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
-                  </h1>
-                  <p>
-                    <textarea id="txt_completed" name="txt_completed" readonly>
-                        {{ conference.description }}
-                    </textarea>
-                  </p>
-                  <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}">Details</button>
-                </div>
+              <div id="blk1" class="block1">
+                <h3>Completed</h3>
+                <h1>
+                  <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
+                </h1>
+                <p>
+                  <textarea id="txt_completed" name="txt_completed" readonly>
+                      {{ conference.description }}
+                  </textarea>
+                </p>
+                <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}"><div class="showMore">Details</div></button>
+              </div>
             </div>
 
             <div class="modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -187,8 +181,8 @@
                 </div>
               </div>
             </div>
-            {% endfor %}
           </div>
+          {% endfor %}
 
           <div class="col-md-4 col-sm-4">
             {% for conference in ongoing %}
