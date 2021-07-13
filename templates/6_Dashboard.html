@@ -148,16 +148,18 @@
                     <!-- </button> -->
                   </div>
 
-                  <div class="conf-modal-body">
+                  <div class="modal-body conf-modal-body">
                     <div class="row">
+
                       <div class="col-md-6">
                         <img src="{% static 'img/createConferenceImg.png' %}" class="img-fluid">
                       </div>
+
                       <div class="col-md-6 bg-light">
                         <form method="POST">
                           {% csrf_token %}
                           <div class="input-group">
-                            <div class="input-group-prepend mb-3">
+                            <div class="input-group-prepend mt-5 mb-3">
                               <span class="input-group-text conf-prepend">Conference Title</span>
                             </div>
                             <input type="text" id="title_edit-{{conference.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150" readonly>
