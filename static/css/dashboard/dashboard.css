@@ -311,7 +311,8 @@ a:hover{
   margin-left: 190px;
   /* margin-left: 190px; */
   /* margin-right: 15px; */
-  background: #56C69E;
+  /* background: #56C69E; */
+  background: #2CABE3;
   /* border-radius: 20px; */
   border-radius: 5px;
 }
@@ -407,7 +408,8 @@ font-size: 14px;
   height: 30px;
   margin-left: 190px;
   /* margin-right: 15px; */
-  background: #56C69E;
+  /* background: #56C69E; */
+  background: #2CABE3;
   /* border-radius: 20px; */
   border-radius: 5px;
 }
@@ -502,7 +504,8 @@ font-size: 14px;
   height: 30px;
   margin-left: 15px;
   /* margin-right: 15px; */
-  background: #56C69E;
+  /* background: #56C69E; */
+  background: #2CABE3;
   border-radius: 5px;
 }
 
@@ -682,4 +685,19 @@ h5{
 
 .filter_and_sort{
   margin-top: 20px;
+}
+
+.create-conf-btn{
+  width: 180px;
+	height: 30px;
+	margin-top: 0px;
+	text-align: center;
+
+	margin-left: 140px;
+  /* margin-right: -100px; */
+
+	background:#2CABE3;
+	color: white;
+	border-radius: 2px;
+	border: none;
 }
