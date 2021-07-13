@@ -321,7 +321,8 @@ a:hover{
 }
 .blk1-btn:hover{
   color: none;
-  background-color: #068979;
+  /* background-color: #068979; */
+  background-color: #54c4fc;
 }
 .block2{
 	width: 350px;
@@ -421,7 +422,8 @@ font-size: 14px;
 
 .blk2-btn:hover{
   color: none;
-  background-color: #068979;
+  /* background-color: #068979; */
+  background-color: #54c4fc;
 }
 
 .block3{
@@ -459,6 +461,7 @@ font-size: 14px;
   border: none;
   /* color: #44C295; */
   color: #179681;
+  /* color: #68e0ff; */
 }
 
 .block3 h3{
@@ -518,7 +521,8 @@ font-size: 14px;
 
 .blk3-btn:hover{
   color: none;
-  background-color: #068979;
+  /* background-color: #068979; */
+  background-color: #54c4fc;
 }
 
 /* not interested */
