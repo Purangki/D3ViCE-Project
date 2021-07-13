@@ -254,7 +254,9 @@ a:hover{
   line-height: 54px;
 
   border: none;
-  color: #44C295;
+  /* color: #44C295; */
+ 
+  color: #179681;
 }
 
 .block1 h3{
@@ -265,7 +267,8 @@ a:hover{
   font-size: 22px;
   line-height: 54px;
 
-  color: #000000;
+  /* color: #000000; */
+  color: #2CABE3;
 }
 
 .block1 textarea{
@@ -355,7 +358,8 @@ a:hover{
   line-height: 54px;
 
   border: none;
-  color: #44C295;
+  /* color: #44C295; */
+  color:#179681
 }
 
 .block2 h3{
@@ -366,7 +370,8 @@ a:hover{
   font-size: 22px;
   line-height: 54px;
 
-  color: #000000;
+  /* color: #000000; */
+  color: #2CABE3;
 }
 
 .block2 textarea{
@@ -452,7 +457,8 @@ font-size: 14px;
   line-height: 54px;
 
   border: none;
-  color: #44C295;
+  /* color: #44C295; */
+  color: #179681;
 }
 
 .block3 h3{
@@ -464,7 +470,7 @@ font-size: 14px;
   line-height: 54px;
 
   /* color: #000000; */
-  color: #0074a3;
+  color: #2CABE3;
 }
 
 .block3 textarea{
