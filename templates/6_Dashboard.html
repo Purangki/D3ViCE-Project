@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://unpkg.com/scrollreveal"></script>
     {% endblock headerinclude %}
@@ -107,8 +108,9 @@
                 </div>
 
                 <div class = "col-md-4 col-sm-4">
-                  
+                  <!-- this is a blank column -->
                 </div>
+
                 <div class = "col-md-2 col-sm-2">
                   <a class="btn btn-default create-conf-btn" href="#"><div class="search_btn"><span class="glyphicon glyphicon-plus"></span> Create Conference</div></a>
                 </div>
@@ -118,10 +120,10 @@
             </div>     
           </div>
         </div>
+
         <div class="row col-12">
           <div class="col-md-4 col-sm-4">
-            {% for conference in completed %}
-            
+            {% for conference in completed %}  
             <div class="col-md-12 col-sm-12">
                 <div id="blk1" class="block1">
                   <h3>Completed</h3>
@@ -133,14 +135,14 @@
                         {{ conference.description }}
                     </textarea>
                   </p>
-                  <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}"><div class="showMore">Details</div></button>
+                  <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}">Details</button>
                 </div>
             </div>
 
             <div class="modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog conf-modal" role="document">
+
                 <div class="modal-content">
-                  
                   <div class="modal-header">
                     <h5 class="modal-title"><i class="fas fa-edit"></i>Conference Details</h5>
                     <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">

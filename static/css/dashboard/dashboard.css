@@ -711,4 +711,6 @@ h5{
 	color: white;
 	border-radius: 2px;
 	border: none;
+  /* font-weight: bold; */
+  font-size: 13px;
 }
