@@ -114,13 +114,14 @@
             </div>     
           </div>
         </div>
-
-        <div class="row col-12">
+<!-- END OF CREATE CONFERENCE BUTTON, FILTER AND SORT BY -->
+<!-- start of cards -->
+        <div class="row">
           <div class="col-md-4 col-sm-4">
-            {% for conference in completed %}  
-            <div class="col-md-12 col-sm-12">
+            {% for conference in completed %} <!--to change  -->
+            <!-- <div class="col-md-12 col-sm-12"> -->
               <div id="blk1" class="block1">
-                <h3>Completed</h3>
+                <!-- <h3>Completed</h3> -->
                 <h1>
                   <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
                 </h1>
@@ -132,16 +133,19 @@
                 <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}"><div class="showMore">Details</div></button>
               </div>
             </div>
-
+  <!-- end of card -->
+  
+<!-- START OF MODALS -->
             <div class="modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog conf-modal" role="document">
 
                 <div class="modal-content">
                   <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h5 class="modal-title"><i class="fas fa-edit"></i>Conference Details</h5>
-                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                    <!-- <button type="button" class="btn close" data-dismiss="modal" aria-label="Close"> -->
+                      <!-- <span aria-hidden="true">&times;</span> -->
+                    <!-- </button> -->
                   </div>
 
                   <div class="conf-modal-body">
@@ -184,7 +188,7 @@
           </div>
           {% endfor %}
 
-          <div class="col-md-4 col-sm-4">
+          <!-- <div class="col-md-4 col-sm-4">
             {% for conference in ongoing %}
             <div class="col-md-12 col-sm-12">
                 <div id="blk2" class="block2">
@@ -248,9 +252,9 @@
                 </div>
             </div>
             {% endfor %}
-          </div>
+          </div> -->
 
-          <div class="col-md-4 col-sm-4">
+          <!-- <div class="col-md-4 col-sm-4">
             {% for conference in upcoming %}
             <div class="col-md-12 col-sm-12">
                 <div id="blk3" class="block3">
@@ -264,7 +268,6 @@
                     </textarea>
                   </p>
                   <button id="btn_remindMe" class="btn btn-default blk3-btn" data-toggle="modal" data-target="#showMoreModal-{{ conference.id }}"><div class="reminder">Details</div></a>
-                  <!-- <button id="btn_NI" class="btn btn-default blk3-btnNI" data-toggle="modal" data-target="#showMoreModal-{{ conference.id }}"><div class="uninterested">Not interested!</div></a> -->
                 </div>
 
                 <div class="modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -315,7 +318,7 @@
                 </div>
             </div>
             {% endfor %}
-          </div>
+          </div> -->
         </div>
 		  <!-- Menu Toggle Script -->
 		  <script>
