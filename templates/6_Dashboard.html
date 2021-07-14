@@ -121,12 +121,12 @@
 <!-- END OF CREATE CONFERENCE BUTTON, FILTER AND SORT BY -->
 <!-- start of cards -->
         <div class="row">
+          {% for conference in D3ViCE_Conference %}
           <div class="col-md-4 col-sm-4">
-            {% for conference in D3ViCE_Conference %} <!--to change  -->
-            <div class="col-md-12 col-sm-12">
-            <!-- <div class= "row"> -->
+             <!--to change  -->
+            <!-- <div class="col-md-12 col-sm-12"> -->
               <div id="blk1" class="block1">
-                <h3>Completed</h3><!--to change into input field  -->
+                <h3>Status</h3><!--to change into input field  -->
                 <h1>
                   <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
                 </h1>
@@ -231,6 +231,7 @@
             </div>
           </div>  
           {% endfor %}
+
 <!-- START OF CREATE CONFERENCE MODAL -->
 <div class="modal fade" id="createConferenceModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog conf-modal" role="document">
