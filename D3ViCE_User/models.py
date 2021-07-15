@@ -12,7 +12,7 @@ class Profile(AbstractUser):
 	display_name = models.CharField(max_length = 255, null = True, blank = True)
 	sponsor_name = models.CharField(max_length = 255, null = True, blank = True)
 	is_host = models.BooleanField(default=False)
-	is_organizer = models.BooleanField(default=False)
+	is_sponsor = models.BooleanField(default=False)
 	is_speaker = models.BooleanField(default=False)
 	
 	class Meta:

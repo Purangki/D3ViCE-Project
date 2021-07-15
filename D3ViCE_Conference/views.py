@@ -3,6 +3,7 @@ from django.views.generic import View
 from .models import *
 from .models import Conference
 from D3ViCE_User.models import Profile
+from D3ViCE_User.models import *
 from datetime import datetime
 import uuid		#for the conference code
 
@@ -26,9 +27,11 @@ class ConferenceHistoryView(View):
 class DashboardView(View):
 	def get(self, request):			#get method for the conference, displays conference details in the template
 		qs_conferences = Conference.objects.filter(is_deleted = False).order_by('-date')
+		qs_requests = Request.objects.filter(status = 'Pending').order_by('-date')
 		print(qs_conferences)
 		context = {
-			'conferences' : qs_conferences
+			'conferences' : qs_conferences,
+			'requests': qs_requests
 		}
 		return render(request, '6_Dashboard.html',context)
 	def post(self, request):
