@@ -45,10 +45,10 @@ class Notification(models.Model):
 
 class Request(models.Model):
 	user = models.ForeignKey(Profile, blank=True, on_delete=models.SET_NULL, null=True)
-	type = models.CharField(max_length = 255)
+	type = models.CharField(max_length = 255) # Sponsor, Join
 	description = models.CharField(max_length = 300)
 	date = models.DateField()
-	status = models.BooleanField(default = False) #Accepted or Declined
+	status = models.BooleanField(default = False) # Accepted or Declined or Pending
 
 	class Meta:
 		db_table = "Request"
