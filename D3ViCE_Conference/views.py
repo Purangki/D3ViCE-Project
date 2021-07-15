@@ -7,8 +7,7 @@ from .models import *
 from .models import Conference
 from D3ViCE_User.models import Profile
 from datetime import datetime
-from django.contrib.auth.models import auth, User
-from django.contrib.auth import get_user_model
+# from django.contrib.auth.models import auth, User
 import uuid		#for the conference code
 
 # Create your views here.
@@ -73,12 +72,9 @@ class DashboardView(View):
 		if request.method == 'POST':
 
 			if 'btn_create_conference' in request.POST:
-				User = get_user_model()
-				currentUser = Profile.objects.get(id = request.user.id)
-				print(request.user)
-				print(currentUser.id)
 
-				print("button click")
+				currentUser = Profile.objects.get(id = request.user.id)
+				# for validation check if currentUser.is_host == true
 
 				title = request.POST.get("title_create")
 				type = request.POST.get("select_type")
