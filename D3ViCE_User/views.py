@@ -1,3 +1,4 @@
+from datetime import date
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views.generic import View
@@ -7,6 +8,7 @@ from django.contrib import messages
 from .forms import UserForm
 from D3ViCE_Account.models import *
 from D3ViCE_User.models import *
+from D3ViCE_Conference.models import *
 from .models import Profile
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
@@ -81,24 +83,30 @@ class UserProfileView(View):
 
 class AdminView(View):	#admin dashboard
 	def get(self, request):
-		return render(request, '0_AdminDashboard.html')
+		return render(request, '0_AdminDashboard.html',)
 
 class SponsorConferenceView(View):
-	def get(self,request):
-		return render(request, '14_SponsorConference.html')
+	def get(self,request,id):
+		context = {
+			'conference_id' : id
+		}
+		return render(request, '14_SponsorConference.html', context)
 
-	def post(self, request):
+	def post(self, request, id):
 		if request.method == 'POST':
 			if 'btn_sponsor_conference' in request.POST:
 				print(request.POST)
-				currentUser = request.user.id
-				print(request.user.id)
-				company_name = request.POST.comp_name
-				company_address =  request.POST.comp_address
-				company_description =  request.POST.comp_description
-				reason = request.POST.reason_sponsor
+				currentUser = Profile.objects.get(id = request.user.id)
+				conference = Conference.objects.get(id = id)
+				company_name = request.POST.get('comp_name')
+				company_address =  request.POST.get('comp_address')
+				company_description =  request.POST.get('comp_description')
+				reason = request.POST.get('reason_sponsor')
 				
 
-				return redirect('D3ViCE_Conferece:dashboard_view')
+				Sponsorship.objects.create(user = currentUser, company_name = company_name, company_address = company_address, company_description = company_description, reason = reason)
+				Request.objects.create(user = currentUser, type='Sponsor', description = reason)
+
+				return redirect('D3ViCE_Conference:dashboard_view')
 
 	

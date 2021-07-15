@@ -177,7 +177,7 @@
                           <input type="text" id="title_edit-{{conference.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150">
                         </div>
                         
-                        <div class="input-group">
+                        <div class="input-g1roup">
                           <div class="input-group-prepend mb-3">
                             <span class="input-group-text conf-prepend">Date</span>
                           </div>
@@ -198,7 +198,7 @@
                         <div class="d-flex justify-content-center mt-2">
                           <button type="submit" id="btn_join_conference" name="btn_join_conference" class="btn btn-conference-join">Join</button>
                           <button type="button" id="btn_sponsor_conference" name="btn_sponsor_conference" class="btn btn-conference-sponsor">
-                            <a href = "../D3ViCE_User/sponsor" class="btn btn-sponsor">Sponsor</a>
+                            <a href = "../D3ViCE_User/sponsor/{{conference.id}}" class="btn btn-sponsor">Sponsor</a>
                           </button>
                           
                         </div>
