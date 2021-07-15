@@ -2,6 +2,7 @@
 # Authors: MCiVillondo
 # Descrition: D3ViCE_Unity.views contains all methods used in unity to get data through the django server.
 #
+from sys import displayhook
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
@@ -52,45 +53,62 @@ def login_user(request):
 #D3ViCE_Unity.update_avatar function is responsible for the updateing the user's preferred avatar.
 @csrf_exempt
 def update_avatar(request):
+    print("D3ViCE_Unity: user from unity is attempting to update avatar index")
     if request.method == "POST":
+        print("Request Method: POST")
         form = UserUpdateAvatar(request.POST or None)
         if form.is_valid():
             user_username = request.POST.get("username")
+            print(user_username)
             user_newavatar = request.POST.get("index")
+            print(user_newavatar)
 
             form = Profile.objects.filter(username = user_username).update(avatar_index = user_newavatar)
+            print("Update Avatar Index: Sucessful")
             return JsonResponse({'success': True})
         else:
             form.error.as_json()
+            print("Update Avatar Index: Failure")
             return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
 #D3ViCE_Unity.join_conference function is responsible for the vertifying if a user can join a conference through a conference code.
 @csrf_exempt
 def join_conference(request, code=None):
+    print("D3ViCE_Unity: user from unity is attempting to join a conference")
     conference_data = get_object_or_404(Conference, code=code)
     form = UserJoinConference(request.POST or None)
     if request.method == "POST":
+        print("Request Method: POST")
         conference_code = conference_data.code
         user_code = request.POST.get("code")
+        print(user_code)
 
         if conference_code == user_code:
+            print("Join Conference: Sucessful")
             return JsonResponse({'success': True})
         else:
+            print("Join Conference: Failure")
             return JsonResponse({'success': False, 'errors': 'Invalid Code'})
     else: 
         form.error.as_json()
+        print("Join Conference: Failure")
         return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
 #D3ViCE_Unity.register_participant function is responsible for the participant registration to the conference.
 @csrf_exempt
 def register_participant(request):
+    print("D3ViCE_Unity: user from unity is attempting to register to a conference")
     if request.method == "POST":
+        print("Request Method: POST")
         form = RegisterParticipant(request.POST or None)
 
         if form.is_valid():
             user_username = request.POST.get("username")
+            print(user_username)
             user_displayname = request.POST.get("displayname")
+            print(user_displayname)
             user_affliation = request.POST.get("affiliation")
+            print(user_affliation)
 
             participants = Profile.object.all()
             count = 0
