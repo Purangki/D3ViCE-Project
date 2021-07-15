@@ -17,7 +17,7 @@ class Conference(models.Model):
 	end_time = models.TimeField(null = True, blank = True) 	#conference end time
 	description = models.CharField(max_length = 255)	#conference description 
 	is_deleted = models.BooleanField(default = False)	#archives the conference, deleted in the page but not in the db
-	status = models.CharField(max_length = 50, default = "Not Started")	#added by Abby for the main dashboard
+	status = models.CharField(max_length = 50, default = "Upcoming")	#added by Abby for the main dashboard
 	seats = models.IntegerField()
 	type = models.CharField(max_length = 255)
 

@@ -25,9 +25,10 @@ class ConferenceHistoryView(View):
 
 class DashboardView(View):
 	def get(self, request):			#get method for the conference, displays conference details in the template
-		qs_conferences = Conference.objects.filter(is_deleted = False, date__gte=datetime.now()).order_by('-date')
+		qs_conferences = Conference.objects.filter(is_deleted = False).order_by('-date')
+		print(qs_conferences)
 		context = {
-			'D3ViCE_Conference' : qs_conferences
+			'conferences' : qs_conferences
 		}
 		return render(request, '6_Dashboard.html',context)
 	def post(self, request):
