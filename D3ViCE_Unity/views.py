@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-# from django.contrib.auth.models import auth, User #builtin django user
+from django.contrib.auth.models import auth, User #builtin django user
 from django.contrib.auth import login, logout
 
 from .forms import *
@@ -89,7 +89,7 @@ def register_participant(request):
             user_displayname = request.POST.get("displayname")
             user_affliation = request.POST.get("affiliation")
 
-            participants = Participant.object.all()
+            participants = Profile.object.all()
             count = 0
 
             for participant in participants:
@@ -102,12 +102,7 @@ def register_participant(request):
                 if user.username == user_username:
                     user_id = user.id
 
-            if count == 0:
-                form = Participant(id = user_id,  display_name = user_displayname, affiliation = user_affliation)
-                form.save()
-            else:
-                form = Participant.objects.filter(id = user_id).update(display_name = user_displayname, affiliation = user_affliation)
-
+            form = Profile.objects.filter(id = user_id).update(display_name = user_displayname, affiliation = user_affliation)
             return JsonResponse({'success': True})
         else:
             form.error.as_json()
