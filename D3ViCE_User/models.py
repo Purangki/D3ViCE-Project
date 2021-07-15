@@ -48,7 +48,7 @@ class Request(models.Model):
 	type = models.CharField(max_length = 255) # Sponsor, Join
 	description = models.CharField(max_length = 300)
 	date = models.DateField()
-	status = models.BooleanField(default = False) # Accepted or Declined or Pending
+	status = models.CharField(max_length=10, default = 'Pending') # Accepted or Declined or Pending
 
 	class Meta:
 		db_table = "Request"
