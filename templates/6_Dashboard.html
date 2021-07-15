@@ -46,8 +46,8 @@
       <div class="collapse navbar-collapse" id="menuIcon">	
         <ul class="nav navbar-nav navbar-right">
           <li><a href="../D3ViCE_Conference/dashboard" class="a_">Dashboard</a></li>
-          <li><a href="#" class="a_">History</a></li>
-          <li><a href="../D3ViCE_Conference/history" class="a_">Profile</a></li>
+          <li><a href="../D3ViCE_Conference/history" class="a_">History</a></li>
+          <li><a href="../D3ViCE_User/profile" class="a_">Profile</a></li>
           <li><a class="a_" data-toggle="modal" href="#notification_modal">Notification</a></li>
           <li><a href="../D3ViCE_Account/logout" class="a_">Logout</a></li>
         </ul>					
@@ -193,6 +193,7 @@
                           </div>
                           <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.time|time:"H:i:s"}} required>
                         </div>
+                        
                         <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255">{{conference.description}}</textarea>
                         <div class="d-flex justify-content-center mt-2">
                           <button type="submit" id="btn_join_conference" name="btn_join_conference" class="btn btn-conference-join">Join</button>
@@ -264,7 +265,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text" for="inputGroupSelect01">Type</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01" required>
+                <select class="custom-select" id="inputGroupSelect01" name="select_type" required>
                   <option selected>Choose...</option>
                   <option value="1">Private</option>
                   <option value="2">Public</option>
@@ -293,6 +294,23 @@
                   <span class="input-group-text conf-prepend">Available Seats</span>
                 </div>
                 <input type="number" id="num_seats" name="num_seats" class="conf-input form-control mb-3" min = "0" max="100"required>               
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">End Date</span>
+                </div>
+                <input type="date" id="date_end" name="date_end" class="conf-input form-control mb-3 input-date-conference" required>
+                <script type="text/javascript">
+                  disableBeforeToday('date_end');
+                </script>
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">End Time</span>
+                </div>
+                <input type="time" id="time_end" name="time_end" class="conf-input form-control mb-3" required>
               </div>
 
               <textarea class="conf-input mb-3 form-control" id="desc_create" name="desc_create" rows="3" placeholder="Description" maxlength="1000"></textarea>

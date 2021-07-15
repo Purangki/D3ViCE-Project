@@ -6,11 +6,11 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import auth, User #builtin django user
+# from django.contrib.auth.models import auth, User #builtin django user
 from django.contrib.auth import login, logout
 
 from .forms import *
-from D3ViCE_User.models import Profile, Participant
+from D3ViCE_User.models import Profile
 from D3ViCE_Conference.models import Conference
 
 from django.shortcuts import render, redirect

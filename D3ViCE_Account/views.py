@@ -25,7 +25,7 @@ class UserLoginView(View):  #view of user when he logs in to the system
             currentUser = user          #currentUser means that whoever is logged is in that system is the user at present, if this is not set then it is an anonymous user 
             print(str(currentUser.id) + " is logged in")    #prints the current user logged in in the terminal
             context = {                 #context will be used for queries
-            'current_user' : currentUser
+                'current_user' : currentUser
             }
             return redirect("D3ViCE_Conference:dashboard_view") #redirects the user to the User dashboard
         else:

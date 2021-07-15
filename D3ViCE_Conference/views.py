@@ -5,44 +5,46 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ConferenceForm
 from .models import *
 from .models import Conference
+from D3ViCE_User.models import Profile
 from datetime import datetime
 from django.contrib.auth.models import auth, User
+from django.contrib.auth import get_user_model
 import uuid		#for the conference code
 
 # Create your views here.
-class ConferenceManageView(View):	#conference manage view of conference
-	def get(self, request):			#get method for the conference, displays conference details in the template
-		qs_conferences = Conference.objects.filter(is_deleted = False, date__gte=datetime.now()).order_by('-date')
-		context = {
-			'D3ViCE_Conference' : qs_conferences
-		}
-		return render(request, '10_ManageConferences.html',context)
-	def post(self, request):
-		if request.method == 'POST':
-			if 'btn_create_conference' in request.POST:
-				print("button click")
-				form = ConferenceForm(request.POST or None)
-				title = request.POST.get("title_create")
-				date = request.POST.get("date_create")
-				time = request.POST.get("time_create")
-				description = request.POST.get("desc_create")
-				form = Conference(title = title,
-									date = date,
-									time = time,
-									description = description,
-									code = uuid.uuid1())
-				form.save()
-			elif 'btn_edit_conference' in request.POST:
-				id_num = request.POST.get("conference_id_num")
-				title = request.POST.get("title_edit")
-				date = request.POST.get("date_edit")
-				time = request.POST.get("time_edit")
-				description = request.POST.get("desc_edit")
-				edit_conference = Conference.objects.filter(id = id_num).update(title = title, date = date, time = time, description = description)
-			elif 'btn_delete_conference' in request.POST:
-				id_num = request.POST.get("conference_id_num")	
-				delete_conference = Conference.objects.filter(id = id_num).update(is_deleted = True)
-		return redirect('D3ViCE_Conference:conference_manage_view')
+# class ConferenceManageView(View):	#conference manage view of conference
+# 	def get(self, request):			#get method for the conference, displays conference details in the template
+# 		qs_conferences = Conference.objects.filter(is_deleted = False, date__gte=datetime.now()).order_by('-date')
+# 		context = {
+# 			'D3ViCE_Conference' : qs_conferences
+# 		}
+# 		return render(request, '10_ManageConferences.html',context)
+# 	def post(self, request):
+# 		if request.method == 'POST':
+# 			if 'btn_create_conference' in request.POST:
+# 				print("button click")
+# 				form = ConferenceForm(request.POST or None)
+# 				title = request.POST.get("title_create")
+# 				date = request.POST.get("date_create")
+# 				time = request.POST.get("time_create")
+# 				description = request.POST.get("desc_create")
+# 				form = Conference(title = title,
+# 									date = date,
+# 									time = time,
+# 									description = description,
+# 									code = uuid.uuid1())
+# 				form.save()
+# 			elif 'btn_edit_conference' in request.POST:
+# 				id_num = request.POST.get("conference_id_num")
+# 				title = request.POST.get("title_edit")
+# 				date = request.POST.get("date_edit")
+# 				time = request.POST.get("time_edit")
+# 				description = request.POST.get("desc_edit")
+# 				edit_conference = Conference.objects.filter(id = id_num).update(title = title, date = date, time = time, description = description)
+# 			elif 'btn_delete_conference' in request.POST:
+# 				id_num = request.POST.get("conference_id_num")	
+# 				delete_conference = Conference.objects.filter(id = id_num).update(is_deleted = True)
+# 		return redirect('D3ViCE_Conference:conference_manage_view')
 
 class ConferenceHistoryView(View):
 	def get(self, request):
@@ -69,24 +71,35 @@ class DashboardView(View):
 		return render(request, '6_Dashboard.html',context)
 	def post(self, request):
 		if request.method == 'POST':
+
 			if 'btn_create_conference' in request.POST:
+				User = get_user_model()
+				currentUser = Profile.objects.get(id = request.user.id)
+				print(request.user)
+				print(currentUser.id)
+
 				print("button click")
-				form = ConferenceForm(request.POST or None)
-				print(request.user.id)
-				user = request.user
+
 				title = request.POST.get("title_create")
-				date = request.POST.get("date_create")
-				time = request.POST.get("time_create")
+				type = request.POST.get("select_type")
+				start_date = request.POST.get("date_create")
+				start_time = request.POST.get("time_create")
+				end_date = request.POST.get("date_end")
+				end_time = request.POST.get("time_end")
 				description = request.POST.get("desc_create")
-				form = Conference(title = title,
-									date = date,
-									time = time,
+				seats = request.POST.get("num_seats")
+
+				Conference.objects.create(title = title,
+									date = start_date,
+									time = start_time,
+									end_date = end_date,
+									end_time = end_time,
 									description = description,
+									seats = seats,
+									type = type,
+									host = currentUser,
 									code = uuid.uuid1())
-				conference = form.save()
-				conference.host_id = user.id
-				conference.save()
-				print(form)
+
 			elif 'btn_edit_conference' in request.POST:
 				id_num = request.POST.get("conference_id_num")
 				title = request.POST.get("title_edit")
@@ -94,9 +107,11 @@ class DashboardView(View):
 				time = request.POST.get("time_edit")
 				description = request.POST.get("desc_edit")
 				edit_conference = Conference.objects.filter(id = id_num).update(title = title, date = date, time = time, description = description)
+			
 			elif 'btn_delete_conference' in request.POST:
 				id_num = request.POST.get("conference_id_num")	
 				delete_conference = Conference.objects.filter(id = id_num).update(is_deleted = True)
+		
 		return redirect('D3ViCE_Conference:dashboard_view')
 
 		
