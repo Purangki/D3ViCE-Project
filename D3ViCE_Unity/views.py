@@ -10,7 +10,7 @@ from django.contrib.auth.models import auth, User #builtin django user
 from django.contrib.auth import login, logout
 
 from .forms import *
-from D3ViCE_User.models import Profile #,Participant
+from D3ViCE_User.models import Profile, Participant
 from D3ViCE_Conference.models import Conference
 
 from django.shortcuts import render, redirect
@@ -18,33 +18,33 @@ from django.views.generic import View
 # Create your views here.
 
 @csrf_exempt
-def login_user(request, username=None):
-    print("here")
-    user_data = get_object_or_404(Profile, username = username)
+def login_user(request):
+    print("D3ViCE_Unity: login_user is attempting to login")
+    user_name =  request.POST.get("username")
+    user_data = get_object_or_404(Profile, username = user_name)
     form = UserLogin(request.POST or None)
     if request.method == "POST":
         print("post")
-        if form.is_valid():
-            user_name =  request.POST.get("username")
-            user_password =  request.POST.get("password")
-            print("user_name")
-            print("user_password")
-            user = auth.authenticate(username = user_name, password = user_password)
+        # if form.is_valid():
+        user_password =  request.POST.get("password")
+        print("user_name")
+        print("user_password")
+        user = auth.authenticate(username = user_name, password = user_password)
+        
+        if user is not None:
+            user_username = user_data.username
+            user_firstname = user_data.first_name
+            user_lastname = user_data.last_name
+            user_email = user_data.email
+            user_avatarindex = user_data.avatar_index
             
-            if user is not None:
-                user_username = user_data.username
-                user_firstname = user_data.first_name
-                user_lastname = user_data.last_name
-                user_email = user_data.email
-                user_avatarindex = user_data.avatar_index
-                
-                return JsonResponse({'success': True, 'user': user_username,'firstname': user_firstname,'lastname': user_lastname,'email': user_email,'avatar_index': user_avatarindex})
-                # return JsonResponse({'success': True})
-            else:
-                return JsonResponse({'success': False, 'errors': 'Invalid Password'})
+            return JsonResponse({'success': True, 'user': user_username,'firstname': user_firstname,'lastname': user_lastname,'email': user_email,'avatar_index': user_avatarindex})
+            # return JsonResponse({'success': True})
         else:
-            form.errors.as_json()
-            return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
+            return JsonResponse({'success': False, 'errors': 'Invalid Password'})
+        # else:
+        #     form.errors.as_json()
+        #     return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
 @csrf_exempt
 def update_avatar(request):
