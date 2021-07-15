@@ -49,6 +49,7 @@ def login_user(request):
         #     form.errors.as_json()
         #     return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
+#D3ViCE_Unity.update_avatar function is responsible for the updateing the user's preferred avatar.
 @csrf_exempt
 def update_avatar(request):
     if request.method == "POST":
@@ -63,6 +64,7 @@ def update_avatar(request):
             form.error.as_json()
             return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
+#D3ViCE_Unity.join_conference function is responsible for the vertifying if a user can join a conference through a conference code.
 @csrf_exempt
 def join_conference(request, code=None):
     conference_data = get_object_or_404(Conference, code=code)
@@ -79,6 +81,7 @@ def join_conference(request, code=None):
         form.error.as_json()
         return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
+#D3ViCE_Unity.register_participant function is responsible for the participant registration to the conference.
 @csrf_exempt
 def register_participant(request):
     if request.method == "POST":
