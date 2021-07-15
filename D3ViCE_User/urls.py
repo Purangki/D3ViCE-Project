@@ -11,4 +11,5 @@ urlpatterns = [
     path('change-password/', MyPasswordChangeView.as_view(), name="password-change-view"), #url towards the change password views.py
     path('change-password/done/', MyPasswordResetDoneView.as_view(), name="password-change-done-view"), #url towards the password reset views.py
     path('admin', views.AdminView.as_view(), name="admin_view"), #url towards the admin views.py
+    path('sponsor', views.SponsorConferenceView.as_view(), name = "sponsor_conference_view")
 ]

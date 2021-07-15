@@ -83,4 +83,13 @@ class AdminView(View):	#admin dashboard
 	def get(self, request):
 		return render(request, '0_AdminDashboard.html')
 
+class SponsorConferenceView(View):
+	def get(self,request):
+		return render(request, '14_SponsorConference.html')
+
+	def post(self, request):
+		if request.method == 'POST':
+			if 'btn_sponsor_conference' in request.POST:
+				return render('D3ViCE_User:sponsor_conference_view')
+
 	

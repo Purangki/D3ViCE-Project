@@ -834,6 +834,13 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
   background-color: #2CABE3;
   color: white;
   margin-top: 100px;
+  width: 100px;
+}
+
+.btn-conference-sponsor a{
+  color: white;
+  margin-top: -17px;
+  margin-left: -60px;
 }
 
 .mt-2{
