@@ -28,10 +28,12 @@ class DashboardView(View):
 	def get(self, request):			#get method for the conference, displays conference details in the template
 		qs_conferences = Conference.objects.filter(is_deleted = False).order_by('-date')
 		qs_requests = Request.objects.filter(status = 'Pending').order_by('-date')
+		current_user_id = request.user.id
 		print(qs_conferences)
 		context = {
 			'conferences' : qs_conferences,
-			'requests': qs_requests
+			'requests': qs_requests,
+			'current_user_id': current_user_id
 		}
 		return render(request, '6_Dashboard.html',context)
 	def post(self, request):

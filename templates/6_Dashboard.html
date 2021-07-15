@@ -343,9 +343,9 @@
               <div class = "col-md-8 col-sm-8">
                 <div class = "request-lbl">
                   {% if request.type == 'Sponsor' %}
-                  <p> wants to sponsor an event </p> 
+                  <p> {{request.user}} wants to sponsor an event </p> 
                   {% elif request.type == 'Join' %}
-                  <p> wants to join an event </p> 
+                  <p> {{request.user}} wants to join an event </p> 
                   {% endif %}
                 </div>
               </div>

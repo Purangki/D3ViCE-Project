@@ -55,7 +55,7 @@ class Request(models.Model):
 	status = models.CharField(max_length=10, default = 'Pending') # Accepted or Declined or Pending
 	conference = models.OneToOneField('D3ViCE_Conference.Conference', null=True, blank=True, on_delete=models.SET_NULL)
 	sponsorship = models.OneToOneField('D3ViCE_Conference.Sponsorship', null=True, blank=True, on_delete=models.SET_NULL)
-
+	target = models.OneToOneField(Profile, blank=True, null=True, on_delete=models.CASCADE, related_name='request_target')
 	class Meta:
 		db_table = "Request"
 
