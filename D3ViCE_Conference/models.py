@@ -21,7 +21,7 @@ class Conference(models.Model):
 	seats = models.IntegerField()
 	type = models.CharField(max_length = 255)
 
-	sponsor = models.ManyToManyField(Profile, related_name = 'sponsored_conferences', blank = True)
+	# sponsor = models.ManyToManyField(Profile, related_name = 'sponsored_conferences', blank = True)
 	host = models.ForeignKey(Profile, on_delete=models.SET_NULL, related_name="created_conferences", null=True, blank = True)
 	participant = models.ManyToManyField(Profile, related_name = "joined_conferences", blank = True)
 	speaker = models.ManyToManyField(Profile, related_name = "speaker_conferences", blank = True)
@@ -38,3 +38,12 @@ class Review(models.Model):
 
 	class Meta:
 		db_table = "Review"
+
+class Sponsorship(models.Model):
+	user = models.ForeignKey(Profile, related_name="sponsored_events", on_delete=models.SET_NULL, null=True)
+	conference = models.ForeignKey(Conference, related_name="sponsors", on_delete=models.SET_NULL, null=True)
+	company_name = models.CharField(max_length=100)
+	company_address = models.CharField(max_length=500)
+	company_description = models.CharField(max_length=500)
+	reason = models.CharField(max_length=500)
+	is_accepted = models.BooleanField(default=False)

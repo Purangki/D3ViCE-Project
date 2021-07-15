@@ -90,14 +90,15 @@ class SponsorConferenceView(View):
 	def post(self, request):
 		if request.method == 'POST':
 			if 'btn_sponsor_conference' in request.POST:
+				print(request.POST)
+				currentUser = request.user.id
+				print(request.user.id)
+				company_name = request.POST.comp_name
+				company_address =  request.POST.comp_address
+				company_description =  request.POST.comp_description
+				reason = request.POST.reason_sponsor
+				
 
-				# currentUser = request.user.id
-				# company_name = request.POST.comp_name
-				# company_address =  request.POST.comp_address
-				# company_address =  request.POST.comp_description
-				# reason = request.POST.reason_sponsor
-
-
-				return render('D3ViCE_User:sponsor_conference_view')
+				return redirect('D3ViCE_Conferece:dashboard_view')
 
 	

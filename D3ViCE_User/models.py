@@ -1,6 +1,6 @@
-from django.db.models.expressions import F
 # from D3ViCE_Conference.models import Conference
-from django.db.models.fields import DateField, DateTimeField, FloatField
+# from django.db.models.expressions import F
+# from django.db.models.fields import DateField, DateTimeField, FloatField
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -10,7 +10,7 @@ class Profile(AbstractUser):
 	avatar_index = models.IntegerField(null = True, blank = True)
 	affiliation = models.CharField(max_length = 255, null = True, blank = True)
 	display_name = models.CharField(max_length = 255, null = True, blank = True)
-	sponsor_name = models.CharField(max_length = 255, null = True, blank = True)
+
 	is_host = models.BooleanField(default=False)
 	is_sponsor = models.BooleanField(default=False)
 	is_speaker = models.BooleanField(default=False)
@@ -52,3 +52,4 @@ class Request(models.Model):
 
 	class Meta:
 		db_table = "Request"
+
