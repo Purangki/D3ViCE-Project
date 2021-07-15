@@ -22,38 +22,113 @@
   
   <body>
     {% block content %}
-    <!-- START OF NAVBAR -->
-    <nav class ="navbar navbar-style navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-logo" href="../D3ViCE_Home/homee">D3ViCE</a>
-          </div>
-          <div class="collapse navbar-collapse" id="menuIcon">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../D3ViCE_Home/home" class="a_">Home</a></li>
-              <li><a href="../D3ViCE_Home/feature" class="a_">Features</a></li>
-              <li><a href="../D3ViCE_Home/aboutUs" class="a_">About Us</a></li>
-            <li><a href="/D3ViCE_Account/login" class="a_">Sign in</a></li>
-          </ul>
-          </div>
-        </div>
+	<!-- START OF NAVBAR -->
+  <nav class ="navbar-nav navbar-style navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header ">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="tempLogo" class="navbar-logo" href="#">D3ViCE</a>
+      </div>
+        
+      <div class="collapse navbar-collapse" id="menuIcon">	
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="../D3ViCE_Conference/dashboard" class="a_">Dashboard</a></li>
+          <li><a href="#" class="a_">Conference</a></li>
+          <li><a href="../D3ViCE_Conference/history" class="a_">History</a></li>
+          <li><a href="../D3ViCE_User/profile" class="a_">Profile</a></li>
+          <li><a href="../D3ViCE_Account/logout" class="a_">Logout</a></li>
+        </ul>					
+      </div>
+    </div>
+    <div class="bg-design">
+      <div class="custom-shape-divider-bottom-1620910854">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+        </svg>
+      </div>
+    </div>
+  </nav>
+  <!-- END OF NAVBAR -->
 
-        <div class="bg-design">
-          <div class="custom-shape-divider-bottom-1620910854">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
-            </svg>
+  <section class = "sponsor_step_one">
+    <div class = "row">
+      <div class = "col-md-12 col-sm-12">
+        <form action="" method="POST" id="form-sponsor" class="sponsor_request" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div style="height: 100px;">
+            <br>
+            <div class="col-md-1 col-sm-1">  
+            </div>
+            <div class="col-md-4 col-sm-4">  
+              <h2>Sponsor Request</h2>
+            </div>    
           </div>
-        </div>
-    </nav>
-    <!-- END OF NAVBAR -->
 
-    
+          <!--Company Name-->
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <label for="comp_name" class="lbl_comp_name">Company Name</label>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <input type="text" name="comp_name" id="comp_name" placeholder="Company Name" max="50" required>
+                </div>    
+            </div>
+
+            <br>
+
+            <!--Company Address-->
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <label for="comp_address" class="lbl_comp_address">Company Address</label>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <input type="text" name="comp_address" id="comp_address" placeholder="Company Address" max="150" required>
+                </div>
+            </div>
+
+            <br>
+
+            <!--Description-->
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <label for="comp_description" class="lbl_comp_description">Description</label>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <textarea class="comp_description" id="comp_description" name="comp_description" rows="3" placeholder="What is your company about?" maxlength="255"></textarea>
+                </div>
+            </div>
+            <br>
+            
+
+            <!--Reason-->
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <label for="reason" class="lbl_reason">Reason</label>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <textarea class="reason_sponsor" id="reason" name="reason_sponsor" rows="3" placeholder="State reason why you want to sponsor the event" maxlength="255"></textarea>
+                </div>
+            </div>
+
+            <br>
+
+          <!-- Submit -->
+          <div class="row">
+            <div class="col-md-12 col-sm-12"> 
+              <div class="sponsor_request">
+                <button class="btn btn_sponsor_request_s1" type="submit" name="sponsor_request_s1" value="Next"><b class="sponsor-request-s1">Confirm</b></button>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
     {% block footerinclude %}
     <script src="http://code.jquery.com/jquery-3.5.1.js"
@@ -66,7 +141,7 @@
             duration: 2000,
             origin:'bottom'
           });
-          sr.reveal('.login', {
+          sr.reveal('.sponsor_step_one', {
             duration: 2000,
             origin:'top',
             distance:'300px'

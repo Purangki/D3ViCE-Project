@@ -58,9 +58,13 @@ h1,h2,h3,h4,h5,h6{
     z-index: -4;
 }
 
+.navbar-right{
+  margin-right: -100px;
+}
+
 a{
 	position: absolute;
-	width: 120px;
+	/* width: 120px; */
 	height: 65px;
 	margin-top: 0px;
 
@@ -85,6 +89,7 @@ a:hover{
   color: #137666;
   text-decoration: rgba(0, 0, 0, 0.25);
 }
+
 .home{
 	margin-top: 30px;
 }
@@ -98,6 +103,8 @@ a:hover{
 	width: 515px;
 	height: 99px;
 	margin-bottom: 20px;
+  /* margin-top: 50px; */
+  margin-left: -40px;
 
 	font-family: Poppins;
 	font-style: normal;
@@ -731,6 +738,7 @@ h5{
 .fade{
   opacity: 80;
   margin-top: 140px;
+  /* z-index: 150; */
   /* width: 500px; */
 }
 
@@ -846,4 +854,9 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
 .mt-2{
   margin-left: 180px;
   /* width: 100px; */
+}
+
+.container-fluid{
+  margin-left: 50px;
+  margin-right: 50px;
 }

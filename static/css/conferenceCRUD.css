@@ -20,6 +20,9 @@ body {
   margin-left: 15px;
 }
 
+.navbar-right{
+  margin-right: -100px;
+}
 
 
 .fade{

@@ -30,7 +30,7 @@ h1,h2,h3,h4,h5,h6{
   	border:0;
   	font-family:Poppins;
   	/* box-shadow: 0px 15px 4px rgba(246, 247, 247, 0.5); */
-      z-index: 0;
+      z-index: -5;
 }
 
 .custom-shape-divider-bottom-1620910854 {
@@ -130,25 +130,6 @@ form h2{
     font-weight: bold;
     color: #179681;
 }
-/* form #username{
-    margin-top: 50px;
-
-}
-
-form #fname{
-    margin-top: 50px;
-}
-
-
-form #password{
-    margin-top: 50px;
-    margin-right: -5px;
-} */
-
-
-/* form label{
-    margin-left: 40px;
-} */
 
 .lbl_fname{
     margin-left: 4px;
@@ -197,11 +178,8 @@ form a{
     width: 140px;
     height: 30px;
     margin-top: 10px;
-    /* margin-left: 50px; */
     background: #56C69E;
-    /* margin-left: 400px; */
     margin-right: 100px;
-    /* border-radius: 10px; */
 }
 
 .login{
@@ -211,7 +189,6 @@ form a{
     color: white;;
 }
 #home img{
-	/*position: absolute;*/
 	width: 500px;
 	height: 424px;
 
@@ -221,7 +198,6 @@ form a{
   	margin-right: auto;
   	width: 90%;
 	
-/*	filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));*/
 	border-radius: 62px;
 }
 
@@ -231,11 +207,9 @@ form a{
 
 /* placeholder */
 ::-webkit-input-placeholder {
-    /* font-style: italic; */
     text-indent: 10px;
     opacity: 50%;
     letter-spacing: 0.3ch;
-    /* font-family: 'Roboto'; */
     font-size: 12.5px;
  }
  :-moz-placeholder {
@@ -251,11 +225,63 @@ form a{
     text-indent: 10px;
  }
 
-
-/* .btn-sponsor{
-    color:black;
-    margin-top: ;
-} */
 .mt-2 a{
     color: black;
 }
+
+
+.sponsor_step_one{
+    text-align: center;
+    margin-left: 370px;
+    margin-top: 200px;
+
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.10);
+    width: 800px;
+    height: 500px;
+   
+}
+
+.sponsor_request{
+    text-align: center;
+    /* margin-top: 100px; */
+    margin-left: 80px;
+}
+
+#sponsor_step_one form{
+    z-index: 100;
+}
+
+.lbl_comp_name{
+    margin-left: -95px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.lbl_comp_address{
+    margin-left: -72px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.lbl_comp_description{
+    margin-left: -130px;
+    text-align: left;
+    font-size: 16px;
+}
+.lbl_reason{
+    margin-left: -160px;
+    text-align: left;
+    font-size: 16px;
+}
+
+textarea{
+    width: 300px;
+    margin-left: 70px;
+}
+
+.btn_sponsor_request_s1{
+    margin-left: 355px;
+    background-color: #56C69E;
+    color: white;
+}
+
