@@ -18,26 +18,6 @@ class Profile(AbstractUser):
 	class Meta:
 		db_table = "Profile"
 
-# class Host(Profile): 
-# 	class Meta:
-# 		db_table = "Host"
-
-# class Speaker(Profile):
-# 	class Meta:
-# 		db_table = "Speaker"
-
-# class Participant(Profile):
-# 	affiliation = models.CharField(max_length = 255, null = True, blank = True)
-# 	display_name = models.CharField(max_length = 255, null = True, blank = True)
-
-# 	class Meta:
-# 		db_table = "Participant"
-
-# class Sponsor(Profile):
-# 	sponsor_name = models.CharField(max_length = 255, null = True, blank = True)
-# 	class Meta:
-# 		db_table = "Sponsor"
-
 # additional models
 
 class Plan(models.Model):
