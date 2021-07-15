@@ -103,9 +103,8 @@ class SponsorConferenceView(View):
 				company_description =  request.POST.get('comp_description')
 				reason = request.POST.get('reason_sponsor')
 				
-
-				Sponsorship.objects.create(user = currentUser, company_name = company_name, company_address = company_address, company_description = company_description, reason = reason)
-				Request.objects.create(user = currentUser, type='Sponsor', description = reason)
+				sponsorship = Sponsorship.objects.create(user = currentUser, conference=conference, company_name = company_name, company_address = company_address, company_description = company_description, reason = reason)
+				Request.objects.create(user = currentUser, type='Sponsor', description = reason, conference = conference, sponsorship = sponsorship)
 
 				return redirect('D3ViCE_Conference:dashboard_view')
 

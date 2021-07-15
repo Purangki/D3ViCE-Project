@@ -1,7 +1,11 @@
 # from D3ViCE_Conference.models import Conference
 # from django.db.models.expressions import F
 # from django.db.models.fields import DateField, DateTimeField, FloatField
+# from D3ViCE_Conference.models import Sponsorship
+# from D3ViCE_Conference.models import Conference
+from datetime import datetime
 from django.db import models
+# from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
@@ -47,8 +51,10 @@ class Request(models.Model):
 	user = models.ForeignKey(Profile, blank=True, on_delete=models.SET_NULL, null=True)
 	type = models.CharField(max_length = 255) # Sponsor, Join
 	description = models.CharField(max_length = 300)
-	date = models.DateField()
+	date = models.DateField(default=datetime.now().date())
 	status = models.CharField(max_length=10, default = 'Pending') # Accepted or Declined or Pending
+	conference = models.OneToOneField('D3ViCE_Conference.Conference', null=True, blank=True, on_delete=models.SET_NULL)
+	sponsorship = models.OneToOneField('D3ViCE_Conference.Sponsorship', null=True, blank=True, on_delete=models.SET_NULL)
 
 	class Meta:
 		db_table = "Request"
