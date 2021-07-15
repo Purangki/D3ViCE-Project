@@ -7,6 +7,7 @@ from datetime import datetime
 from django.db import models
 # from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
+from django.db.models.fields import related
 
 # Create your models here.
 class Profile(AbstractUser):
@@ -53,9 +54,9 @@ class Request(models.Model):
 	description = models.CharField(max_length = 300)
 	date = models.DateField(default=datetime.now().date())
 	status = models.CharField(max_length=10, default = 'Pending') # Accepted or Declined or Pending
-	conference = models.OneToOneField('D3ViCE_Conference.Conference', null=True, blank=True, on_delete=models.SET_NULL)
-	sponsorship = models.OneToOneField('D3ViCE_Conference.Sponsorship', null=True, blank=True, on_delete=models.SET_NULL)
-	target = models.OneToOneField(Profile, blank=True, null=True, on_delete=models.CASCADE, related_name='request_target')
+	conference = models.ForeignKey('D3ViCE_Conference.Conference', null=True, blank=True, on_delete=models.SET_NULL, related_name="join_requests")
+	sponsorship = models.ForeignKey('D3ViCE_Conference.Sponsorship', null=True, blank=True, on_delete=models.SET_NULL, related_name="conference_sponsorships")
+	target = models.ForeignKey(Profile, blank=True, null=True, on_delete=models.CASCADE, related_name='request_target')
 	class Meta:
 		db_table = "Request"
 

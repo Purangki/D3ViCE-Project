@@ -101,5 +101,5 @@ class DashboardView(View):
 
 		return redirect('D3ViCE_Conference:dashboard_view')
 
-		
+	
 
