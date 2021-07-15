@@ -340,25 +340,29 @@
           <div class="modal-body">
             {% for request in requests %}
             <div class = "row">
-              <div class = "col-md-8 col-sm-8">
-                <div class = "request-lbl">
-                  {% if request.type == 'Sponsor' %}
-                  <p> {{request.user}} wants to sponsor an event </p> 
-                  {% elif request.type == 'Join' %}
-                  <p> {{request.user}} wants to join an event </p> 
-                  {% endif %}
+              <form method = "POST" >
+                {% csrf_token %}
+                <input type="text" class="d-none" name="request_id" value="{{request.id}}" hidden>
+                <div class = "col-md-8 col-sm-8">
+                  <div class = "request-lbl">
+                    {% if request.type == 'Sponsor' %}
+                    <p> {{request.user.first_name}} {{request.user.last_name}} wants to sponsor an event </p> 
+                    {% elif request.type == 'Join' %}
+                    <p> {{request.user.first_name}} {{request.user.last_name}} wants to join an event </p> 
+                    {% endif %}
+                  </div>
                 </div>
-              </div>
-              <div class = "col-md-4 col-sm-4">
-                <div class = "request-status">
-                  <button class="btn btn-primary btn-accept-request" type = "submit">
-                      Accept
+                <div class = "col-md-4 col-sm-4">
+                  <div class = "request-status">
+                    <button class="btn btn-primary btn-accept-request" name="btn-accept-request" type = "submit">
+                        Accept
+                    </button>
+                    <button class="btn btn-primary btn-decline-request" name="btn-decline-request" type = "submit">
+                      Decline
                   </button>
-                  <button class="btn btn-primary btn-decline-request">
-                    Decline
-                </button>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
             {% endfor %}
 

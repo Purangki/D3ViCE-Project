@@ -26,24 +26,21 @@ class ConferenceHistoryView(View):
 
 class DashboardView(View):
 	def get(self, request):			#get method for the conference, displays conference details in the template
+		current_user = request.user
 		qs_conferences = Conference.objects.filter(is_deleted = False).order_by('-date')
-		qs_requests = Request.objects.filter(status = 'Pending').order_by('-date')
-		current_user_id = request.user.id
-		print(qs_conferences)
+		qs_requests = Request.objects.filter(status = 'Pending', target = current_user).order_by('-date')
 		context = {
 			'conferences' : qs_conferences,
 			'requests': qs_requests,
-			'current_user_id': current_user_id
+			'current_user': current_user
 		}
 		return render(request, '6_Dashboard.html',context)
 	def post(self, request):
 		if request.method == 'POST':
 
 			if 'btn_create_conference' in request.POST:
-
 				currentUser = Profile.objects.get(id = request.user.id)
 				# for validation check if currentUser.is_host == true
-
 				title = request.POST.get("title_create")
 				type = request.POST.get("select_type")
 				start_date = request.POST.get("date_create")
@@ -76,6 +73,13 @@ class DashboardView(View):
 				id_num = request.POST.get("conference_id_num")	
 				delete_conference = Conference.objects.filter(id = id_num).update(is_deleted = True)
 		
+			elif 'btn-accept-request' in request.POST:
+				print("accept request")
+				print(request.POST.get('request_id'))
+			elif 'btn-decline-request' in request.POST:
+				print("decline request")
+				print(request.POST.get('request_id'))
+				
 		return redirect('D3ViCE_Conference:dashboard_view')
 
 		
