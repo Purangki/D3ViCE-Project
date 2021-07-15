@@ -74,12 +74,31 @@ class DashboardView(View):
 				delete_conference = Conference.objects.filter(id = id_num).update(is_deleted = True)
 		
 			elif 'btn-accept-request' in request.POST:
-				print("accept request")
-				print(request.POST.get('request_id'))
+				request_id = request.POST.get('request_id')
+				request = Request.objects.get(id = request_id)
+				request.status = 'Accepted'
+
+				sponsorship = request.sponsorship
+				sponsorship.is_accepted = True
+
+				user = request.user
+				user.is_sponsor = True
+
+				request.save()
+				sponsorship.save()
+				user.save()
+
 			elif 'btn-decline-request' in request.POST:
-				print("decline request")
-				print(request.POST.get('request_id'))
-				
+				request_id = request.POST.get('request_id')
+				request = Request.objects.get(id = request_id)
+				request.status = 'Declined'
+
+				sponsorship = request.sponsorship
+				sponsorship.is_accepted = False
+
+				request.save()
+				sponsorship.save()
+
 		return redirect('D3ViCE_Conference:dashboard_view')
 
 		
