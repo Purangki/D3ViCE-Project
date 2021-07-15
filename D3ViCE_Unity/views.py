@@ -1,6 +1,6 @@
 #
 # Authors: MCiVillondo
-# Descrition: D3ViCE_Unity.views contains all methods used in unity to get data from python server.
+# Descrition: D3ViCE_Unity.views contains all methods used in unity to get data through the django server.
 #
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -17,21 +17,23 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 # Create your views here.
 
+#D3ViCE_Unity.login_user function is responsible for the user login in unity. Unity sends a WWWForm containing the user credentials, meanwhile django recieves and autheticates the credentials through this function.
 @csrf_exempt
 def login_user(request):
-    print("D3ViCE_Unity: login_user is attempting to login")
+    print("D3ViCE_Unity: user from unity is attempting to login")
     user_name =  request.POST.get("username")
     user_data = get_object_or_404(Profile, username = user_name)
-    form = UserLogin(request.POST or None)
+    #form = UserLogin(request.POST or None)
     if request.method == "POST":
-        print("post")
+        print("Request Method: POST")
         # if form.is_valid():
         user_password =  request.POST.get("password")
-        print("user_name")
-        print("user_password")
+        print("Username Recieved")
+        print("Password Recieved")
         user = auth.authenticate(username = user_name, password = user_password)
         
         if user is not None:
+            print("Login Status: Sucessful")
             user_username = user_data.username
             user_firstname = user_data.first_name
             user_lastname = user_data.last_name
@@ -41,6 +43,7 @@ def login_user(request):
             return JsonResponse({'success': True, 'user': user_username,'firstname': user_firstname,'lastname': user_lastname,'email': user_email,'avatar_index': user_avatarindex})
             # return JsonResponse({'success': True})
         else:
+            print("Login Status: Failure")
             return JsonResponse({'success': False, 'errors': 'Invalid Password'})
         # else:
         #     form.errors.as_json()
