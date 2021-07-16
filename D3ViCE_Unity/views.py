@@ -1,6 +1,6 @@
 #
 # Authors: MCiVillondo
-# Descrition: D3ViCE_Unity.views contains all methods used in unity to get data through the django server.
+# Descrition: D3ViCE_Unity.views contains all functions and class used in unity to get data through the django server.
 #
 from sys import displayhook
 from django.shortcuts import get_object_or_404
@@ -68,7 +68,7 @@ def update_avatar(request):
             return JsonResponse({'success': True})
         else:
             form.error.as_json()
-            print("Update Avatar Index: Failure")
+            print("Form: !Valid")
             return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
 #D3ViCE_Unity.join_conference function is responsible for the vertifying if a user can join a conference through a conference code.
@@ -91,43 +91,46 @@ def join_conference(request, code=None):
             return JsonResponse({'success': False, 'errors': 'Invalid Code'})
     else: 
         form.error.as_json()
-        print("Join Conference: Failure")
+        print("Request Method: !POST")
         return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
 #D3ViCE_Unity.register_participant function is responsible for the participant registration to the conference.
 @csrf_exempt
 def register_participant(request):
     print("D3ViCE_Unity: user from unity is attempting to register to a conference")
+    form = RegisterParticipant(request.POST or None)
     if request.method == "POST":
         print("Request Method: POST")
-        form = RegisterParticipant(request.POST or None)
+        
 
-        if form.is_valid():
-            user_username = request.POST.get("username")
-            print(user_username)
-            user_displayname = request.POST.get("displayname")
-            print(user_displayname)
-            user_affliation = request.POST.get("affiliation")
-            print(user_affliation)
+        # if form.is_valid():
+        user_username = request.POST.get("username")
+        print(user_username)
+        user_displayname = request.POST.get("displayname")
+        print(user_displayname)
+        user_affliation = request.POST.get("affiliation")
+        print(user_affliation)
 
-            participants = Profile.object.all()
-            count = 0
+        participants = Profile.objects.all()
+        count = 0
 
-            for participant in participants:
-                if participant.username == user_username:
-                    ++count
+        for participant in participants:
+            if participant.username == user_username:
+                ++count
 
-            users = Profile.object.all()
+        users = Profile.objects.all()
 
-            for user in users:
-                if user.username == user_username:
-                    user_id = user.id
+        for user in users:
+            if user.username == user_username:
+                user_id = user.id
 
-            form = Profile.objects.filter(id = user_id).update(display_name = user_displayname, affiliation = user_affliation)
-            return JsonResponse({'success': True})
-        else:
-            form.error.as_json()
-            return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
+        form = Profile.objects.filter(id = user_id).update(display_name = user_displayname, affiliation = user_affliation)
+        print("Participant Registration: Sucessful")
+        return JsonResponse({'success': True})
+    else:
+        print("Form: !Valid")
+        form.error.as_json()
+        return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
 class WebglView(View):
 	def get(self, request):
