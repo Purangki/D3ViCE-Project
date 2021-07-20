@@ -27,5 +27,5 @@ class UserJoinConference(forms.ModelForm):
 class RegisterParticipant(forms.ModelForm):
 
     class Meta:
-        # model = Participant
+        model = Profile
         fields = ('username',)
