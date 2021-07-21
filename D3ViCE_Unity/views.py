@@ -24,10 +24,9 @@ def login_user(request):
     print("D3ViCE_Unity: user from unity is attempting to login")
     user_name =  request.POST.get("username")
     user_data = get_object_or_404(Profile, username = user_name)
-    #form = UserLogin(request.POST or None)
+
     if request.method == "POST":
         print("Request Method: POST")
-        # if form.is_valid():
         user_password =  request.POST.get("password")
         print("Username Recieved")
         print("Password Recieved")
@@ -42,13 +41,10 @@ def login_user(request):
             user_avatarindex = user_data.avatar_index
             
             return JsonResponse({'success': True, 'user': user_username,'firstname': user_firstname,'lastname': user_lastname,'email': user_email,'avatar_index': user_avatarindex})
-            # return JsonResponse({'success': True})
         else:
             print("Login Status: Failure")
             return JsonResponse({'success': False, 'errors': 'Invalid Password'})
-        # else:
-        #     form.errors.as_json()
-        #     return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
+        
 
 #D3ViCE_Unity.update_avatar function is responsible for the updateing the user's preferred avatar.
 @csrf_exempt
@@ -56,20 +52,20 @@ def update_avatar(request):
     print("D3ViCE_Unity: user from unity is attempting to update avatar index")
     if request.method == "POST":
         print("Request Method: POST")
-        form = UserUpdateAvatar(request.POST or None)
-        if form.is_valid():
-            user_username = request.POST.get("username")
-            print(user_username)
-            user_newavatar = request.POST.get("index")
-            print(user_newavatar)
+        # form = UserUpdateAvatar(request.POST or None)
+        # if form.is_valid():
+        user_username = request.POST.get("username")
+        print(user_username)
+        user_newavatar = request.POST.get("index")
+        print(user_newavatar)
 
-            form = Profile.objects.filter(username = user_username).update(avatar_index = user_newavatar)
-            print("Update Avatar Index: Sucessful")
-            return JsonResponse({'success': True})
-        else:
-            form.error.as_json()
-            print("Form: !Valid")
-            return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
+        form = Profile.objects.filter(username = user_username).update(avatar_index = user_newavatar)
+        print("Update Avatar Index: Sucessful")
+        return JsonResponse({'success': True})
+        # else:
+        #     form.error.as_json()
+        #     print("Form: !Valid")
+        #     return JsonResponse({'success': False, 'errors':[(k,v[0]) for k,v in form.errors.items()]})
 
 #D3ViCE_Unity.join_conference function is responsible for the vertifying if a user can join a conference through a conference code.
 @csrf_exempt
@@ -102,8 +98,6 @@ def register_participant(request):
     if request.method == "POST":
         print("Request Method: POST")
         
-
-        # if form.is_valid():
         user_username = request.POST.get("username")
         print(user_username)
         user_displayname = request.POST.get("displayname")
