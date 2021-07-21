@@ -118,7 +118,7 @@ def register_participant(request):
             if user.username == user_username:
                 user_id = user.id
 
-        form = Profile.objects.filter(id = user_id).update(display_name = user_displayname, affiliation = user_affliation)
+        # form = Profile.objects.filter(id = user_id).update(display_name = user_displayname, affiliation = user_affliation)
         print("Participant Registration: Sucessful")
         return JsonResponse({'success': True})
     else:
