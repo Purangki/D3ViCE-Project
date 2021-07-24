@@ -833,16 +833,16 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
   background-color: #2CABE3;
   color: white;
   margin-top: 100px;
-  /* margin-left: 40px; */
-  margin-right: 20px;
-  /* width: 100px; */
+  /* margin-left: -150px; */
+  margin-right: 15px;
+  width: 100px;
 }
 
 .btn-conference-sponsor{
   background-color: #2CABE3;
   color: white;
   margin-top: 100px;
-  width: 100px;
+  width: 120px;
 }
 
 .btn-conference-sponsor a{
@@ -853,6 +853,7 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
 
 .mt-2{
   margin-left: 180px;
+  margin-top: -50px;
   /* width: 100px; */
 }
 
