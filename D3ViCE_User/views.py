@@ -13,6 +13,7 @@ from .models import Profile
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 from django.core.mail import EmailMessage #supposed to be for the email authentication, however was put on hold since it is optional
+from django.contrib.auth.models import auth, User #builtin django user
 
 class MyPasswordChangeView(PasswordChangeView):
 	template_name = '8_ChangePassword.html'	#changing password template
