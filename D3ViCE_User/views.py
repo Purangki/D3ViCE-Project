@@ -39,8 +39,17 @@ class UserSignUpView(View):
 				if str(password) == str(confirm_password):
 					if not Profile.objects.filter(username=username).exists():
 						if not Profile.objects.filter(email=email).exists():
-							user = Profile.objects.create_user(first_name=fname,last_name=lname,username=username,email=email,password=password, is_deleted = False, avatar_index = 0)
-							return redirect('D3ViCE_Conference:dashboard_view')
+							Profile.objects.create_user(first_name=fname,last_name=lname,username=username,email=email,password=password, is_deleted = False, avatar_index = 0)
+							user = auth.authenticate(username = username, password = password)  #using django's builtin authentication system, username & password is checked
+							if user is not None:            #if user is not None then
+								auth.login(request, user)   #user is logged in on the system
+								currentUser = user          #currentUser means that whoever is logged is in that system is the user at present, if this is not set then it is an anonymous user 
+								print(str(currentUser.id) + " is logged in")    #prints the current user logged in in the terminal
+								context = {                 #context will be used for queries
+									'current_user' : currentUser
+								}
+								return redirect("D3ViCE_Conference:dashboard_view") #redirects the user to the User dashboard
+							# return redirect('D3ViCE_Conference:dashboard_view')
 						else:
 							return HttpResponse('email exists')
 					else:
