@@ -97,11 +97,7 @@ class DashboardView(View):
 				sponsorship.is_accepted = False
 
 				request.save()
-				sponsorship.save()
-
-			elif 'search-conference' in request.POST:
-				
-
+				sponsorship.save()			
 		return redirect('D3ViCE_Conference:dashboard_view')
 
 	

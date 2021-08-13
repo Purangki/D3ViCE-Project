@@ -70,7 +70,8 @@
               <form method = "POST">
                 {% csrf_token %}
                 <input class = "search_bar_input" id = "search_bar_input" type="search" placeholder="Search conference" aria-label="Search" name="search-conference">
-                <a type= "button" class="btn btn-default search-btn" href="#"><div class="search_btn">Search</div></a>
+                <!-- <a type= "button" class="btn btn-default search-btn" href="#"><div class="search_btn">Search</div></a> -->
+                <button class="btn btn-default search-btn"><div class = "search_btn">Search</div></button>
               </form>
               <div class ="row filter_and_sort">
                 <div class = "col-md-2 col-sm-2">

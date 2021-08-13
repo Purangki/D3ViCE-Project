@@ -15,6 +15,7 @@ h1,h2,h3,h4,h5,h6{
 
   font-family: 'Poppins';
 }
+
 .bg-design{
   position: relative;
   margin-top: 0;
@@ -646,7 +647,7 @@ font-size: 14px;
 	/* position: absolute; */
 	width: 105px;
 	height: 30px;
-	margin-top: 0px;
+	margin-top: -2px;
 	text-align: center;
 
 	margin-left: 15px;
