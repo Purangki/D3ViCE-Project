@@ -266,9 +266,9 @@ a:hover{
   line-height: 54px;
 
   border: none;
-  /* color: #44C295; */
+  color: #3da983;
  
-  color: #179681;
+  /* color: #179681; */
 }
 
 .block1 h3{
@@ -716,11 +716,12 @@ h5{
 	margin-left: 220px;
   /* margin-right: -100px; */
 
-	background:#2CABE3;
-	color: white;
+	/* background:#068979; */
+  background: white;
+	color: #068979;
   /* color: #000; */
 	border-radius: 2px;
-	border: none;
+	border-color: #38ca79;
   /* font-weight: bold; */
   font-size: 13px;
 }
@@ -866,5 +867,5 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
 }
 
 .conf-status input{
-  color: #2CABE3;
+  color: #068979;
 }
