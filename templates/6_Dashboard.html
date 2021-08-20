@@ -20,10 +20,14 @@
   </head>  
 
     {% block footerinclude %}
-        <!-- Datatables -->
-        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+    <!-- Custom -->
+    <!-- <script src="{% static 'js/dashboard/dashboard.js' %}"></script> -->
+
   	<!-- jQuery CDN - Slim version (=without AJAX) -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<!-- Popper.JS -->
@@ -70,12 +74,12 @@
 		<div class="container-fluid">
         <div class = "row">
           <div class = "col-md-12 col-sm-12">
+            
             <div class = "search_bar"> 
-              <form method = "POST">
+              <form method = "get">
                 {% csrf_token %}
-                <input class = "search_bar_input" id = "search_bar_input" type="search" placeholder="Search conference" aria-label="Search" name="search-conference">
-                <!-- <a type= "button" class="btn btn-default search-btn" href="#"><div class="search_btn">Search</div></a> -->
-                <button class="btn btn-default search-btn"><div class = "search_btn">Search</div></button>
+                <input class = "search_bar_input" id = "search-conference" type="search" placeholder="Search conference" aria-label="Search" name="search-conference">
+                <button id = "search-btn" class="btn btn-default search-btn" type="submit"><div class = "search_btn">Search</div></button>
               </form>
               <div class ="row filter_and_sort">
                 <div class = "col-md-2 col-sm-2">
@@ -141,10 +145,11 @@
                       {{ conference.description }}
                   </textarea>
                 </p>
-                <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}"><div class="showMore">Details</div></button>
+                <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}">Details</button>
               </div>
             </div>
   <!-- end of card -->
+
            <!-- START MODAL FOR EDIT AND DELETE -->
            <div class= "modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog conf-modal" role="document">

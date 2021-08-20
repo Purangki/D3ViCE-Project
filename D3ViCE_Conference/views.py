@@ -25,16 +25,26 @@ class ConferenceHistoryView(View):
 		return redirect('D3ViCE_Conference:conference_history_view')
 
 class DashboardView(View):
+	# def searchbar(request):
+	# 	if request.method == 'GET':
+	# 		search = request.GET.get('search')
+	# 		conference = Conference.objects.all().filter(title=search)
+	# 		return render(request, '6_Dashboard.html', {'conference': conference})
+
 	def get(self, request):			#get method for the conference, displays conference details in the template
 		current_user = request.user
 		qs_conferences = Conference.objects.filter(is_deleted = False).order_by('-date')
 		qs_requests = Request.objects.filter(status = 'Pending', target = current_user).order_by('-date')
+		search = request.GET.get('search-conference')
+		result = Conference.objects.all().filter(title = search)
 		context = {
 			'conferences' : qs_conferences,
 			'requests': qs_requests,
-			'current_user': current_user
+			'current_user': current_user,
+			'result':result
 		}
 		return render(request, '6_Dashboard.html',context)
+
 	def post(self, request):
 		if request.method == 'POST':
 
@@ -100,5 +110,6 @@ class DashboardView(View):
 				sponsorship.save()			
 		return redirect('D3ViCE_Conference:dashboard_view')
 
-	
+
+
 
