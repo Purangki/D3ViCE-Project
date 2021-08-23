@@ -353,3 +353,75 @@ section{
   margin-right: -90px;
 }
 
+.joined-table{
+  /* color: black; */
+  margin-top: 80px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.joined-table thead{
+  font-size: 18px;
+  color: #179681;
+}
+
+.joined-table tbody{
+  font-size: 13px;
+  color: #000000;
+  text-align: justify ;
+}
+
+/* .container-fluid{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+div.dataTables_wrapper div.dataTables_filter label{
+  font-weight:normal;
+  white-space:nowrap;
+  text-align:left;
+  margin-top: 30px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+div.dataTables_wrapper div.dataTables_length label{
+  font-weight:normal;
+  text-align:left;
+  white-space:nowrap;
+  margin-top: 30px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+div.dataTables_wrapper div.dataTables_filter input{
+  margin-left:0.5em;
+  display:inline-block;
+  width: 250px;
+  height: 25px;
+  font-size: 14px;
+}
+
+div.dataTables_wrapper div.dataTables_info{
+  padding-top:0.85em;
+  font-size: 14px;
+  margin-top: 15px;
+} */
+
+.j-title{
+  width:20%;
+}
+
+.j-date{
+  width: 20%;
+}
+
+.j-header{
+  /* margin-left: -10px; */
+  font-weight: bold;
+  margin-bottom: 15px;
+
+  font-family: 'Poppins';
+  font-size: 25px;
+  color: #179681;
+}
