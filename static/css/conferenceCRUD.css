@@ -324,10 +324,10 @@ section{
   color: #179681;
 }
 
-.created-conf{
+/* .created-conf{
   margin-left: -30px;
   margin-right: -90px;
-}
+} */
 
 .created-table{
   /* color: black; */
@@ -357,8 +357,10 @@ section{
 }
 
 .joined-conf{
-  margin-left: -30px;
-  margin-right: -90px;
+  margin-top: 80px;
+  margin-left: 135px;
+  margin-right: -110px;
+  margin-bottom: 100px;
 }
 
 .joined-table{
