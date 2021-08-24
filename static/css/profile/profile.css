@@ -166,7 +166,7 @@ body {
     color: #179681;
     background-color: white;
     border-color: #179681;
-    margin-top: 75px;
+    /* margin-top: 75px; */
     margin-right:10px;
     font-size: 12px;
   }
@@ -175,7 +175,7 @@ body {
     color: #179681;
     background-color: white;
     border-color: #179681;
-    margin-top: 75px;
+    /* margin-top: 75px; */
     font-size: 12px;
   }
 
@@ -183,7 +183,7 @@ body {
     color: #179681;
     background-color: white;
     border-color: #179681;
-    margin-top: 75px;
+    /* margin-top: 75px; */
     margin-left: 33px;
     /* margin-right: 100px; */
     font-size: 12px;
@@ -192,3 +192,14 @@ body {
   /* .edit-profile{
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
   } */
+
+  .btn-profile button{
+    margin-top: 20px;
+  }
+
+  .pass-header{
+    color:#137666;
+    font-weight: bold;
+    margin-top: 150px;
+  }
+

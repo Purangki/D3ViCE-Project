@@ -4,7 +4,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <title>
           {% block title %}
-          {{ page_title|default:"D3ViCE | User" }}
+          {{ page_title|default:"D3ViCE - Account Information" }}
           {% endblock %}
      </title> 
      <!-- Bootstrap -->
@@ -122,7 +122,7 @@
                          </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row btn-profile">
                          <div class="col-sm-1">
                               <!-- empty col -->
                          </div>
@@ -132,17 +132,17 @@
                                         Edit Details
                               </button>
           
-                              <!-- <a href="{% url 'D3ViCE_User:password-change-view'%}">
+                              <a href="{% url 'D3ViCE_User:password-change-view'%}">
                                    <button type="submit" class="btn btn-pass" id="btn_change_password" name="btn_change_password">
                                         <i class="fa fa-key"></i> 
                                         Change Password
                                    </button>
-                              </a> -->
+                              </a>
 
-                              <button type="submit" class="btn btn-pass" id="btn_change_password" name="btn_change_password">
+                              <!-- <button type="submit" class="btn btn-pass" id="btn_change_password" name="btn_change_password">
                                    <i class="fa fa-key"></i> 
                                    Change Password
-                              </button>
+                              </button> -->
           
                               
                          </div>
