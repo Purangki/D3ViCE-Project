@@ -24,274 +24,272 @@
 
 		<!-- START OF NAVBAR -->
 
-		<nav class ="navbar navbar-style navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a id="tempLogo" class="navbar-logo" href="#">D3ViCE</a>
-          <!-- <a><img src="{% static 'img/finalLogo.png' %}" class="img-fluid logo"></a> -->
-				</div>
-					
-				<div class="collapse navbar-collapse" id="menuIcon">	
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="../D3ViCE_Conference/dashboard" class="a_">Dashboard</a></li>
-						<li><a href="../D3ViCE_Conference/history" class="a_">History</a></li>
-                              <li><a href="../D3ViCE_User/profile" class="a_">Profile</a></li>
-                              <li><a class="a_" data-toggle="modal" href="#notification_modal">Notification</a></li>
-						<li><a href="../D3ViCE_Account/logout" class="a_">Logout</a></li>
-					</ul>					
-				</div>
-			</div>
-      <div class="bg-design">
-        <div class="custom-shape-divider-bottom-1620910854">
-          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
-          </svg>
-        </div>
-      </div>
-		</nav>
-		<!-- END OF NAVBAR -->
-
-<div class="container-fluid">
-     <div class="row">
-          <div class="col-lg-12 px-md-4">
-               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2"><i class="far fa-user-circle"></i> Profile</h1>
-                    <div>
-                         <button type="button" class="btn btn-sm btn-conference">
-                              <i class="fas fa-sign-in-alt"></i>
-                              Join Conference
-                         </button>
-                         <button type="button" class="btn btn-sm btn-conference" data-toggle="modal" data-target="#createConferenceModal">
-                              <i class="fas fa-plus-circle"></i>
-                              Create Conference
-                         </button>
-                    </div>
+     <nav class ="navbar navbar-style navbar-fixed-top">
+          <div class="container">
+               <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                    </button>
+                    <a id="tempLogo" class="navbar-logo" href="#">D3ViCE</a>
                </div>
-               <div class="row">
+                    
+               <div class="collapse navbar-collapse" id="menuIcon">	
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="../D3ViCE_Conference/dashboard" class="a_">Dashboard</a></li>
+                         <li><a href="../D3ViCE_Conference/history" class="a_">History</a></li>
+                         <li><a href="../D3ViCE_User/profile" class="a_">Profile</a></li>
+                         <li><a class="a_" data-toggle="modal" href="#notification_modal">Notification</a></li>
+                         <li><a href="../D3ViCE_Account/logout" class="a_">Logout</a></li>
+                    </ul>					
+               </div>
+          </div>
+          <div class="bg-design">
+          <div class="custom-shape-divider-bottom-1620910854">
+               <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+               <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+               </svg>
+          </div>
+          </div>
+     </nav>
+     <!-- END OF NAVBAR -->
+
+     <div class="container-fluid">
+          <div class="row">
+               <div class = "col-md-1">
+                    <!-- empty column -->
+               </div>
+               <div class="col-md-10">
+                    <section class = "edit-profile">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                         <h1 class="logo-profile"><i class="far fa-user-circle"></i> Profile</h1>
+                    </div>
+                    <div class="row">
+                         <div class="col-xs-4 col-sm-4 col-md-4">
+                              <div class="form-group">
+                                   <label>First Name:</label>
+                              </div>
+                         </div>
+                         <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                   <input name ="user-fname" id="user-fname" type="text"  class="form-control" max="100" value="{{request.user.first_name}}" readonly>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-xs-4 col-sm-4 col-md-4">
+                              <div class="form-group">
+                                   <label>Last Name:</label>
+                              </div>
+                         </div>
+                         <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                   <input name ="user-lname" id="user-lname" type="text" class="form-control" max="100" value="{{request.user.last_name}}" readonly>
+                              </div>
+                    </div>
+                         </div>
+                         <div class="row">
                               <div class="col-xs-4 col-sm-4 col-md-4">
                                    <div class="form-group">
-                                        <label>First Name:</label>
+                                        <label>Email:</label>
                                    </div>
                               </div>
                               <div class="col-xs-6 col-sm-6 col-md-6">
                                    <div class="form-group">
-                                        <input name ="user-fname" id="user-fname" type="text"  class="form-control" max="100" value="{{request.user.first_name}}" readonly>
+                                        <input name ="user-fname" id="user-fname" type="text" class="form-control" max="100" value="{{request.user.email}}" readonly>
                                    </div>
                               </div>
                          </div>
+                    <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#editConferenceModal-{{request.user.id}}">
+                    <i class="fas fa-edit"></i>
+                    Edit Details
+                    </button>
+                    <a href="{% url 'D3ViCE_User:password-change-view'%}"><button type="submit" class="btn btn-edit" id="btn_change_password" name="btn_change_password"><i class="fa fa-key"></i> Change Password</button></a>
+                    <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteConferenceModal-{{request.user.id}}">
+                    <i class="fas fa-trash-alt"></i>
+                    Delete Account
+                    </button>
+               </form>
+
+               <div class="modal fade" id="editConferenceModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                         <div class="modal-content">
+                              <div class="modal-header">
+                                   <h5 class="modal-title"><i class="fas fa-edit"></i>  Edit Details</h5>
+                                   <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                   </button>
+                              </div>
+                              <div class="conf-modal-body">
+                                   <div class="col-md-12 bg-light">
+                                   <form method="POST">
+                                   {% csrf_token %}
+                                   <br>
+                                   <input type="text" name="user_id_num" value={{request.user.id}} hidden>
+                                   <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                             <div class="form-group">
+                                                  <label>First Name:</label>
+                                             </div>
+                                        </div>
+                                   <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                             <input name ="user-fname" id="user-fname" type="text"  class="form-control" max="100" value="{{request.user.first_name}}" required>
+                                        </div>
+                                   </div>
+                         </div>
                          <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4">
+                              <div class="col-xs-6 col-sm-6 col-md-6">
                                    <div class="form-group">
                                         <label>Last Name:</label>
                                    </div>
                               </div>
                               <div class="col-xs-6 col-sm-6 col-md-6">
                                    <div class="form-group">
-                                        <input name ="user-lname" id="user-lname" type="text" class="form-control" max="100" value="{{request.user.last_name}}" readonly>
+                                        <input name ="user-lname" id="user-lname" type="text" class="form-control" max="100" value="{{request.user.last_name}}" required>
                                    </div>
-                           </div>
-                      </div>
-                      <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                     <label>Email:</label>
-                                </div>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <input name ="user-fname" id="user-fname" type="text" class="form-control" max="100" value="{{request.user.email}}" readonly>
-                                </div>
-                           </div>
-                      </div>
-                      <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#editConferenceModal-{{request.user.id}}">
-                   <i class="fas fa-edit"></i>
-                   Edit Details
-                 </button>
-                 <a href="{% url 'D3ViCE_User:password-change-view'%}"><button type="submit" class="btn btn-edit" id="btn_change_password" name="btn_change_password"><i class="fa fa-key"></i> Change Password</button></a>
-                 <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteConferenceModal-{{request.user.id}}">
-                   <i class="fas fa-trash-alt"></i>
-                   Delete Account
-                 </button>
-            </form>
-         <div class="modal fade" id="editConferenceModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
-           <div class="modal-dialog modal-dialog-centered" role="document">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <h5 class="modal-title"><i class="fas fa-edit"></i>  Edit Details</h5>
-                 <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-                 </button>
+                              </div>
+                         </div>
+                         <div class="row">
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                        <label>Email:</label>
+                                   </div>
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                        <input name ="user-email" id="user-email" type="text" class="form-control" max="100" value="{{request.user.email}}" required>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="d-flex justify-content-center mt-2">
+                              <button type="submit" id="btn_edit_user" name="btn_edit_user" class="btn btn-conference-submit">Save Changes</button>
+                         </div>
+                         <br>
+                         </form>
+                    </div>
+                    </div>
+                    </div>
                </div>
-               <div class="conf-modal-body">
-                 
-                   <div class="col-md-12 bg-light">
-                     <form method="POST">
-                       {% csrf_token %}
-                       <br>
-                       <input type="text" name="user_id_num" value={{request.user.id}} hidden>
-                       <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <label>First Name:</label>
-                                </div>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <input name ="user-fname" id="user-fname" type="text"  class="form-control" max="100" value="{{request.user.first_name}}" required>
-                                </div>
-                           </div>
-                      </div>
-                      <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <label>Last Name:</label>
-                                </div>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <input name ="user-lname" id="user-lname" type="text" class="form-control" max="100" value="{{request.user.last_name}}" required>
-                                </div>
-                           </div>
-                      </div>
-                      <div class="row">
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <label>Email:</label>
-                                </div>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <input name ="user-email" id="user-email" type="text" class="form-control" max="100" value="{{request.user.email}}" required>
-                                </div>
-                           </div>
-                      </div>
-                       <div class="d-flex justify-content-center mt-2">
-                         <button type="submit" id="btn_edit_user" name="btn_edit_user" class="btn btn-conference-submit">Save Changes</button>
-                       </div>
-                       <br>
-                     </form>
-                   </div>
-                 </div>
                </div>
-             </div>
-           </div>
-         </div>
+          </div>
 
-         <div class="modal fade" id="deleteConferenceModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
-           <div class="modal-dialog modal-dialog-centered" role="document">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
-                 <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-                 </button>
+          <div class="modal fade" id="deleteConferenceModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+               <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
+                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form method="POST">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                    Are you sure you want to delete your account?
+                    </div>
+                    <div class="modal-footer">
+                    <input type="text" name="user_id_num" value={{request.user.id}} hidden>
+                    <button type="submit" id="btn_delete_user" name="btn_delete_user" class="btn btn-danger">Yes</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
+                    </div>
+                    </form>
                </div>
-               <form method="POST">
-                 {% csrf_token %}
-                 <div class="modal-body">
-                   Are you sure you want to delete your account?
-                 </div>
-                 <div class="modal-footer">
-                   <input type="text" name="user_id_num" value={{request.user.id}} hidden>
-                   <button type="submit" id="btn_delete_user" name="btn_delete_user" class="btn btn-danger">Yes</button>
-                   <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
-                 </div>
-               </form>
-             </div>
-           </div>
-         </div> 
+               </div>
+          </div> 
 
-         <div class="modal fade" id="changePassModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
-           <div class="modal-dialog modal-dialog-centered" role="document">
-             <div class="modal-content">
-               <div class="modal-header">
-                 <h5 class="modal-title"><i class="fas fa-edit"></i>  Edit Details</h5>
-                 <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-                 </button>
+          <div class="modal fade" id="changePassModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+               <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-edit"></i>  Edit Details</h5>
+                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="conf-modal-body">
+                    
+                    <div class="col-md-12 bg-light">
+                         <form method="POST">
+                         {% csrf_token %}
+                         <br>
+                         <input type="text" name="user_id_num" value={{request.user.id}} hidden>
+                         <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4">
+                                   <div class="form-group">
+                                        <label>Current Password:</label>
+                                   </div>
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                        <input type="password" name="current_password" id="current_password" class="form-control input-sm" placeholder="Password" max="100">
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4">
+                                   <div class="form-group">
+                                        <label>New Password:</label>
+                                   </div>
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                        <input type="password" name="new_password" id="new_password" class="form-control input-sm" placeholder="Password" max="100">
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="row">
+                              <div class="col-xs-4 col-sm-4 col-md-4">
+                                   <div class="form-group">
+                                        <label>Repeat New Password:</label>
+                                   </div>
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6">
+                                   <div class="form-group">
+                                        <input type="password" name="renew_password" id="renew_password" class="form-control input-sm" placeholder="Password" max="100">
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="d-flex justify-content-center mt-2">
+                              <button type="submit" id="btn_change_password" name="btn_change_password" class="btn btn-conference-submit">Save Changes</button></a>
+                         </div>
+                         <br>
+                         </form>
+                    </div>
+                    </div>
+                    </div>
                </div>
-               <div class="conf-modal-body">
-                 
-                   <div class="col-md-12 bg-light">
-                     <form method="POST">
-                       {% csrf_token %}
-                       <br>
-                       <input type="text" name="user_id_num" value={{request.user.id}} hidden>
-                       <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                     <label>Current Password:</label>
-                                </div>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <input type="password" name="current_password" id="current_password" class="form-control input-sm" placeholder="Password" max="100">
-                                </div>
-                           </div>
-                      </div>
-                      <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                     <label>New Password:</label>
-                                </div>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <input type="password" name="new_password" id="new_password" class="form-control input-sm" placeholder="Password" max="100">
-                                </div>
-                           </div>
-                      </div>
-                      <div class="row">
-                           <div class="col-xs-4 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                     <label>Repeat New Password:</label>
-                                </div>
-                           </div>
-                           <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                     <input type="password" name="renew_password" id="renew_password" class="form-control input-sm" placeholder="Password" max="100">
-                                </div>
-                           </div>
-                      </div>
-                       <div class="d-flex justify-content-center mt-2">
-                         <button type="submit" id="btn_change_password" name="btn_change_password" class="btn btn-conference-submit">Save Changes</button></a>
-                       </div>
-                       <br>
-                     </form>
-                   </div>
-                 </div>
                </div>
-             </div>
-           </div>
-         </div>
+               </section>
+              
+               </div>
+               <div class = "col-md-1">
+                    <!-- empty column -->
+               </div>
+          </div>
      </div>
-   </div>
 
-   <div id="notification_modal" class="modal fade" tabindex="-1" role="dialog">
-     <div class="modal-dialog" role="document">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h5 class="modal-title">Notifications</h5>
-           <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-           </button> -->
-         </div>
-         <div class="modal-body">
-           <p>Modal body text goes here.</p>
-         </div>
-         <div class="modal-footer">
-           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         </div>
-       </div>
+     <div id="notification_modal" class="modal fade" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+          <div class="modal-content">
+          <div class="modal-header">
+               <h5 class="modal-title">Notifications</h5>
+               <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button> -->
+          </div>
+          <div class="modal-body">
+               <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+               <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          </div>
+          </div>
      </div>
-   </div>
- </div>
+     </div>
 
  {% block footerinclude %}
  <!-- JQuery -->
