@@ -103,28 +103,59 @@
                          </div>
                     </div>
 
-                         <div class="row">
-                              <div class="col-xs-4 col-sm-4 col-md-4">
-                                   <div class="form-group">
-                                        <label>Email:</label>
-                                   </div>
-                              </div>
-                              <div class="col-xs-6 col-sm-6 col-md-6">
-                                   <div class="form-group">
-                                        <input name ="user-fname" id="user-fname" type="text" class="form-control" max="100" value="{{request.user.email}}" readonly>
-                                   </div>
+                    <div class="row p-row">
+                         <div class="col-sm-1">
+                              <!-- empty col -->
+                         </div>
+                         <div class="col-xs-4 col-sm-4 col-md-4">
+                              <div class="form-group">
+                                   <label>Email:</label>
                               </div>
                          </div>
-                    <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#editConferenceModal-{{request.user.id}}">
-                    <i class="fas fa-edit"></i>
-                    Edit Details
-                    </button>
-                    <a href="{% url 'D3ViCE_User:password-change-view'%}"><button type="submit" class="btn btn-edit" id="btn_change_password" name="btn_change_password"><i class="fa fa-key"></i> Change Password</button></a>
-                    <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteConferenceModal-{{request.user.id}}">
-                    <i class="fas fa-trash-alt"></i>
-                    Delete Account
-                    </button>
-               </form>
+                         <div class="col-xs-6 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                   <input name ="user-fname" id="user-fname" type="text" class="form-control" max="100" value="{{request.user.email}}" readonly>
+                              </div>
+                         </div>
+                         <div class="col-sm-1">
+                              <!-- empty col -->
+                         </div>
+                    </div>
+
+                    <div class="row">
+                         <div class="col-sm-1">
+                              <!-- empty col -->
+                         </div>
+                         <div class="col-sm-8">
+                              <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#editConferenceModal-{{request.user.id}}">
+                                   <i class="fas fa-edit"></i>
+                                        Edit Details
+                              </button>
+          
+                              <!-- <a href="{% url 'D3ViCE_User:password-change-view'%}">
+                                   <button type="submit" class="btn btn-pass" id="btn_change_password" name="btn_change_password">
+                                        <i class="fa fa-key"></i> 
+                                        Change Password
+                                   </button>
+                              </a> -->
+
+                              <button type="submit" class="btn btn-pass" id="btn_change_password" name="btn_change_password">
+                                   <i class="fa fa-key"></i> 
+                                   Change Password
+                              </button>
+          
+                              
+                         </div>
+                         <div class="col-sm-1">
+                              <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteConferenceModal-{{request.user.id}}">
+                                   <i class="fas fa-trash-alt"></i>
+                                   Delete Account
+                              </button>
+                         </div>
+                         <div class="col-sm-2">
+                              <!-- empty col -->
+                         </div>
+                    </div>
 
                <div class="modal fade" id="editConferenceModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
