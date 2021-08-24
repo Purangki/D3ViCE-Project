@@ -57,15 +57,18 @@
 
      <div class="container-fluid">
           <div class="row">
-               <div class = "col-md-1">
+               <div class = "col-md-2">
                     <!-- empty column -->
                </div>
-               <div class="col-md-10">
-                    <section class = "edit-profile">
+               <div class="col-md-9">
+               <section class = "edit-profile">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                          <h1 class="logo-profile"><i class="far fa-user-circle"></i> Profile</h1>
                     </div>
-                    <div class="row">
+                    <div class="row p-row">
+                         <div class="col-sm-1">
+                              <!-- empty col -->
+                         </div>
                          <div class="col-xs-4 col-sm-4 col-md-4">
                               <div class="form-group">
                                    <label>First Name:</label>
@@ -76,8 +79,15 @@
                                    <input name ="user-fname" id="user-fname" type="text"  class="form-control" max="100" value="{{request.user.first_name}}" readonly>
                               </div>
                          </div>
+                         <div class="col-sm-1">
+                              <!-- empty col -->
+                         </div>
                     </div>
-                    <div class="row">
+
+                    <div class="row p-row">
+                         <div class="col-sm-1">
+                              <!-- empty col -->
+                         </div>
                          <div class="col-xs-4 col-sm-4 col-md-4">
                               <div class="form-group">
                                    <label>Last Name:</label>
@@ -87,8 +97,12 @@
                               <div class="form-group">
                                    <input name ="user-lname" id="user-lname" type="text" class="form-control" max="100" value="{{request.user.last_name}}" readonly>
                               </div>
-                    </div>
                          </div>
+                         <div class="col-sm-1">
+                              <!-- empty col -->
+                         </div>
+                    </div>
+
                          <div class="row">
                               <div class="col-xs-4 col-sm-4 col-md-4">
                                    <div class="form-group">
@@ -261,7 +275,7 @@
                     </div>
                </div>
                </div>
-               </section>
+          </section>
               
                </div>
                <div class = "col-md-1">
