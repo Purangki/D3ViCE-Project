@@ -132,17 +132,17 @@
                                         Edit Details
                               </button>
           
-                              <a href="{% url 'D3ViCE_User:password-change-view'%}">
+                              <!-- <a href="{% url 'D3ViCE_User:password-change-view'%}">
                                    <button type="submit" class="btn btn-pass" id="btn_change_password" name="btn_change_password">
                                         <i class="fa fa-key"></i> 
                                         Change Password
                                    </button>
-                              </a>
+                              </a> -->
 
-                              <!-- <button type="submit" class="btn btn-pass" id="btn_change_password" name="btn_change_password">
+                              <button type="submit" class="btn btn-pass" id="btn_change_password" name="btn_change_password" data-target="#changePassModal-{{request.user.id}}">
                                    <i class="fa fa-key"></i> 
                                    Change Password
-                              </button> -->
+                              </button>
           
                               
                          </div>
@@ -222,25 +222,25 @@
 
           <div class="modal fade" id="deleteConferenceModal-{{request.user.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered" role="document">
-               <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
-                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
+                    <div class="modal-content">
+                         <div class="modal-header">
+                         <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
+                         <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                         </button>
+                         </div>
+                         <form method="POST">
+                         {% csrf_token %}
+                         <div class="modal-body">
+                         Are you sure you want to delete your account?
+                         </div>
+                         <div class="modal-footer">
+                         <input type="text" name="user_id_num" value={{request.user.id}} hidden>
+                         <button type="submit" id="btn_delete_user" name="btn_delete_user" class="btn btn-danger">Yes</button>
+                         <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
+                         </div>
+                         </form>
                     </div>
-                    <form method="POST">
-                    {% csrf_token %}
-                    <div class="modal-body">
-                    Are you sure you want to delete your account?
-                    </div>
-                    <div class="modal-footer">
-                    <input type="text" name="user_id_num" value={{request.user.id}} hidden>
-                    <button type="submit" id="btn_delete_user" name="btn_delete_user" class="btn btn-danger">Yes</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
-                    </div>
-                    </form>
-               </div>
                </div>
           </div> 
 
