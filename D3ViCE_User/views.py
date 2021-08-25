@@ -76,7 +76,10 @@ class UserProfileView(View):
 	def post(self, request):
 		if request.method == 'POST':
 			if 'btn_change_password' in request.POST:
-				
+				# id_num = request.POST.get("user_id_num")
+				# password = request.POST.get ("current_password")
+				# new_password = request.POST.get ("new_password")
+				# repeat_password = request.POST.get ("renew_password")
 				return redirect('D3ViCE_User:password-change-view')
 			if 'btn_edit_user' in request.POST:
 				id_num = request.POST.get("user_id_num")
