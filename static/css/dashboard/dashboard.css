@@ -731,8 +731,10 @@ h5{
 
 .bg-light{
   background-color:#f8f9fa!important;
-  margin-top: -16px;
+  max-width: 1230px;
   height: 400px;
+  margin-top: -15px;
+  /* height: 400px; */
 }
 
 .fade{
@@ -747,6 +749,7 @@ h5{
 
 .modal-header{
   background-color: #56C69E;
+  /* background-color: #068979; */
 }
 
 .thumbnail{
