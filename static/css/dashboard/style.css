@@ -1025,6 +1025,7 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
   background-color: transparent;
   border-color: #56c69e;
   color: #068979;
+  /* height:fit-content; */
 }
 
 .conf-input:focus {
@@ -1041,6 +1042,11 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
   border-color: #56c69e;
 }
 
+.btn-copy-code{
+  height:24px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
 .btn-conference-submit {
   background-color: #0074a3;
   color: #ffffff;

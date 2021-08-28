@@ -11,7 +11,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
 		<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}"> -->
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/conferenceCRUD.css' %}"> -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs jquery/3.5.1/jquery.min.js"></script>
@@ -20,6 +21,10 @@
   </head>  
 
     {% block footerinclude %}
+    <!-- ClipboardJS -->
+    <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+    <!-- Custom -->
+    <script src="{% static 'js/dashboard/dashboard.js' %}"></script>
     <!-- Datatables -->
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
@@ -27,7 +32,7 @@
 
     <!-- Custom -->
     <!-- <script src="{% static 'js/dashboard/dashboard.js' %}"></script> -->
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   	<!-- jQuery CDN - Slim version (=without AJAX) -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<!-- Popper.JS -->
@@ -171,17 +176,38 @@
                     <div class="col-md-6 bg-light">
                       <form method="POST">
                         {% csrf_token %}
-                        <div class="input-group">
+                        <!-- <div class="input-group">
                           <div class="input-group-prepend mt-5 mb-3">
                             <span class="input-group-text conf-prepend">Conference Code</span>
                           </div>
                           <input type="hidden" name="conference_id_num" value={{conference.id}}>
-                          <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mt-5 mb-3" value={{conference.code}} readonly>
-                          <div class="input-group-append mt-5 mb-3">
-                            <button type="button" id="btn_copy-{{conference.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference.id}}','btn_copy-{{conference.id}}')"><i class="fas fa-copy"></i></button>
-                          </div>
+                          <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mb-3" value= "{{conference.code}}" readonly>
+                          <button type="button" id="btn_copy-{{conference_created.id}}" 
+                                  class="btn conf-prepend copy-to-clipboard btn-copy-code"
+                                  data-clipboard-target="#code_edit-{{conference_created.id}}" 
+                                  data-toggle="tooltip" title="Copy to clipboard" 
+                                  onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')">
+                                  <i class="fas fa-copy"></i>
+                                  </button>
+                        </div> -->
+
+                        <div class = "input-group mt-5 mb-3">
+                          <!-- <div class = "input-group-prepend mb-3"> -->
+                            <div class="input-group-prepend mb-3">
+                              <span class="input-group-text conf-prepend">Conference Code</span>
+                            </div>
+                            <input type="hidden" name="conference_id_num" value={{conference.id}}>
+                            <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mb-3" value= "{{conference.code}}" readonly>
+                            <button type="button" id="btn_copy-{{conference_created.id}}" 
+                                  class="btn conf-prepend copy-to-clipboard btn-copy-code"
+                                  data-clipboard-target="#code_edit-{{conference_created.id}}" 
+                                  data-toggle="tooltip" title="Copy to clipboard" 
+                                  onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')">
+                                  <!-- <i class="fas fa-copy img-copy"></i> -->
+                                  <span class="glyphicon glyphicon-copy"></span>
+                            </button>
+                          <!-- </div> -->
                         </div>
-  
                         <div class="input-group">
                           <div class="input-group-prepend mb-3">
                             <span class="input-group-text conf-prepend">Conference Title</span>

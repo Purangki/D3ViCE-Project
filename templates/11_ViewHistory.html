@@ -115,6 +115,7 @@
                   <div class="modal fade" id="viewCreatedConferenceModal-{{conference_created.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog conf-modal" role="document">
                       <div class="modal-content">
+
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             <!-- <span aria-hidden="true">&times;</span> -->
@@ -122,28 +123,52 @@
                           </button>
                           <h4 class="modal-title"><i class="fas fa-eye"></i>  View Details</h4> 
                         </div>
+
                         <div class="conf-modal-body">
                           <div class="row">
                             <div class="col-md-6">
                               <img src="{% static 'img/createConferenceImg.png' %}" class="img-fluid">
                             </div>
+
                             <div class="col-md-6 bg-light">
-                              <div class="input-group">
+                              <form method="POST">
+                              {% csrf_token %}
+                              <!-- <div class="input-group">
                                 <div class="input-group-prepend mt-5 mb-3">
                                   <span class="input-group-text conf-prepend">Conference Code</span>
                                 </div>
-                                <input type="text" name="conference_id_num" value={{conference_created.id}} hidden>
-                                <input type="text" id="code_edit-{{conference_created.id}}" name="code_edit" class="conf-input form-control mt-5 mb-3" value={{conference_created.code}} readonly>
+
+                                <input type="hidden" name="conference_id_num" value={{conference_created.id}}>
+                                <input type="text" id="code_edit-{{conference_created.id}}" name="code_edit" class="form-control mt-5 mb-3 conf-input" value={{conference_created.code}} readonly>
                                 <div class="input-group-append mt-5 mb-3">
                                   <button type="button" id="btn_copy-{{conference_created.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference_created.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')"><i class="fas fa-copy"></i></button>
                                 </div>
+                              </div> -->
+                              
+                              <div class = "input-group">
+                                <div class = "input-group-prepend mb-3">
+                                  <span class = "input-group-text conf-prepend"> Conference Code</span>
+                                </div>
+                                <input type = "hidden" name = "conference_id_num" value = {{conference_created.id}}>
+                                <input type = "text" id = "code_edit-{{conference_created.id}}" class= "conf-input form-control mb-3" value = "{{conference_created.code}}">
+                                <!-- <div class="input-group-prepend mb-3"> -->
+                                  <button type="button" id="btn_copy-{{conference_created.id}}" 
+                                  class="btn conf-prepend copy-to-clipboard btn-copy-code"
+                                  data-clipboard-target="#code_edit-{{conference_created.id}}" 
+                                  data-toggle="tooltip" title="Copy to clipboard" 
+                                  onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')">
+                                  <i class="fas fa-copy"></i>
+                                  </button>
+                                <!-- </div> -->
                               </div>
+
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Conference Title</span>
                                 </div>
                                 <input type="text" id="title_edit-{{conference_created.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference_created.title}}" required maxlength="150" disabled>
                               </div>
+
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Date</span>
@@ -160,7 +185,9 @@
                                 <input type="time" id="time_edit-{{conference_created.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference_created.time|time:"H:i:s"}} required disabled>
                               </div>
                               <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" disabled>{{conference_created.description}}</textarea>
+                            </form>
                             </div>
+                            
                           </div>
                         </div>
                       </div>
