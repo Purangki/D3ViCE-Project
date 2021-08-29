@@ -79,7 +79,7 @@
 		<div class="container-fluid">
         <div class = "row">
           <div class = "col-md-12 col-sm-12">
-            You searched something
+            <!-- You searched something -->
             <div class = "search_bar"> 
               <form method = "POST">
                 {% csrf_token %}
@@ -137,12 +137,13 @@
 
 <!-- start of cards -->
         <div class="row">
-          {% for conference in conferences %}
-            {{ conference }}
+          {% for conference in searched_conferences %}
+            <!-- {{ conference }} -->
           <div class="col-md-4 col-sm-4">
               <div id="blk1" class="block1">
                 <h3  class = "conf-status">
                   <input type = "text" value = "{{conference.status}}">
+                  
                 </h3><!--to change into input field  -->
                 <h1>
                   <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
