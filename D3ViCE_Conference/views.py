@@ -101,8 +101,8 @@ class DashboardView(View):
 
 				request.save()
 				sponsorship.save()
-			elif 'btn-search-conference' in request.POST:
-				searched = request.POST['search-conference']
+			# elif 'btn-search-conference' in request.POST:
+			# 	searched = request.POST['search-conference']
 				# qs_searched =  Conference.objects.filter(title__contains = searched)
 		return redirect('D3ViCE_Conference:dashboard_view')
 

@@ -1,0 +1,432 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block headerinclude %}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			D3ViCE - User Dashboard
+		</title>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+		<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/dashboard.css' %}"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/conferenceCRUD.css' %}"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/search.css' %}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/scrollreveal"></script>
+    {% endblock headerinclude %}
+  </head>  
+
+    {% block footerinclude %}
+    <!-- ClipboardJS -->
+    <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+    <!-- Custom -->
+    <script src="{% static 'js/dashboard/dashboard.js' %}"></script>
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+    <!-- Custom -->
+    <!-- <script src="{% static 'js/dashboard/dashboard.js' %}"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  	<!-- jQuery CDN - Slim version (=without AJAX) -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<!-- Popper.JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+		<!-- Bootstrap JS -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+		{% endblock footerinclude %}
+
+	
+	<body>
+		{% block content %}
+	<!-- START OF NAVBAR -->
+  <nav class ="navbar-nav navbar-style navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header ">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="menuIcon">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="tempLogo" class="navbar-logo" href="#">D3ViCE</a>
+      </div>
+        
+      <div class="collapse navbar-collapse" id="menuIcon">	
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="../D3ViCE_Conference/dashboard" class="a_">Dashboard</a></li>
+          <li><a href="../D3ViCE_Conference/history" class="a_">History</a></li>
+          <li><a href="../D3ViCE_User/profile" class="a_">Profile</a></li>
+          <li><a class="a_" data-toggle="modal" href="#notification_modal">Notification</a></li>
+          <li><a href="../D3ViCE_Account/logout" class="a_">Logout</a></li>
+        </ul>					
+      </div>
+    </div>
+    <div class="bg-design">
+      <div class="custom-shape-divider-bottom-1620910854">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+        </svg>
+      </div>
+    </div>
+  </nav>
+  <!-- END OF NAVBAR -->
+
+		<div class="container-fluid">
+        <div class = "row">
+          <div class = "col-md-12 col-sm-12">
+            
+            <div class = "search_bar"> 
+              <form method = "POST">
+                {% csrf_token %}
+                <input class = "search_bar_input" id = "search-conference" type="search" placeholder="Search conference" aria-label="Search" name="search-conference">
+                <button name = "btn-search-conference" id = "btn-search-conference" class="btn btn-default search-btn" type="submit"><div class = "search_btn">Search</div></button>
+              </form>
+              
+              <div class ="row filter_and_sort">
+                <div class = "col-md-2 col-sm-2">
+                    <h5>Filter by: </h5>
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle btn-dropdown-filter" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Filter
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#" class= "status">Status</a></li>
+                        <li><a href="#" class= "availability">Availability</a></li>
+                        <li><a href="#" class= "temp">Type</a></li>
+                      </ul>
+                    </div>
+                </div>  
+
+                <div class = "col-md-2 col-sm-2">
+                  <h5>Sort by:</h5>
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle btn-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Sort
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li><a href="#" class= "status">Status</a></li>
+                      <li><a href="#" class= "availability">Availability</a></li>
+                      <li><a href="#" class= "temp">Type</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class = "col-md-4 col-sm-4">
+                  
+                </div>
+                <div class = "col-md-2 col-sm-2">
+                  <a class="btn btn-default create-conf-btn" id = "create_conf" data-toggle = "modal" href="#" data-target="#createConferenceModal">
+                    <div class="search_btn" >
+                      <span class="glyphicon glyphicon-plus"></span> 
+                      Create Conference
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>     
+          </div>
+        </div>
+<!-- END OF CREATE CONFERENCE BUTTON, FILTER AND SORT BY -->
+
+<!-- start of cards -->
+        <div class="row">
+          {% for conference in conferences %}
+          <div class="col-md-4 col-sm-4">
+              <div id="blk1" class="block1">
+                <h3  class = "conf-status">
+                  <input type = "text" value = "{{conference.status}}">
+                </h3><!--to change into input field  -->
+                <h1>
+                  <input type="text" id="completed" name="completed" value="{{ conference.title }}" readonly>
+                </h1>
+                <p>
+                  <textarea id="txt_completed" name="txt_completed" readonly>
+                      {{ conference.description }}
+                  </textarea>
+                </p>
+                <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}">Details</button>
+              </div>
+            </div>
+  <!-- end of card -->
+
+           <!-- START MODAL FOR EDIT AND DELETE -->
+           <div class= "modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog conf-modal" role="document">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title"><i class="fas fa-edit"></i> Conference Details</h4>
+                </div>
+  
+                <div class="modal-body conf-modal-body">
+                  <div class ="row">
+  
+                    <div class="col-md-6">
+                      <img src="{% static 'img/createConferenceImg.png' %}" class = "img-fluid">
+                    </div>
+  
+                    <div class="col-md-6 bg-light">
+                      <form method="POST">
+                        {% csrf_token %}
+                        <!-- <div class="input-group">
+                          <div class="input-group-prepend mt-5 mb-3">
+                            <span class="input-group-text conf-prepend">Conference Code</span>
+                          </div>
+                          <input type="hidden" name="conference_id_num" value={{conference.id}}>
+                          <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mb-3" value= "{{conference.code}}" readonly>
+                          <button type="button" id="btn_copy-{{conference_created.id}}" 
+                                  class="btn conf-prepend copy-to-clipboard btn-copy-code"
+                                  data-clipboard-target="#code_edit-{{conference_created.id}}" 
+                                  data-toggle="tooltip" title="Copy to clipboard" 
+                                  onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')">
+                                  <i class="fas fa-copy"></i>
+                                  </button>
+                        </div> -->
+
+                        <div class = "input-group mt-5 mb-3">
+                          <!-- <div class = "input-group-prepend mb-3"> -->
+                            <div class="input-group-prepend mb-3">
+                              <span class="input-group-text conf-prepend">Conference Code</span>
+                            </div>
+                            <input type="hidden" name="conference_id_num" value={{conference.id}}>
+                            <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mb-3" value= "{{conference.code}}" readonly>
+                            <button type="button" id="btn_copy-{{conference_created.id}}" 
+                                  class="btn conf-prepend copy-to-clipboard btn-copy-code"
+                                  data-clipboard-target="#code_edit-{{conference_created.id}}" 
+                                  data-toggle="tooltip" title="Copy to clipboard" 
+                                  onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')">
+                                  <i class="fas fa-copy img-copy"></i>
+                                  <!-- <span class="glyphicon glyphicon-copy"></span> -->
+                            </button>
+                          <!-- </div> -->
+                        </div>
+                        <div class="input-group">
+                          <div class="input-group-prepend mb-3">
+                            <span class="input-group-text conf-prepend">Conference Title</span>
+                          </div>
+                          <input type="text" id="title_edit-{{conference.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150">
+                        </div>
+                        
+                        <div class="input-group">
+                          <div class="input-group-prepend mb-3">
+                            <span class="input-group-text conf-prepend">Date</span>
+                          </div>
+                          <input type="date" id="date_edit-{{conference.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference.date|date:"Y-m-d"}} required>
+                          <script type="text/javascript">
+                            disableBeforeToday('date_edit-{{conference.id}}');
+                          </script>
+                        </div>
+  
+                        <div class="input-group">
+                          <div class="input-group-prepend mb-3">
+                            <span class="input-group-text conf-prepend">Time</span>
+                          </div>
+                          <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.time|time:"H:i:s"}} required>
+                        </div>
+                        
+                        <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255">{{conference.description}}</textarea>
+                        <div class="d-flex justify-content-center mt-2">
+                          <button type="submit" id="btn_join_conference" name="btn_join_conference" class="btn btn-conference-join">Join</button>
+                          <button type="button" id="btn_sponsor_conference" name="btn_sponsor_conference" class="btn btn-conference-sponsor">
+                            <a href = "../D3ViCE_User/sponsor/{{conference.id}}" class="btn btn-sponsor">Sponsor</a>
+                          </button>
+                          
+                        </div>
+                      </form>
+                   </div>  
+                  </div>
+                </div><!-- modal body -->
+              </div> <!-- modal content -->
+            </div> <!-- modal dialog-->
+          </div> <!-- end modal -->
+  
+          <div class="modal fade" id="deleteConferenceModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"><i class="fas fa-trash-alt"></i> Delete</h5>
+                  <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form method="POST">
+                  {% csrf_token %}
+                  <div class="modal-body" style="font-size: 16px;">
+                    Are you sure you want to delete {{conference.title}}?
+                  </div>
+                  <div class="modal-footer">
+                    <input type="hidden" name="conference_id_num" value={{conference.id}}>
+                    <button type="submit" id="btn_delete_conference" name="btn_delete_conference" class="btn btn-danger">Yes</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>  
+          {% endfor %}
+
+<!-- START OF CREATE CONFERENCE MODAL -->
+<div class="modal fade" id="createConferenceModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog conf-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h5 class="modal-title">Create Conference</h5>
+      </div>
+      <div class="modal-body conf-modal-body">
+        <div class="row">
+
+          <div class="col-md-6 col-sm-6 thumbnail">
+            <label class="form-label conf-label" for="customFile">Upload conference thumbnail</label>
+            <input type="file" class="form-control conf-add-img" id="customFile"/>  
+          </div>
+
+          <div class="col-md-6 col-sm-6 bg-light">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="input-group">
+                <div class="input-group-prepend mt-5 mb-3">
+                  <span class="input-group-text conf-prepend">Conference Title</span>
+                </div>
+                <input type="text" id="title_create"name="title_create" class="conf-input form-control mt-5 mb-3" maxlength="150" required>               
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Type</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01" name="select_type" required>
+                  <option selected>Choose...</option>
+                  <option value="1">Private</option>
+                  <option value="2">Public</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">Start Date</span>
+                </div>
+                <input type="date" id="date_create" name="date_create" class="conf-input form-control mb-3 input-date-conference" required>
+                <script type="text/javascript">
+                  disableBeforeToday('date_create');
+                </script>
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">Start Time</span>
+                </div>
+                <input type="time" id="time_create" name="time_create" class="conf-input form-control mb-3" required>
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">Available Seats</span>
+                </div>
+                <input type="number" id="num_seats" name="num_seats" class="conf-input form-control mb-3" min = "0" max="100"required>               
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">End Date</span>
+                </div>
+                <input type="date" id="date_end" name="date_end" class="conf-input form-control mb-3 input-date-conference" required>
+                <script type="text/javascript">
+                  disableBeforeToday('date_end');
+                </script>
+              </div>
+
+              <div class="input-group">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text conf-prepend">End Time</span>
+                </div>
+                <input type="time" id="time_end" name="time_end" class="conf-input form-control mb-3" required>
+              </div>
+
+              <textarea class="conf-input mb-3 form-control" id="desc_create" name="desc_create" rows="3" placeholder="Description" maxlength="1000"></textarea>
+
+              <div class="d-flex justify-content-center mt-5">
+                <button type="submit"  
+                id="btn_create_conference" 
+                name="btn_create_conference" 
+                class="btn btn-conference-submit">Create Conference</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END OF CREATE MODAL -->
+
+    <div id="notification_modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Notifications</h5>
+          </div>
+          <div class="modal-body">
+            {% for request in requests %}
+            <div class = "row">
+              <form method = "POST" >
+                {% csrf_token %}
+                <input type="text" class="d-none" name="request_id" value="{{request.id}}" hidden>
+                <div class = "col-md-8 col-sm-8">
+                  <div class = "request-lbl">
+                    {% if request.type == 'Sponsor' %}
+                    <p> {{request.user.first_name}} {{request.user.last_name}} wants to sponsor an event </p> 
+                    {% elif request.type == 'Join' %}
+                    <p> {{request.user.first_name}} {{request.user.last_name}} wants to join an event </p> 
+                    {% endif %}
+                  </div>
+                </div>
+                <div class = "col-md-4 col-sm-4">
+                  <div class = "request-status">
+                    <button class="btn btn-primary btn-accept-request" name="btn-accept-request" type = "submit">
+                        Accept
+                    </button>
+                    <button class="btn btn-primary btn-decline-request" name="btn-decline-request" type = "submit">
+                      Decline
+                  </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            {% endfor %}
+
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+		  <!-- Menu Toggle Script -->
+		  <script>
+			$("#menu-toggle").click(function(e) {
+			  e.preventDefault();
+			  $("#wrapper").toggleClass("toggled");
+			});
+		  </script>
+		  <script>
+			$(document).ready(function() {
+			  new ClipboardJS('.copy-to-clipboard');
+			} );
+		  </script>
+	{% endblock content %}
+	</body>
+
+</html>
