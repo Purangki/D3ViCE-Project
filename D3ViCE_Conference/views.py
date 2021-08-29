@@ -1,3 +1,4 @@
+import D3ViCE_Conference
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from .models import *
@@ -40,7 +41,8 @@ class DashboardView(View):
 
 	def post(self, request):
 		if request.method == 'POST':
-
+			# if 'btn-search-conference' in request.POST:
+			# 	return render(request, '15_Search_Conference.html')
 			if 'btn_create_conference' in request.POST:
 				currentUser = Profile.objects.get(id = request.user.id)
 				# for validation check if currentUser.is_host == true
@@ -107,5 +109,19 @@ class DashboardView(View):
 		return redirect('D3ViCE_Conference:dashboard_view')
 
 
+class SearchConferenceView(View):
+	def get(self, request):
+		print('pretty')
+		qs_searched  = Conference.objects.filter
+		return render(request, '15_Search_Conference.html')
+	def post(self, request):
+		if request.method == 'POST':
+			if 'btn-search-conference' in request.POST:
+				print('Abby')
+				searched = request.POST['search-conference']
 
-
+				print(searched) 
+				return redirect ('D3ViCE_Conference:search-conference')
+				# return render(request, 'D3ViCE_Conference/15_Search_Conference.html',{'searched':searched})
+		# if request.method == 'POST':
+		# return redirect('D3ViCE_Conference:search-conference')

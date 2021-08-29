@@ -81,7 +81,7 @@
           <div class = "col-md-12 col-sm-12">
             
             <div class = "search_bar"> 
-              <form method = "POST">
+              <form method = "POST" action = "{% url 'D3ViCE_Conference:search-conference' %}"> <!-- action = "{% url 'D3ViCE_Conference:search-conference' %}"-->
                 {% csrf_token %}
                 <input class = "search_bar_input" id = "search-conference" type="search" placeholder="Search conference" aria-label="Search" name="search-conference">
                 <button name = "btn-search-conference" id = "btn-search-conference" class="btn btn-default search-btn" type="submit"><div class = "search_btn">Search</div></button>
