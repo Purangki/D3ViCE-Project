@@ -110,23 +110,24 @@ class DashboardView(View):
 
 
 class SearchConferenceView(View):
-	def get(self, request):
-		print('pretty')
-		# current_user = request.user
-		searched = Conference.searched
-		qs_searched  = Conference.objects.filter(title__contains = searched)
-		context = {
-			'searched' : qs_searched,
-			# 'conferences_joined' : qs_conferences_joined  
-		}
-		return render(request, '15_Search_Conference.html', context)
+	# def get(self, request):
+	# 	print('pretty')
+	# 	# current_user = request.user
+	# 	# searched = Conference.searched
+	# 	qs_searched  = Conference.objects.filter(title__contains = searched)
+	# 	context = {
+	# 		'searched' : qs_searched,
+	# 		# 'conferences_joined' : qs_conferences_joined  
+	# 	}
+	# 	return render(request, '15_Search_Conference.html', context)
 	def post(self, request):
 		if request.method == 'POST':
 			if 'btn-search-conference' in request.POST:
-				print('Abby')
+				# print('Abby')
 				searched = request.POST['search-conference']
-				print(searched) 
-				return redirect ('D3ViCE_Conference:search-conference')
-				# return render(request, 'D3ViCE_Conference/15_Search_Conference.html',{'searched':searched})
+				searched_conferences = Conference.objects.filter(title__contains = searched)
+				# print(searched) 
+				# return redirect ('D3ViCE_Conference:search-conference')
+				return render(request, '15_Search_Conference.html',{'searched':searched, 'searched_conferences':searched_conferences})
 		# if request.method == 'POST':
 		# return redirect('D3ViCE_Conference:search-conference')
