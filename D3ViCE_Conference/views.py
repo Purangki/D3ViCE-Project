@@ -28,13 +28,13 @@ class DashboardView(View):
 		current_user = request.user
 		qs_conferences = Conference.objects.filter(is_deleted = False).order_by('-date')
 		qs_requests = Request.objects.filter(status = 'Pending', target = current_user).order_by('-date')
-		search = request.GET.get('search-conference')
-		result = Conference.objects.all().filter(title = search)
+		# search = request.GET.get('search-conference')
+		# result = Conference.objects.all().filter(title = search)
 		context = {
 			'conferences' : qs_conferences,
 			'requests': qs_requests,
 			'current_user': current_user,
-			'result':result
+			# 'result':result
 		}
 		return render(request, '6_Dashboard.html',context)
 
@@ -100,7 +100,10 @@ class DashboardView(View):
 				sponsorship.is_accepted = False
 
 				request.save()
-				sponsorship.save()			
+				sponsorship.save()
+			elif 'btn-search-conference' in request.POST:
+				searched = request.POST['search-conference']
+				# qs_searched =  Conference.objects.filter(title__contains = searched)
 		return redirect('D3ViCE_Conference:dashboard_view')
 
 
