@@ -40,6 +40,7 @@ class DashboardView(View):
 		return render(request, '6_Dashboard.html',context)
 
 	def post(self, request):
+		# print(request.POST)
 		if request.method == 'POST':
 			# if 'btn-search-conference' in request.POST:
 			# 	return render(request, '15_Search_Conference.html')
@@ -103,28 +104,38 @@ class DashboardView(View):
 
 				request.save()
 				sponsorship.save()
-			# elif 'btn-search-conference' in request.POST:
-			# 	searched = request.POST['search-conference']
-				# qs_searched =  Conference.objects.filter(title__contains = searched)
+			elif 'btn-search-conference' in request.POST:
+				current_user = request.user
+				searched = request.POST['search-conference']
+				print(searched)
+				qs_requests = Request.objects.filter(status = 'Pending', target = current_user).order_by('-date')
+				qs_searched = Conference.objects.filter(title__icontains = searched)
+				print(qs_searched)
+				context = {
+					'conferences' : qs_searched,
+					'requests': qs_requests,
+					'current_user': current_user,
+				}
+				return render(request, '6_Dashboard.html',context)
 		return redirect('D3ViCE_Conference:dashboard_view')
 
 
-class SearchConferenceView(View):
-	def get(self, request):
-		print('pretty')
-		# current_user = request.user
-		# searched = Conference.searched
-		# qs_searched  = Conference.objects.filter(title__contains = searched)
-		# context = {
-		# 	'searched' : qs_searched,
-		# 	# 'conferences_joined' : qs_conferences_joined  
-		# }
-		return render(request, '15_Search_Conference.html')
-	def post(self, request):
-		if request.method == 'POST':
-			if 'btn-search-conference' in request.POST:
-				searched = request.POST['search-conference']
-				print(searched)
-				# searched_conferences = Conference.objects.filter(title__contains = searched)
-				# return render(request, '15_Search_Conference.html',{'searched':searched, 'searched_conferences':searched_conferences})
-				return redirect('D3ViCE_Conference:search-conference')
+# class SearchConferenceView(View):
+# 	def get(self, request):
+# 		print('pretty')
+# 		# current_user = request.user
+# 		# searched = Conference.searched
+# 		# qs_searched  = Conference.objects.filter(title__contains = searched)
+# 		# context = {
+# 		# 	'searched' : qs_searched,
+# 		# 	# 'conferences_joined' : qs_conferences_joined  
+# 		# }
+# 		return render(request, '15_Search_Conference.html')
+# 	def post(self, request):
+# 		if request.method == 'POST':
+# 			if 'btn-search-conference' in request.POST:
+# 				searched = request.POST['search-conference']
+# 				print(searched)
+# 				# searched_conferences = Conference.objects.filter(title__contains = searched)
+# 				# return render(request, '15_Search_Conference.html',{'searched':searched, 'searched_conferences':searched_conferences})
+# 				return redirect('D3ViCE_Conference:search-conference')
