@@ -78,60 +78,30 @@
 
 		<div class="container-fluid">
         <div class = "row">
-          <div class = "col-md-12 col-sm-12">
-            
-            <div class = "search_bar"> 
-              <form method = "POST"> 
-                {% csrf_token %}
-                <input type="text" class = "search_bar_input" id = "search-conference" placeholder="Search conference" aria-label="Search" name="search-conference">
-                <button name = "btn-search-conference" id = "btn-search-conference" class="btn btn-default search-btn" type="submit"><div class = "search_btn">Search</div></button>
-              </form>
-              
-              <div class ="row filter_and_sort">
-                <div class = "col-md-2 col-sm-2">
-                    <h5>Filter by: </h5>
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle btn-dropdown-filter" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Filter
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#" class= "status">Status</a></li>
-                        <li><a href="#" class= "availability">Availability</a></li>
-                        <li><a href="#" class= "temp">Type</a></li>
-                      </ul>
-                    </div>
-                </div>  
-
-                <div class = "col-md-2 col-sm-2">
-                  <h5>Sort by:</h5>
-                  <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle btn-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                      Sort
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li><a href="#" class= "status">Status</a></li>
-                      <li><a href="#" class= "availability">Availability</a></li>
-                      <li><a href="#" class= "temp">Type</a></li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class = "col-md-4 col-sm-4">
-                  
-                </div>
-                <div class = "col-md-2 col-sm-2">
-                  <a class="btn btn-default create-conf-btn" id = "create_conf" data-toggle = "modal" href="#" data-target="#createConferenceModal">
-                    <div class="search_btn" >
-                      <span class="glyphicon glyphicon-plus"></span> 
-                      Create Conference
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>     
+          <div class = "greeting"> 
+            Welcome, {{ user.username }}!
           </div>
+          
+          <div class = "col-md-6 col-sm-6">
+            <!-- <div class = "col-md-2 col-sm-2"> -->
+              <a class="btn btn-default create-conf-btn" id = "create_conf" data-toggle = "modal" href="#" data-target="#createConferenceModal">
+                <div class="search_btn" >
+                  <span class="glyphicon glyphicon-plus"></span> 
+                  Create Conference
+                </div>
+              </a>
+            <!-- </div>   -->
+          </div>
+
+            <div class="col-md-6 sol-sm-6">
+              <div class = "search_bar"> 
+                <form method = "POST"> 
+                  {% csrf_token %}
+                  <input type="text" class = "search_bar_input" id = "search-conference" placeholder="Search conference" aria-label="Search" name="search-conference">
+                  <button name = "btn-search-conference" id = "btn-search-conference" class="btn btn-default search-btn" type="submit"><div class = "search_btn">Search</div></button>
+                </form>
+              </div>
+            </div>
         </div>
 <!-- END OF CREATE CONFERENCE BUTTON, FILTER AND SORT BY -->
 

@@ -605,8 +605,10 @@ font-size: 14px;
 }
 
 .search_bar{
-  margin-top: 70px;
-  margin-left: 80px;
+  margin-top: 40px;
+
+  margin-left: 320px;
+
 }
 
 /* h4{
@@ -620,7 +622,7 @@ font-size: 14px;
   border-radius: 3px;
   border-color: #4b4a4a;
   /* opacity: 0%; */
-  width: 300px;
+  width: 220px;
   height: 30px;
 }
 
@@ -721,10 +723,12 @@ h5{
 .create-conf-btn{
   width: 180px;
 	height: 30px;
-	margin-top: 10px;
+	/* margin-top: 10px; */
+  margin-top: 40px;
 	text-align: center;
 
-	margin-left: 220px;
+	margin-left: 80px;
+  
 
   background: white;
 	color: #068979;
@@ -879,4 +883,19 @@ h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}
 
 .conf-status input{
   color: #068979;
+}
+
+/* .create-conference-btn{
+  margin: 0px;
+} */
+
+
+.greeting{
+  margin-top: 100px;
+  margin-left:90px;
+  margin-bottom: 0px;
+
+  font-size: 18px;
+  color: #2CABE3;
+  font-weight: bold;
 }
