@@ -140,13 +140,15 @@ def unity_updateprofile(request):
         print("Request Method: POST")
         user_username = request.POST.get("username")
         print(user_username)
-        user_newdisplayname = request.POST.get("displayname")
+        user_newdisplayname = request.POST.get("display_name")
         print(user_newdisplayname)
         user_newaffiliation = request.POST.get("affliation")
         print(user_newaffiliation)
+        user_newemail = request.POST.get("email")
+        print(user_newaffiliation)
 
         form = Profile.objects.filter(username=user_username).update(
-            avatar_index=user_newavatar)
+            display_name=user_newdisplayname, affiliation=user_newaffiliation, email=user_newemail)
         print("Update Avatar Index: Sucessful")
         return JsonResponse({'success': True})
 
