@@ -1,4 +1,4 @@
 
-.vscode/settings.json
+.vscode/
 __pycache__
-*.pyc
+*.cpython-38.pyc
