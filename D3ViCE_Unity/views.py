@@ -124,7 +124,8 @@ def register_participant(request):
             if user.username == user_username:
                 user_id = user.id
 
-        # form = Profile.objects.filter(id = user_id).update(display_name = user_displayname, affiliation = user_affliation)
+        form = Profile.objects.filter(id=user_id).update(
+            display_name=user_displayname, affiliation=user_affliation)
         print("Participant Registration: Sucessful")
         return JsonResponse({'success': True})
     else:
@@ -136,6 +137,7 @@ def register_participant(request):
 @csrf_exempt
 def unity_updateprofile(request):
     print("D3ViCE_Unity: user from unity is attempting to update their profile information")
+    form = UpdateUserProfile(request.POST or None)
     if request.method == "POST":
         print("Request Method: POST")
         user_username = request.POST.get("username")
@@ -149,8 +151,12 @@ def unity_updateprofile(request):
 
         form = Profile.objects.filter(username=user_username).update(
             display_name=user_newdisplayname, affiliation=user_newaffiliation, email=user_newemail)
-        print("Update Avatar Index: Sucessful")
+        print("Update User Profile: Sucessful")
         return JsonResponse({'success': True})
+    else:
+        print("Form: !Valid")
+        form.error.as_json()
+        return JsonResponse({'success': False, 'errors': [(k, v[0]) for k, v in form.errors.items()]})
 
 
 class WebglView(View):
