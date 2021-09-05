@@ -16,6 +16,7 @@ class ConferenceHistoryView(View):
 		context = {
 			'conferences_created' : qs_conferences_created,
 			'conferences_joined' : qs_conferences_joined  
+			# 'created_conferences' : qs_created_conferences
 		}
 		return render(request, '11_ViewHistory.html',context)
 	def post(self, request):
