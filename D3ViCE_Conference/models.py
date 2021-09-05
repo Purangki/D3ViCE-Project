@@ -52,6 +52,7 @@ class Sponsorship(models.Model):
 class Question(models.Model):
 	user = models.ForeignKey(Profile, related_name="user_questions", on_delete=models.SET_NULL, null=True)
 	conference = models.ForeignKey(Conference, related_name="questions", on_delete=models.SET_NULL, null=True)
+	about = models.CharField(max_length=1000, null=True, blank=True)
 
 	class Meta:
 		db_table = "Question"
