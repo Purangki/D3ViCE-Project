@@ -22,6 +22,7 @@ class Conference(models.Model):
 	type = models.CharField(max_length = 255)
 
 	# sponsor = models.ManyToManyField(Profile, related_name = 'sponsored_conferences', blank = True)
+	# question = models.ForeignKey(Profile, on_delete=models.SET_NULL, related_name="question_conference", null=True, blank= True)
 	host = models.ForeignKey(Profile, on_delete=models.SET_NULL, related_name="created_conferences", null=True, blank = True)
 	participant = models.ManyToManyField(Profile, related_name = "joined_conferences", blank = True)
 	speaker = models.ManyToManyField(Profile, related_name = "speaker_conferences", blank = True)
@@ -47,3 +48,11 @@ class Sponsorship(models.Model):
 	company_description = models.CharField(max_length=500)
 	reason = models.CharField(max_length=500)
 	is_accepted = models.BooleanField(default=False)
+
+class Question(models.Model):
+	user = models.ForeignKey(Profile, related_name="user_questions", on_delete=models.SET_NULL, null=True)
+	conference = models.ForeignKey(Conference, related_name="questions", on_delete=models.SET_NULL, null=True)
+	about = models.CharField(max_length=1000, null=True, blank=True)
+
+	class Meta:
+		db_table = "Question"

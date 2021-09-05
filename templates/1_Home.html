@@ -9,9 +9,9 @@
 			D3ViCE - Homepage
 		</title>
 		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" type="text/css" href="{% static 'css/home/style.css' %}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     	<link rel="stylesheet" type="text/css" href="{% static 'css/home/style.css' %}">
+		<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/> <!-- adding of logo in title -->
 		<script src="https://ajax.googleapis.com/ajax/libs jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://unpkg.com/scrollreveal"></script>
 		{% endblock headerinclude %}
@@ -36,8 +36,6 @@
 							<li><a href="#home" class="a_">Home</a></li>
 							<li><a href="../D3ViCE_Home/feature" class="a_">Features</a></li>
 							<li><a href="../D3ViCE_Home/aboutUs" class="a_">About Us</a></li>
-							<!-- <li><a href="/D3ViCE_Account/login">Downloads</a></li>
-							<li><a href="/D3ViCE_Account/login">Plans</a></li> -->
 							<li><a href="/D3ViCE_Account/login" class="a_">Sign in</a></li>
 						</ul>					
 					</div>
@@ -152,8 +150,6 @@
 							<span class = "checkmark_color">&#10003;</span>  Join three (3) conferences per month
 							<br>
 							<span class = "checkmark_color">&#10003;</span>  Access to selected number of conferences
-							<!-- <br>
-							<span class = "checkmark_color"> &cross;</span>  Sponsors cannot avail	 -->
 							<br>
 							<span class = "checkmark_color"> &#10003; </span> Can use the mini games
 						</p>
@@ -371,5 +367,4 @@
 		{% endblock footerinclude %}
 	{% endblock content %}
 	</body>
-
 </html>
