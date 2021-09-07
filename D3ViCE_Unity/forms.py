@@ -1,22 +1,26 @@
 from django import forms
 from django.contrib.auth.models import AbstractUser
+from django.forms import fields
 from D3ViCE_Conference.models import Conference
-from D3ViCE_User.models import Profile #,Participant
+from D3ViCE_User.models import Profile  # ,Participant
 # from .models import *
 # from django.contrib.auth import login, logout
 # from django.contrib.auth.models import auth, User
 
+
 class UserLogin(forms.ModelForm):
-    
+
     class Meta:
         model = Profile
-        fields = ('username','password')
+        fields = ('username', 'password')
+
 
 class UserUpdateAvatar(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('username','avatar_index')
+        fields = ('username', 'avatar_index')
+
 
 class UserJoinConference(forms.ModelForm):
 
@@ -24,7 +28,15 @@ class UserJoinConference(forms.ModelForm):
         model = Conference
         fields = ('code',)
 
+
 class RegisterParticipant(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ('username',)
+
+
+class UpdateUserProfile(forms.ModelForm):
 
     class Meta:
         model = Profile
