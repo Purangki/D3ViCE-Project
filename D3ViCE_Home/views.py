@@ -18,6 +18,10 @@ class AboutUsView(View):
 	def get(self, request):
 		return render(request, '3_AboutUs.html')	#about us page
 
+class ErrorView(View):
+	def get(self, request):
+		return render(request, '15_ErrorPage.html')	#error page
+
 
 
 
