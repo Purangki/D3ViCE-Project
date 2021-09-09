@@ -30,21 +30,15 @@ class DashboardView(View):
 		current_user = request.user
 		qs_conferences = Conference.objects.filter(is_deleted = False).order_by('-date')
 		qs_requests = Request.objects.filter(status = 'Pending', target = current_user).order_by('-date')
-		# search = request.GET.get('search-conference')
-		# result = Conference.objects.all().filter(title = search)
 		context = {
 			'conferences' : qs_conferences,
 			'requests': qs_requests,
 			'current_user': current_user,
-			# 'result':result
 		}
 		return render(request, '6_Dashboard.html',context)
 
 	def post(self, request):
-		# print(request.POST)
 		if request.method == 'POST':
-			# if 'btn-search-conference' in request.POST:
-			# 	return render(request, '15_Search_Conference.html')
 			if 'btn_create_conference' in request.POST:
 				currentUser = Profile.objects.get(id = request.user.id)
 				# for validation check if currentUser.is_host == true
@@ -121,22 +115,10 @@ class DashboardView(View):
 		return redirect('D3ViCE_Conference:dashboard_view')
 
 
-# class SearchConferenceView(View):
-# 	def get(self, request):
-# 		print('pretty')
-# 		# current_user = request.user
-# 		# searched = Conference.searched
-# 		# qs_searched  = Conference.objects.filter(title__contains = searched)
-# 		# context = {
-# 		# 	'searched' : qs_searched,
-# 		# 	# 'conferences_joined' : qs_conferences_joined  
-# 		# }
-# 		return render(request, '15_Search_Conference.html')
-# 	def post(self, request):
-# 		if request.method == 'POST':
-# 			if 'btn-search-conference' in request.POST:
-# 				searched = request.POST['search-conference']
-# 				print(searched)
-# 				# searched_conferences = Conference.objects.filter(title__contains = searched)
-# 				# return render(request, '15_Search_Conference.html',{'searched':searched, 'searched_conferences':searched_conferences})
-# 				return redirect('D3ViCE_Conference:search-conference')
+class AdminView(View):
+	def get(self, request):
+		qs_conferences = Conference.objects.filter(is_deleted = False,date__lte=datetime.now()).order_by('-date')
+		context = {
+			'conferences' : qs_conferences,
+		}
+		return render(request, '0_AdminDashboard.html',context)		
