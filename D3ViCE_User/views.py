@@ -93,11 +93,6 @@ class UserProfileView(View):
 				id_num = request.POST.get("user_id_num")	
 				delete_user = Profile.objects.filter(id = id_num).update(is_active = False)
 				return redirect('D3ViCE_Account:login')
-
-class AdminView(View):	#admin dashboard
-	def get(self, request):
-		return render(request, '0_AdminDashboard.html',)
-
 class SponsorConferenceView(View):
 	def get(self,request,id):
 		context = {

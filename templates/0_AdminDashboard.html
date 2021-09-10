@@ -6,21 +6,20 @@
 
     <title>
       {% block title %}
-      {{ page_title|default:"Admin Dashboard" }}
+      {{ page_title|default:"View History" }}
       {% endblock %}
     </title> 
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <!-- DataTable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-    <!-- Font Awesome -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/> <!-- adding of logo in title -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
-	<!-- Custom CSS -->
-    <link href="{% static 'css/dashboard/style.css' %}" rel="stylesheet">
-	<!-- Adding of logo in title -->
-	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/> 
+    <link href="{% static 'css/dashboard/admin.css' %}" rel="stylesheet">
   {% endblock headerinclude %}
 
   {% block footerinclude %}
@@ -42,6 +41,7 @@
 
   {% block content %}
    	<!-- START OF NAVBAR -->
+
 		<nav class ="navbar navbar-style navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -51,15 +51,16 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a id="tempLogo" class="navbar-logo" href="#">D3ViCE</a>
+          <!-- <a><img src="{% static 'img/finalLogo.png' %}" class="img-fluid logo"></a> -->
 				</div>
 					
 				<div class="collapse navbar-collapse" id="menuIcon">	
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="../D3ViCE_Conference/dashboard" class="a_">Dashboard</a></li>
-						<li><a href="../D3ViCE_Conference/history" class="a_">History</a></li>
-						<li><a href="../D3ViCE_User/profile" class="a_">Profile</a></li>
-						<li><a class="a_" data-toggle="modal" href="#notification_modal">Notification</a></li>
-						<li><a href="../D3ViCE_Account/logout" class="a_">Logout</a></li>
+            <li><a href="../D3ViCE_Conference/history" class="a_">History</a></li>
+            <li><a href="../D3ViCE_User/profile" class="a_">Profile</a></li>
+            <li><a class="a_" data-toggle="modal" href="#notification_modal">Notification</a></li>
+            <li><a href="../D3ViCE_Account/logout" class="a_">Logout</a></li>
 					</ul>					
 				</div>
 			</div>
@@ -91,29 +92,30 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for conference in conferences %} 
+                  {% for conference_created in conferences_created %} 
                   <tr>
-                    <td class="align-middle">{{conference.title}}</td>
-                    <td class="align-middle">{{conference.date}}</td>
-                    <td class="align-middle">{{conference.description}}</td>
+                    <td class="align-middle">{{conference_created.title}}</td>
+                    <td class="align-middle">{{conference_created.date}}</td>
+                    <td class="align-middle">{{conference_created.description}}</td>
                     <td>
-                      <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#viewCreatedConferenceModal-{{conference.id}}">
+                      <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#viewCreatedConferenceModal-{{conference_created.id}}">
                           <i class="fas fa-eye"></i>
                           View Details
                         </button>
-                        <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteCreatedConferenceModal-{{conference.id}}">
+                        <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteCreatedConferenceModal-{{conference_created.id}}">
                           <i class="fas fa-trash-alt"></i>
                           Delete
                         </button>
                     </td>
                   </tr>
     
-                  <div class="modal fade" id="viewCreatedConferenceModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal fade" id="viewCreatedConferenceModal-{{conference_created.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog conf-modal" role="document">
                       <div class="modal-content">
 
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <!-- <span aria-hidden="true">&times;</span> -->
                             &times;
                           </button>
                           <h4 class="modal-title"><i class="fas fa-eye"></i>  View Details</h4> 
@@ -128,44 +130,58 @@
                             <div class="col-md-6 bg-light">
                               <form method="POST">
                               {% csrf_token %}
+                              <!-- <div class="input-group">
+                                <div class="input-group-prepend mt-5 mb-3">
+                                  <span class="input-group-text conf-prepend">Conference Code</span>
+                                </div>
+
+                                <input type="hidden" name="conference_id_num" value={{conference_created.id}}>
+                                <input type="text" id="code_edit-{{conference_created.id}}" name="code_edit" class="form-control mt-5 mb-3 conf-input" value={{conference_created.code}} readonly>
+                                <div class="input-group-append mt-5 mb-3">
+                                  <button type="button" id="btn_copy-{{conference_created.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference_created.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')"><i class="fas fa-copy"></i></button>
+                                </div>
+                              </div> -->
+                              
                               <div class = "input-group">
                                 <div class = "input-group-prepend mb-3">
                                   <span class = "input-group-text conf-prepend"> Conference Code</span>
                                 </div>
-                                <input type = "hidden" name = "conference_id_num" value = {{conference.id}}>
-                                <input type = "text" id = "code_edit-{{conference.id}}" class= "conf-input form-control mb-3" value = "{{conference.code}}">
-                                  <button type="button" id="btn_copy-{{conference.id}}" 
+                                <input type = "hidden" name = "conference_id_num" value = {{conference_created.id}}>
+                                <input type = "text" id = "code_edit-{{conference_created.id}}" class= "conf-input form-control mb-3" value = "{{conference_created.code}}">
+                                <!-- <div class="input-group-prepend mb-3"> -->
+                                  <button type="button" id="btn_copy-{{conference_created.id}}" 
                                   class="btn conf-prepend copy-to-clipboard btn-copy-code"
-                                  data-clipboard-target="#code_edit-{{conference.id}}" 
+                                  data-clipboard-target="#code_edit-{{conference_created.id}}" 
                                   data-toggle="tooltip" title="Copy to clipboard" 
-                                  onclick="updateTooltip('code_edit-{{conference.id}}','btn_copy-{{conference.id}}')">
+                                  onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')">
                                   <i class="fas fa-copy"></i>
                                   </button>
+                                <!-- </div> -->
                               </div>
 
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Conference Title</span>
                                 </div>
-                                <input type="text" id="title_edit-{{conference.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150" disabled>
+                                <input type="text" id="title_edit-{{conference_created.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference_created.title}}" required maxlength="150" disabled>
                               </div>
 
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Date</span>
                                 </div>
-                                <input type="date" id="date_edit-{{conference.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference.date|date:"Y-m-d"}} required disabled>
+                                <input type="date" id="date_edit-{{conference_created.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference_created.date|date:"Y-m-d"}} required disabled>
                                 <script type="text/javascript">
-                                  disableBeforeToday('date_edit-{{conference.id}}');
+                                  disableBeforeToday('date_edit-{{conference_created.id}}');
                                 </script>
                               </div>
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Time</span>
                                 </div>
-                                <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.time|time:"H:i:s"}} required disabled>
+                                <input type="time" id="time_edit-{{conference_created.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference_created.time|time:"H:i:s"}} required disabled>
                               </div>
-                              <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" disabled>{{conference.description}}</textarea>
+                              <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" disabled>{{conference_created.description}}</textarea>
                             </form>
                             </div>
                             
@@ -175,7 +191,7 @@
                     </div>
                   </div>
     
-                  <div class="modal fade" id="deleteCreatedConferenceModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal fade" id="deleteCreatedConferenceModal-{{conference_created.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -187,10 +203,10 @@
                         <form method="POST">
                           {% csrf_token %}
                           <div class="modal-body">
-                            Are you sure you want to delete {{conference.title}}?
+                            Are you sure you want to delete {{conference_created.title}}?
                           </div>
                           <div class="modal-footer">
-                            <input type="text" name="conference_id_num" value={{conference.id}} hidden>
+                            <input type="text" name="conference_id_num" value={{conference_created.id}} hidden>
                             <button type="submit" id="btn_delete_conference" name="btn_delete_conference" class="btn btn-danger">Yes</button>
                             <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
                           </div>
@@ -231,18 +247,18 @@
                     <td class="align-middle">{{conference_joined.date}}</td>
                     <td class="align-middle">{{conference_joined.description}}</td>
                     <td>
-                      <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#viewCreatedConferenceModal-{{conference.id}}">
+                      <button type="button" class="btn btn-edit" data-toggle="modal" data-target="#viewCreatedConferenceModal-{{conference_created.id}}">
                           <i class="fas fa-eye"></i>
                           View Details
                         </button>
-                        <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteCreatedConferenceModal-{{conference.id}}">
+                        <button type="button" class="btn btn-delete" data-toggle="modal" data-target="#deleteCreatedConferenceModal-{{conference_created.id}}">
                           <i class="fas fa-trash-alt"></i>
                           Delete
                         </button>
                     </td>
                   </tr>
     
-                  <div class="modal fade" id="viewJoinedConferenceModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal fade" id="viewJoinedConferenceModal-{{conference_created.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog conf-modal" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -261,34 +277,34 @@
                                 <div class="input-group-prepend mt-5 mb-3">
                                   <span class="input-group-text conf-prepend">Conference Code</span>
                                 </div>
-                                <input type="text" name="conference_id_num" value={{conference.id}} hidden>
-                                <input type="text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mt-5 mb-3" value={{conference.code}} readonly>
+                                <input type="text" name="conference_id_num" value={{conference_created.id}} hidden>
+                                <input type="text" id="code_edit-{{conference_created.id}}" name="code_edit" class="conf-input form-control mt-5 mb-3" value={{conference_created.code}} readonly>
                                 <div class="input-group-append mt-5 mb-3">
-                                  <button type="button" id="btn_copy-{{conference.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference.id}}','btn_copy-{{conference.id}}')"><i class="fas fa-copy"></i></button>
+                                  <button type="button" id="btn_copy-{{conference_created.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference_created.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')"><i class="fas fa-copy"></i></button>
                                 </div>
                               </div>
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Conference Title</span>
                                 </div>
-                                <input type="text" id="title_edit-{{conference.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150" disabled>
+                                <input type="text" id="title_edit-{{conference_created.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference_created.title}}" required maxlength="150" disabled>
                               </div>
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Date</span>
                                 </div>
-                                <input type="date" id="date_edit-{{conference.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference.date|date:"Y-m-d"}} required disabled>
+                                <input type="date" id="date_edit-{{conference_created.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference_created.date|date:"Y-m-d"}} required disabled>
                                 <script type="text/javascript">
-                                  disableBeforeToday('date_edit-{{conference.id}}');
+                                  disableBeforeToday('date_edit-{{conference_created.id}}');
                                 </script>
                               </div>
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Time</span>
                                 </div>
-                                <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.time|time:"H:i:s"}} required disabled>
+                                <input type="time" id="time_edit-{{conference_created.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference_created.time|time:"H:i:s"}} required disabled>
                               </div>
-                              <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" disabled>{{conference.description}}</textarea>
+                              <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" disabled>{{conference_created.description}}</textarea>
                             </div>
                           </div>
                         </div>
@@ -296,7 +312,7 @@
                     </div>
                   </div>
     
-                  <div class="modal fade" id="deleteCreatedConferenceModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal fade" id="deleteCreatedConferenceModal-{{conference_created.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -308,10 +324,10 @@
                         <form method="POST">
                           {% csrf_token %}
                           <div class="modal-body">
-                            Are you sure you want to delete {{conference.title}}?
+                            Are you sure you want to delete {{conference_created.title}}?
                           </div>
                           <div class="modal-footer">
-                            <input type="text" name="conference_id_num" value={{conference.id}} hidden>
+                            <input type="text" name="conference_id_num" value={{conference_created.id}} hidden>
                             <button type="submit" id="btn_delete_conference" name="btn_delete_conference" class="btn btn-danger">Yes</button>
                             <button type="button" data-dismiss="modal" class="btn btn-primary">No</button>                   
                           </div>
