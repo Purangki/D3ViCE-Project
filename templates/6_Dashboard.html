@@ -82,14 +82,12 @@
           </div>
           
           <div class = "col-md-6 col-sm-6">
-            <!-- <div class = "col-md-2 col-sm-2"> -->
               <a class="btn btn-default create-conf-btn" id = "create_conf" data-toggle = "modal" href="#" data-target="#createConferenceModal">
                 <div class="search_btn" >
                   <span class="glyphicon glyphicon-plus"></span> 
                   Create Conference
                 </div>
               </a>
-            <!-- </div>   -->
           </div>
 
             <div class="col-md-6 sol-sm-6">
@@ -104,7 +102,7 @@
         </div>
 <!-- END OF CREATE CONFERENCE BUTTON, FILTER AND SORT BY -->
 
-<!-- start of cards -->
+        <!-- start of cards -->
         <div class="row">
           {% for conference in conferences %}
           <div class="col-md-4 col-sm-4">
@@ -123,7 +121,7 @@
                 <button id="btn_showMore" class="btn btn-default blk1-btn" data-toggle="modal" data-target="#showMoreModal-{{conference.id}}">Details</button>
               </div>
             </div>
-  <!-- end of card -->
+          <!-- end of card -->
 
            <!-- START MODAL FOR EDIT AND DELETE -->
            <div class= "modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -140,49 +138,38 @@
                   <div class ="row">
   
                     <div class="col-md-6">
-                      <img src="{% static 'img/createConferenceImg.png' %}" class = "img-fluid">
+                      <img src="{% static 'img/createConferenceImg.png' %}" class = "img-fluid"> <!-- get image uploaded by user -->
                     </div>
   
                     <div class="col-md-6 bg-light">
                       <form method="POST">
                         {% csrf_token %}
-                        <!-- <div class="input-group">
-                          <div class="input-group-prepend mt-5 mb-3">
-                            <span class="input-group-text conf-prepend">Conference Code</span>
-                          </div>
-                          <input type="hidden" name="conference_id_num" value={{conference.id}}>
-                          <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mb-3" value= "{{conference.code}}" readonly>
-                          <button type="button" id="btn_copy-{{conference_created.id}}" 
-                                  class="btn conf-prepend copy-to-clipboard btn-copy-code"
-                                  data-clipboard-target="#code_edit-{{conference_created.id}}" 
-                                  data-toggle="tooltip" title="Copy to clipboard" 
-                                  onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')">
-                                  <i class="fas fa-copy"></i>
-                                  </button>
-                        </div> -->
-
                         <div class = "input-group mt-5 mb-3">
-                          <!-- <div class = "input-group-prepend mb-3"> -->
                             <div class="input-group-prepend mb-3">
                               <span class="input-group-text conf-prepend">Conference Code</span>
                             </div>
+
                             <input type="hidden" name="conference_id_num" value={{conference.id}}>
-                            <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" class="conf-input form-control mb-3" value= "{{conference.code}}" readonly>
+
+                            <input type= "text" id="code_edit-{{conference.id}}" name="code_edit" 
+                                  class="conf-input form-control mb-3" value= "{{conference.code}}" readonly>
+                            
+                            <!-- copy to clipboard-->
                             <button type="button" id="btn_copy-{{conference_created.id}}" 
                                   class="btn conf-prepend copy-to-clipboard btn-copy-code"
                                   data-clipboard-target="#code_edit-{{conference_created.id}}" 
                                   data-toggle="tooltip" title="Copy to clipboard" 
                                   onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')">
                                   <i class="fas fa-copy img-copy"></i>
-                                  <!-- <span class="glyphicon glyphicon-copy"></span> -->
-                            </button>
-                          <!-- </div> -->
+                            </button> 
                         </div>
+
                         <div class="input-group">
                           <div class="input-group-prepend mb-3">
                             <span class="input-group-text conf-prepend">Conference Title</span>
                           </div>
-                          <input type="text" id="title_edit-{{conference.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150">
+                          <input type="text" id="title_edit-{{conference.id}}" name="title_edit" 
+                                  class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150">
                         </div>
                         
                         <div class="input-group">
