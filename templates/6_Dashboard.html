@@ -176,7 +176,7 @@
                           <div class="input-group-prepend mb-3">
                             <span class="input-group-text conf-prepend">Date</span>
                           </div>
-                          <input type="date" id="date_edit-{{conference.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference.date|date:"Y-m-d"}} required>
+                          <input type="date" id="date_edit-{{conference.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference.date|date:"Y-m-d"}} required readonly>
                           <script type="text/javascript">
                             disableBeforeToday('date_edit-{{conference.id}}');
                           </script>
@@ -186,7 +186,7 @@
                           <div class="input-group-prepend mb-3">
                             <span class="input-group-text conf-prepend">Time</span>
                           </div>
-                          <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.time|time:"H:i:s"}} required>
+                          <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.time|time:"H:i:s"}} required readonly>
                         </div>
                         
                         <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255">{{conference.description}}</textarea>
@@ -195,7 +195,6 @@
                           <button type="button" id="btn_sponsor_conference" name="btn_sponsor_conference" class="btn btn-conference-sponsor">
                             <a href = "../D3ViCE_User/sponsor/{{conference.id}}" class="btn btn-sponsor">Sponsor</a>
                           </button>
-                          
                         </div>
                       </form>
                    </div>  
