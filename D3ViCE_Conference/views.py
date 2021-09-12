@@ -61,6 +61,7 @@ class DashboardView(View):
 									type = type,
 									host = currentUser,
 									code = uuid.uuid1())
+				Profile.objects.update(is_host = 1)
 
 			elif 'btn_edit_conference' in request.POST:
 				id_num = request.POST.get("conference_id_num")
