@@ -11,7 +11,6 @@ from D3ViCE_User.models import *
 from D3ViCE_Conference.models import *
 from .models import Profile
 from django.urls import reverse_lazy
-from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 from django.core.mail import EmailMessage #supposed to be for the email authentication, however was put on hold since it is optional
 from django.contrib.auth.models import auth, User #builtin django user
 from django.contrib.auth.hashers import *
