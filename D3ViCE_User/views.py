@@ -14,6 +14,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 from django.core.mail import EmailMessage #supposed to be for the email authentication, however was put on hold since it is optional
 from django.contrib.auth.models import auth, User #builtin django user
+from django.contrib.auth.hashers import *
+from django.contrib.auth import update_session_auth_hash
 
 class MyPasswordChangeView(PasswordChangeView):
 	template_name = '8_ChangePassword.html'	#changing password template
@@ -76,11 +78,22 @@ class UserProfileView(View):
 	def post(self, request):
 		if request.method == 'POST':
 			if 'btn_change_password' in request.POST:
-				# id_num = request.POST.get("user_id_num")
-				# password = request.POST.get ("current_password")
-				# new_password = request.POST.get ("new_password")
-				# repeat_password = request.POST.get ("renew_password")
-				return redirect('D3ViCE_User:password-change-view')
+				id_num = request.POST.get("user_id_num")
+				current_user = request.user
+				current_password = request.POST.get("current_password")
+				new_password = request.POST.get("new_password")
+				renew_password = request.POST.get("renew_password")
+				valid_password = current_user.check_password(current_password)
+				if valid_password == True:
+					if new_password == renew_password:
+						current_user.set_password(new_password)
+						update_session_auth_hash(request, current_user)
+						current_user.save()
+					else:
+						return HttpResponse("New passwords don't match")
+				else:
+					return HttpResponse("Current password does not match your password")
+				return redirect("D3ViCE_User:profile_view")
 			if 'btn_edit_user' in request.POST:
 				id_num = request.POST.get("user_id_num")
 				fname = request.POST.get("user-fname")

@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.http import HttpResponse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import auth, User #builtin django user
 
 from .models import *
@@ -19,7 +19,9 @@ class UserLoginView(View):  #view of user when he logs in to the system
     def post(self, request):                    #post method   
         username = request.POST.get("username") #username 
         password = request.POST.get("password") #user password
-        user = auth.authenticate(username = username, password = password)  #using django's builtin authentication system, username & password is checked
+        print(username)
+        print(password)
+        user = authenticate(username = username, password = password)  #using django's builtin authentication system, username & password is checked
         if user is not None:            #if user is not None then
             auth.login(request, user)   #user is logged in on the system
             currentUser = user          #currentUser means that whoever is logged is in that system is the user at present, if this is not set then it is an anonymous user 
