@@ -30,7 +30,6 @@
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
 
     <!-- Custom -->
-    <!-- <script src="{% static 'js/dashboard/dashboard.js' %}"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   	<!-- jQuery CDN - Slim version (=without AJAX) -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -123,7 +122,7 @@
             </div>
           <!-- end of card -->
 
-           <!-- START MODAL FOR EDIT AND DELETE -->
+           <!-- START MODAL FOR SHOW MORE-->
            <div class= "modal fade" id="showMoreModal-{{conference.id}}" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog conf-modal" role="document">
           
@@ -169,12 +168,12 @@
                             <span class="input-group-text conf-prepend">Conference Title</span>
                           </div>
                           <input type="text" id="title_edit-{{conference.id}}" name="title_edit" 
-                                  class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150">
+                                  class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150" readonly>
                         </div>
                         
                         <div class="input-group">
                           <div class="input-group-prepend mb-3">
-                            <span class="input-group-text conf-prepend">Date</span>
+                            <span class="input-group-text conf-prepend">Start Date</span>
                           </div>
                           <input type="date" id="date_edit-{{conference.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference.date|date:"Y-m-d"}} required readonly>
                           <script type="text/javascript">
@@ -184,12 +183,36 @@
   
                         <div class="input-group">
                           <div class="input-group-prepend mb-3">
-                            <span class="input-group-text conf-prepend">Time</span>
+                            <span class="input-group-text conf-prepend">Start Time</span>
                           </div>
                           <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.time|time:"H:i:s"}} required readonly>
                         </div>
+
+                        <div class="input-group">
+                          <div class="input-group-prepend mb-3">
+                            <span class="input-group-text conf-prepend">End Date</span>
+                          </div>
+                          <input type="date" id="date_edit-{{conference.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference.end_date|date:"Y-m-d"}} required readonly>
+                          <script type="text/javascript">
+                            disableBeforeToday('date_edit-{{conference.id}}');
+                          </script>
+                        </div>
+  
+                        <div class="input-group">
+                          <div class="input-group-prepend mb-3">
+                            <span class="input-group-text conf-prepend">End Time</span>
+                          </div>
+                          <input type="time" id="time_edit-{{conference.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference.end_time|time:"H:i:s"}} required readonly>
+                        </div>
                         
-                        <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255">{{conference.description}}</textarea>
+                        <div class="input-group">
+                          <div class="input-group-prepend mb-3">
+                            <span class="input-group-text conf-prepend">Available Seats</span>
+                          </div>
+                          <input type="number" class="conf-input form-control mb-3" value={{conference.seats}} required readonly>
+                        </div>
+
+                        <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" readonly>{{conference.description}}</textarea>
                         <div class="d-flex justify-content-center mt-2">
                           <button type="submit" id="btn_join_conference" name="btn_join_conference" class="btn btn-conference-join">Join</button>
                           <button type="button" id="btn_sponsor_conference" name="btn_sponsor_conference" class="btn btn-conference-sponsor">
