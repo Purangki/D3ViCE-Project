@@ -14,11 +14,10 @@ class ConferenceHistoryView(View):
 		current_user = request.user
 		qs_conferences_created = current_user.created_conferences.all()
 		print(qs_conferences_created)
-		qs_conferences_joined = Conference.objects.filter(is_deleted = False,date__lte=datetime.now()).order_by('-date')
+		qs_conferences_joined = current_user.joined_conferences.all()
 		context = {
 			'conferences_created' : qs_conferences_created,
-			'conferences_joined' : qs_conferences_joined  
-			# 'created_conferences' : qs_created_conferences
+			'conferences_joined' : qs_conferences_joined,
 		}
 		return render(request, '11_ViewHistory.html',context)
 	def post(self, request):

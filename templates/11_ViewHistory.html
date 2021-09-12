@@ -130,18 +130,6 @@
                             <div class="col-md-6 bg-light">
                               <form method="POST">
                               {% csrf_token %}
-                              <!-- <div class="input-group">
-                                <div class="input-group-prepend mt-5 mb-3">
-                                  <span class="input-group-text conf-prepend">Conference Code</span>
-                                </div>
-
-                                <input type="hidden" name="conference_id_num" value={{conference_created.id}}>
-                                <input type="text" id="code_edit-{{conference_created.id}}" name="code_edit" class="form-control mt-5 mb-3 conf-input" value={{conference_created.code}} readonly>
-                                <div class="input-group-append mt-5 mb-3">
-                                  <button type="button" id="btn_copy-{{conference_created.id}}" class="btn conf-prepend copy-to-clipboard" data-clipboard-target="#code_edit-{{conference_created.id}}" data-toggle="tooltip" title="Copy to clipboard" onclick="updateTooltip('code_edit-{{conference_created.id}}','btn_copy-{{conference_created.id}}')"><i class="fas fa-copy"></i></button>
-                                </div>
-                              </div> -->
-                              
                               <div class = "input-group">
                                 <div class = "input-group-prepend mb-3">
                                   <span class = "input-group-text conf-prepend"> Conference Code</span>
@@ -163,14 +151,14 @@
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Conference Title</span>
                                 </div>
-                                <input type="text" id="title_edit-{{conference_created.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference_created.title}}" required maxlength="150" disabled>
+                                <input type="text" id="title_edit-{{conference_created.id}}" name="title_edit" class="conf-input form-control mb-3" value="{{conference_created.title}}" required maxlength="150">
                               </div>
 
                               <div class="input-group">
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Date</span>
                                 </div>
-                                <input type="date" id="date_edit-{{conference_created.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference_created.date|date:"Y-m-d"}} required disabled>
+                                <input type="date" id="date_edit-{{conference_created.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference_created.date|date:"Y-m-d"}} required>
                                 <script type="text/javascript">
                                   disableBeforeToday('date_edit-{{conference_created.id}}');
                                 </script>
@@ -179,8 +167,33 @@
                                 <div class="input-group-prepend mb-3">
                                   <span class="input-group-text conf-prepend">Time</span>
                                 </div>
-                                <input type="time" id="time_edit-{{conference_created.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference_created.time|time:"H:i:s"}} required disabled>
+                                <input type="time" id="time_edit-{{conference_created.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference_created.time|time:"H:i:s"}} required>
                               </div>
+
+                              <div class="input-group">
+                                <div class="input-group-prepend mb-3">
+                                  <span class="input-group-text conf-prepend"> End Date</span>
+                                </div>
+                                <input type="date" id="date_edit-{{conference_created.id}}" name="date_edit" class="conf-input form-control mb-3" value={{conference_created.end_date|date:"Y-m-d"}} required>
+                                <script type="text/javascript">
+                                  disableBeforeToday('date_edit-{{conference_created.id}}');
+                                </script>
+                              </div>
+
+                              <div class="input-group">
+                                <div class="input-group-prepend mb-3">
+                                  <span class="input-group-text conf-prepend">End Time</span>
+                                </div>
+                                <input type="time" id="time_edit-{{conference_created.id}}" name="time_edit" class="conf-input form-control mb-3" value={{conference_created.end_time|time:"H:i:s"}} required>
+                              </div>
+
+                              <div class="input-group">
+                                <div class="input-group-prepend mb-3">
+                                  <span class="input-group-text conf-prepend">No. of Participants</span>
+                                </div>
+                                <input type="number" class="conf-input form-control mb-3" value={{conference_created.seats}} required>
+                              </div>
+
                               <textarea class="conf-input mb-3 form-control"  id="desc_edit" name="desc_edit" rows="3" placeholder="Short Description" maxlength="255" disabled>{{conference_created.description}}</textarea>
                             </form>
                             </div>

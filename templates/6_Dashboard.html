@@ -170,6 +170,13 @@
                           <input type="text" id="title_edit-{{conference.id}}" name="title_edit" 
                                   class="conf-input form-control mb-3" value="{{conference.title}}" required maxlength="150" readonly>
                         </div>
+
+                        <div class="input-group">
+                          <div class="input-group-prepend mb-3">
+                            <span class="input-group-text conf-prepend">Host</span>
+                          </div>
+                          <input type="text" class="conf-input form-control mb-3" value="{{conference.host.first_name}} {{conference.host.last_name}}" required maxlength="150" readonly>
+                        </div>
                         
                         <div class="input-group">
                           <div class="input-group-prepend mb-3">
