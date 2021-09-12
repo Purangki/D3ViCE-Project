@@ -16,14 +16,6 @@ from django.core.mail import EmailMessage #supposed to be for the email authenti
 from django.contrib.auth.models import auth, User #builtin django user
 from django.contrib.auth.hashers import *
 from django.contrib.auth import update_session_auth_hash
-
-class MyPasswordChangeView(PasswordChangeView):
-	template_name = '8_ChangePassword.html'	#changing password template
-	success_url = reverse_lazy('D3ViCE_User:password-change-done-view')	#password successful
-
-class MyPasswordResetDoneView(PasswordResetDoneView):
-	template_name = '9_SuccessfulChangePass.html'	#password successful template
-
 class UserSignUpView(View):
 	def get(self, request):
 		return render(request, '4_SignUp.html')	#user registration
