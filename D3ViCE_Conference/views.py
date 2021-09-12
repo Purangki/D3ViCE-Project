@@ -11,7 +11,9 @@ import uuid		#for the conference code
 
 class ConferenceHistoryView(View):
 	def get(self, request):
-		qs_conferences_created = Conference.objects.filter(is_deleted = False,date__lte=datetime.now()).order_by('-date')
+		current_user = request.user
+		qs_conferences_created = current_user.created_conferences.all()
+		print(qs_conferences_created)
 		qs_conferences_joined = Conference.objects.filter(is_deleted = False,date__lte=datetime.now()).order_by('-date')
 		context = {
 			'conferences_created' : qs_conferences_created,
@@ -61,7 +63,7 @@ class DashboardView(View):
 									type = type,
 									host = currentUser,
 									code = uuid.uuid1())
-				Profile.objects.update(is_host = 1)
+				# Profile.objects.update(is_host = 1)
 
 			elif 'btn_edit_conference' in request.POST:
 				id_num = request.POST.get("conference_id_num")

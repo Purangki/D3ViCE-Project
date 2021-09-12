@@ -1,8 +1,3 @@
-# from D3ViCE_Conference.models import Conference
-# from django.db.models.expressions import F
-# from django.db.models.fields import DateField, DateTimeField, FloatField
-# from D3ViCE_Conference.models import Sponsorship
-# from D3ViCE_Conference.models import Conference
 from datetime import datetime
 from django.db import models
 # from django.utils import timezone
