@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import AbstractUser
 from django.forms import fields
-from D3ViCE_Conference.models import Conference
+from D3ViCE_Conference.models import Conference, Question
 from D3ViCE_User.models import Profile  # ,Participant
 # from .models import *
 # from django.contrib.auth import login, logout
@@ -41,3 +41,17 @@ class UpdateUserProfile(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('username',)
+
+
+class AddQuestion(forms.Form):
+
+    class Meta:
+        model = Question
+        fields = ('user',)
+
+
+class GetQuestions(forms.Form):
+
+    class Meta:
+        model = Question
+        fields = ('conference',)

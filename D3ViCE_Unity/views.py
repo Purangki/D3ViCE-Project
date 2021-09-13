@@ -2,6 +2,7 @@
 # Authors: MCiVillondo
 # Descrition: D3ViCE_Unity.views contains all functions and class used in unity to get data through the django server.
 #
+import re
 from sys import displayhook
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -11,7 +12,7 @@ from django.contrib.auth.models import auth, User  # builtin django user
 
 from .forms import *
 from D3ViCE_User.models import Profile
-from D3ViCE_Conference.models import Conference
+from D3ViCE_Conference.models import Conference, Question
 
 from django.shortcuts import render
 from django.views.generic import View
@@ -35,19 +36,20 @@ def login_user(request):
 
         if user is not None:
             print("Login Status: Sucessful")
+            user_idNumber = user_data.id
             user_username = user_data.username
             user_firstname = user_data.first_name
             user_lastname = user_data.last_name
             user_email = user_data.email
             user_avatarindex = user_data.avatar_index
 
-            return JsonResponse({'success': True, 'user': user_username, 'firstname': user_firstname, 'lastname': user_lastname, 'email': user_email, 'avatar_index': user_avatarindex})
+            return JsonResponse({'success': True, 'id': user_idNumber, 'user': user_username, 'firstname': user_firstname, 'lastname': user_lastname, 'email': user_email, 'avatar_index': user_avatarindex})
         else:
             print("Login Status: Failure")
             return JsonResponse({'success': False, 'errors': 'Invalid Password'})
 
 
-# D3ViCE_Unity.update_avatar function is responsible for the updateing the user's preferred avatar.
+# D3ViCE_Unity.update_avatar function is responsible for the updating the user's preferred avatar.
 @csrf_exempt
 def update_avatar(request):
     print("D3ViCE_Unity: user from unity is attempting to update avatar index")
@@ -60,7 +62,7 @@ def update_avatar(request):
         user_newavatar = request.POST.get("index")
         print(user_newavatar)
 
-        form = Profile.objects.filter(username=user_username).update(
+        Profile.objects.filter(username=user_username).update(
             avatar_index=user_newavatar)
         print("Update Avatar Index: Sucessful")
         return JsonResponse({'success': True})
@@ -80,12 +82,14 @@ def join_conference(request, code=None):
     if request.method == "POST":
         print("Request Method: POST")
         conference_code = conference_data.code
+        conference_name = conference_data.title
+
         user_code = request.POST.get("code")
         print(user_code)
 
         if conference_code == user_code:
             print("Join Conference: Sucessful")
-            return JsonResponse({'success': True})
+            return JsonResponse({'success': True, 'conference_title': conference_name})
         else:
             print("Join Conference: Failure")
             return JsonResponse({'success': False, 'errors': 'Invalid Code'})
@@ -100,38 +104,40 @@ def join_conference(request, code=None):
 @csrf_exempt
 def register_participant(request):
     print("D3ViCE_Unity: user from unity is attempting to register to a conference")
-    form = RegisterParticipant(request.POST or None)
+    user_name = request.POST.get("username")
+    conference_code = request.POST.get("conference_code")
+    user_data = get_object_or_404(Profile, username=user_name)
+    conference_data = get_object_or_404(Conference, code=conference_code)
+
     if request.method == "POST":
         print("Request Method: POST")
 
-        user_username = request.POST.get("username")
-        print(user_username)
+        print(user_name)
+        print(conference_code)
+
+        user_idnumber = user_data.id
         user_displayname = request.POST.get("displayname")
         print(user_displayname)
         user_affliation = request.POST.get("affiliation")
         print(user_affliation)
 
-        participants = Profile.objects.all()
-        count = 0
+        participant_resgister = Profile.objects.filter(id=user_idnumber).update(
+            affiliation=user_affliation, display_name=user_displayname)
 
-        for participant in participants:
-            if participant.username == user_username:
-                ++count
+        user_isHost = user_data.is_host
+        user_isSponsor = user_data.is_sponsor
+        user_isSpeaker = user_data.is_speaker
 
-        users = Profile.objects.all()
+        conference = Conference.object.filter(code=conference_code)
+        conference.participant.add(user_idnumber)
+        participants_count = Conference.participant.all().count()
 
-        for user in users:
-            if user.username == user_username:
-                user_id = user.id
-
-        form = Profile.objects.filter(id=user_id).update(
-            display_name=user_displayname, affiliation=user_affliation)
         print("Participant Registration: Sucessful")
-        return JsonResponse({'success': True})
-    else:
+        return JsonResponse({'success': True, 'is_host':  user_isHost, 'is_speaker': user_isSpeaker, 'is_sponsor': user_isSponsor, 'number_participants': participants_count})
+    """ else:
         print("Form: !Valid")
         form.error.as_json()
-        return JsonResponse({'success': False, 'errors': [(k, v[0]) for k, v in form.errors.items()]})
+        return JsonResponse({'success': False, 'errors': [(k, v[0]) for k, v in form.errors.items()]}) """
 
 
 @csrf_exempt
@@ -149,7 +155,7 @@ def unity_updateprofile(request):
         user_newemail = request.POST.get("email")
         print(user_newaffiliation)
 
-        form = Profile.objects.filter(username=user_username).update(
+        update_profile = Profile.objects.filter(username=user_username).update(
             display_name=user_newdisplayname, affiliation=user_newaffiliation, email=user_newemail)
         print("Update User Profile: Sucessful")
         return JsonResponse({'success': True})
@@ -157,6 +163,62 @@ def unity_updateprofile(request):
         print("Form: !Valid")
         form.error.as_json()
         return JsonResponse({'success': False, 'errors': [(k, v[0]) for k, v in form.errors.items()]})
+
+
+def unity_addquestion(request):
+    print("D3ViCE_Unity: user from unity is attempting to send a question")
+    form = AddQuestion(request.POST or None)
+    if request.method == "POST":
+        print("Request Method: POST")
+
+        question_sender = request.POST.get("userID")
+        print(question_sender)
+
+        question_conferencecode = request.POST.get("conferenceCode")
+        question_conference = Conference.object.filter(
+            code=question_conferencecode)
+        question_conferenceid = question_conference.id
+        print(question_conferencecode)
+        print(question_conferenceid)
+
+        question_about = request.POST.get("about")
+        print(question_about)
+
+        question_reciever_username = request.POST.get("speaker")
+        question_reciever_id = Profile.objects.filter(
+            username=question_reciever_username)
+        print(question_reciever_username)
+        print(question_reciever_id)
+
+        add_question = Question.ojects.create(
+            user=question_sender, conference=question_conferenceid, about=question_about, intended_speaker=question_reciever_id)
+        print(add_question)
+
+        print("Question Added: Sucessful")
+        return JsonResponse({'success': True})
+
+    else:
+        print("Form: !Valid")
+        form.error.as_json()
+        return JsonResponse({'success': False, 'errors': [(k, v[0]) for k, v in form.errors.items()]})
+
+
+def unity_getquestions(request):
+    print("D3ViCE_Unity: user from unity is attempting to get a questions for question bank")
+    if request.method == "POST":
+        print("Request Method: POST")
+
+        question_conferencecode = request.POST.get("conferenceCode")
+        question_conference = Conference.object.filter(
+            code=question_conferencecode)
+        question_conferenceid = question_conference.id
+        print(question_conferencecode)
+        print(question_conferenceid)
+
+        questions = Question.objects.all()
+
+        print("Question Gotten: Sucessful")
+        return JsonResponse({'success': True, 'question': questions})
 
 
 class WebglView(View):
