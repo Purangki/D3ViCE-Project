@@ -115,14 +115,3 @@ class DashboardView(View):
 				}
 				return render(request, '6_Dashboard.html',context)
 		return redirect('D3ViCE_Conference:dashboard_view')
-
-
-class AdminView(View):
-	def get(self, request):
-		qs_conferences = Conference.objects.filter(is_deleted = False,date__lte=datetime.now()).order_by('-date')
-		qs_users = Profile.objects.filter(is_active = False)
-		context = {
-			'conferences' : qs_conferences,
-			'users' : qs_users,
-		}
-		return render(request, '0_AdminDashboard.html',context)		
