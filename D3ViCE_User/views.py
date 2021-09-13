@@ -121,7 +121,7 @@ class SponsorConferenceView(View):
 
 				return redirect('D3ViCE_Conference:dashboard_view')
 
-class AdminView(View):
+class AdminDashboardView(View):
 	def get(self, request):
 		qs_conferences = Conference.objects.filter(is_deleted = False,date__lte=datetime.now()).order_by('-date')
 		qs_users = Profile.objects.filter(is_active = False)
@@ -129,6 +129,26 @@ class AdminView(View):
 			'conferences' : qs_conferences,
 			'users' : qs_users,
 		}
-		return render(request, '0_AdminDashboard.html',context)		
+		return render(request, '0_AdminDashboard.html',context)
+
+class AdminUserView(View):
+	def get(self, request):
+		qs_users = Profile.ojects.filter(is_active = False)
+		context = {
+			'users' : qs_users,
+		}
+		return render(request, '0_AdminUser.html', context)		
+
+class AdminConferenceView(View):
+	def get(self, request):
+		qs_conferences = Conference.objects.filter(is_deleted = False, date__lte = datetime.now().order_by('-date'))
+		context = {
+			'conferences' : qs_conferences,
+		}
+		return render(request, '0_AdminConference.html', context)		
+
+class AdminProfileView(View):
+	def get(self, request):
+		return render(request, '0_AdminProfile.html')				
 
 	
